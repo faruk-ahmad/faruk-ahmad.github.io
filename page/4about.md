@@ -10,7 +10,8 @@ type: page
 {:toc}
 
 ## Introduction
-Hello World!</br>
+Hello World!
+
 This is Faruk, an AI Engineer currently working in Tokyo, Japan.
 My specialize domain is machine learning, deep Learning & I am a data Science enthusist.
 I love to learn new technologies, concepts, & like to share that learnings with others. 
