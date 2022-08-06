@@ -2,8 +2,8 @@
 layout: post
 title:  "Introduction to Machine Learning"
 date:   2022-08-06 17:05:54 +0900
-categories: MachineLearning
-tags: MachineLearning AI
+categories: Machine Learning
+tags: Machine Learning, AI
 ---
 
 * content

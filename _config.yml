@@ -18,16 +18,13 @@ twitter_username: __faruk__
 facebook_username: i.faruk.ahmad
 github_username:  faruk-ahmad
 email: faruk.csebrur@gmail.com
-weibo_username: 
-zhihu_username: 
 linkedIn_username: faruk-ahmad
-dribbble_username:
 
 description_footer: Personal Blog
 
 # comments
 # two ways to comment, only choose one, and use your own short name
-duoshuo_shortname: #hygblog
+duoshuo_shortname: ""
 disqus_shortname: farukcse
 
 # statistic analysis
