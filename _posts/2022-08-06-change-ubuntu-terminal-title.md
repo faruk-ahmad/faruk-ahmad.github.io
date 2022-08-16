@@ -2,7 +2,7 @@
 layout: post
 title:  "How to set title to your ubuntu terminal for specific task?"
 date:   2022-08-16 18:50:54 +0900
-categories: Linux_Config
+categories: Linux-Config
 tags: Linux Config SysOps
 ---
 
