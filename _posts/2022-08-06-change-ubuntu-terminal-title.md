@@ -2,7 +2,7 @@
 layout: post
 title:  "How to set title to your ubuntu terminal for specific task?"
 date:   2022-08-16 18:50:54 +0900
-categories: Linux Config
+categories: Linux_Config
 tags: Linux Config SysOps
 ---
 
@@ -54,7 +54,7 @@ Reload the ```.bashrc``` profile by running the following command-
 source ~/.bashrc
 ```
 
-### Step4
+### Step#4
 Now to set a title to a terminal window, run the following command-
 
 ```bash
