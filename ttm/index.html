@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tech Time Machine</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <!-- Full page loader -->
+  <div id="full-loader" class="full-loader">
+    <div class="spinner"></div>
+    <p>Loading timeline...</p>
+  </div>
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="site-title">
+        <h1>Tech Time Machine</h1>
+        <p>Journey Through AI & Tech History</p>
+      </div>
+      <nav class="site-nav" id="nav-menu">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="https://buymeacoffee.com/faruk.ahmad" target="_blank" class="nav-link">Buy Me a Coffee ☕</a>
+        <a href="https://github.com/faruk-ahmad/ttm" target="_blank" class="nav-link">GitHub</a>
+      </nav>
+      <div class="hamburger" id="hamburger">&#9776;</div>
+    </div>
+  </header>
+
+  <div class="container">
+    <aside class="sidebar" id="sidebar">
+      <!-- Sidebar Navigation -->
+    </aside>
+    <main class="main-content" id="main-content">
+      <div id="breadcrumb" class="breadcrumb"></div>
+      <div id="loader" class="loader"></div>
+      <div id="events-container">
+        <!-- Timeline Events -->
+      </div>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <p>© 2025 Built with ❤️ by <a href="https://www.facebook.com/i.faruk.ahmad" target="_blank" rel="noopener noreferrer">Faruk Ahmad</a>. All rights reserved.</p>
+  </footer>
+
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span id="close-modal" class="close-button">&times;</span>
+      <h2 id="modal-title"></h2>
+      <p id="modal-date"></p>
+      <div id="modal-description"></div>
+      <div id="modal-tags" class="modal-tags"></div>
+      <a id="modal-source" class="modal-source" href="#" target="_blank">🔗 Source</a>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

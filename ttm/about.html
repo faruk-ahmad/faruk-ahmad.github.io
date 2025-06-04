@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About - Tech Time Machine</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div class="site-title">
+        <h1>Tech Time Machine</h1>
+        <p>Journey Through AI & Tech History</p>
+      </div>
+      <nav class="site-nav" id="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link active">About</a>
+        <a href="https://buymeacoffee.com/faruk.ahmad" target="_blank" class="nav-link">Buy Me a Coffee ☕</a>
+        <a href="https://github.com/faruk-ahmad/ttm" target="_blank" class="nav-link">GitHub</a>
+      </nav>
+      <div class="hamburger" id="hamburger">&#9776;</div>
+    </div>
+  </header>
+
+  <main class="about-main">
+    <section class="about-section">
+      <h2>About Tech Time Machine</h2>
+      <p>
+        Tech Time Machine is an interactive platform that chronicles major breakthroughs and milestones in technology and AI, starting from the 1980s to the present day.
+      </p>
+      <p>
+        Our goal is to give you a timeline experience of how fast the tech world evolves, highlighting significant events, discoveries, and innovations.
+      </p>
+      <p>
+        This project is made with love 💖 to help tech enthusiasts, students, and researchers revisit historical achievements and understand the pace of technological progress.
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 Built with ❤️ by <a href="https://www.facebook.com/i.faruk.ahmad" target="_blank" rel="noopener noreferrer">Faruk Ahmad</a>. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Only handle hamburger for About page
+    const navMenu = document.getElementById('nav-menu');
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('open');
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.forEach(nav => nav.classList.remove('active'));
+        link.classList.add('active');
+        navMenu.classList.remove('open');
+      });
+    });
+  </script>
+</body>
+</html>
