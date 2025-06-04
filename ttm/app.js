@@ -262,7 +262,7 @@ function renderEvents(events) {
                 <div class="event-title">${event.title}</div>
                 <div class="event-description">
                     ${shortDescription}
-                    <button class="more-button" data-index="${index}">More</button>
+                    <button class="more-button" data-index="${index}" style="color: red;"> Read More </button>
                 </div>
                 <div class="event-tags">
                     ${event.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
@@ -305,7 +305,7 @@ function openModal(event, year, month, day) {
 
     if (event.source) {
         modalSource.href = event.source;
-        modalSource.textContent = '🔗 Source';
+        modalSource.textContent = '🔗 Source: '+ event.source;
         modalSource.style.display = 'inline-block';
     } else {
         modalSource.style.display = 'none';
