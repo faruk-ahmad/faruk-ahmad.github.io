@@ -1,1 +1,0 @@
-## Linux Config Category Images

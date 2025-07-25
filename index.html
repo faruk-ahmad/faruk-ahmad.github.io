@@ -1,160 +1,155 @@
----
-layout: default
----
 
-<div class="page clearfix" index>
-    <div class="left">
-        <h1>Welcome to Faruk's Blog!</h1>
-        <small>My digital world</small>
-        <hr>
-        <ul>
-            {% for post in paginator.posts %}
-              <li>
-                <h2>
-                  <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-                </h2>
-                <div class="label">
-                    <div class="label-card">
-                        <i class="fa fa-calendar"></i>{{ post.date | date: "%F" }}
-                    </div>
-                    <div class="label-card">
-                        {% if post.author %}<i class="fa fa-user"></i>{{ post.author }}
-                        {% endif %}
-                    </div>
-                    <div class="label-card">
-                        {% if page.meta %}<i class="fa fa-key"></i>{{ page.meta }}  {% endif %}
-                    </div>
+<!DOCTYPE html>
+<html lang="en">
 
-                    <div class="label-card">
-                    {% include category.html %}
-                    </div>
+<head>
+    <meta charset="UTF-8">
+    <title>Faruk Ahmad - Tools</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-                    <div class="label-card">
-                    {% include tag.html %}
-                    </div>
-                </div>
-                <div class="excerpt">
-                    {{post.excerpt}}
-                </div>
-                <div class="read-all">
-                    <a  href="{{ post.url | prepend: site.baseurl }}"><i class="fa fa-newspaper-o"></i>Read All</a>
-                </div>
-                <hr>
-              </li>
-            {% endfor %}
-        </ul>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", sans-serif;
+            background: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
+        header {
+            background: #333;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
 
+        header h1 {
+            margin: 0;
+            font-size: 20px;
+        }
 
-        <!-- Pagination links -->
-        <div class="pagination">
-          {% if paginator.previous_page %}
-            <a href="/index.html" class="previous"><i class="fa fa-angle-double-left"></i></a>
-            <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}" class="previous"><i class="fa fa-angle-left"></i></a>
-          {% else %}
-            <span class="previous disable"><i class="fa fa-angle-double-left"></i></span>
-            <span class="previous disable"><i class="fa fa-angle-left"></i></span>
-          {% endif %}
-          <span class="page_number ">{{ paginator.page }}/{{ paginator.total_pages }}</span>
-          {% if paginator.next_page %}
-            <a href="{{ paginator.next_page_path }}" class="next"><i class="fa fa-angle-right"></i></a>
-            <a href="{{ site.baseurl }}/page{{ paginator.total_pages }}" class="next"><i class="fa fa-angle-double-right"></i></a>
-          {% else %}
-            <span class="next disable"><i class="fa fa-angle-right"></i></span>
-            <span class="next disable"><i class="fa fa-angle-double-right"></i></span>
-          {% endif %}
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 6px 10px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            flex: 1;
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: flex-start;
+        }
+
+        .app-card {
+            flex: 0 0 220px;
+            background: linear-gradient(to bottom right, #ffffff, #f0f0f0);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: all 0.3s ease-in-out;
+            border: 2px solid transparent;
+        }
+
+        .app-card:hover {
+            transform: translateY(-8px);
+            border-color: #007acc;
+            box-shadow: 0 8px 20px rgba(0, 122, 204, 0.2);
+        }
+
+        .app-card a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .app-card .emoji {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .app-card .title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #222;
+            transition: color 0.3s;
+        }
+
+        .app-card:hover .title {
+            color: #007acc;
+        }
+
+        .app-card .desc {
+            font-size: 14px;
+            color: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: #eee;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Faruk Ahmad - Tools & Apps</h1>
+        <nav>
+            <a href="#">Home</a>
+            <a href="https://faruk.me" target="_blank">About</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <h2 style="text-align:center; margin-bottom: 40px;">Available Apps</h2>
+        <div class="grid">
+            <div class="app-card">
+                <a href="apps/quick-note/index.html" target="_blank">
+                    <div class="emoji">📝</div>
+                    <div class="title">Quick Notes</div>
+                    <p class="desc">Capture and organize thoughts instantly with rich formatting.</p>
+                </a>
+            </div>
+            <div class="app-card">
+                <a href="apps/ttm/index.html" target="_blank">
+                    <div class="emoji">⏳</div>
+                    <div class="title">Tech Time Machine</div>
+                    <p class="desc">Explore past and future of your favorite technologies.</p>
+                </a>
+            </div>
+            
         </div>
-    </div>
-    <!-- <button class="anchor"><i class="fa fa-anchor"></i></button> -->
-    <div class="right">
-        <div class="wrap">
-            <div class="side">
-                <div>
-                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                    Recent Posts
-                </div>
-                <ul class="content-ul" recent>
-                    {% for post in site.posts offset: 0 limit: 10  %}
-                        <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
-                    {% endfor %}
-                </ul>
-            </div>
+    </main>
+    <footer>
+        &copy; 2025 <a href="https://faruk.me" target="_blank">Faruk Ahmad</a>. All rights reserved.
+    </footer>
+</body>
 
-            <!-- Content -->
-            <div class="side ">
-                <div>
-                    <i class="fa fa-th-list"></i>
-                    Categories
-                </div>
-                <ul class="content-ul" cate>
-                    {% for category in site.categories %}
-                    <li>
-                        <a href="{{ root_url }}/{{ site.category_dir }}#{{ category | first }}" class="categories-list-item" cate="{{ category | first }}">
-                            <span class="name">
-                                {{ category | first }}
-                            </span>
-                            <span class="badge">{{ category | last | size }}</span>
-                        </a>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <!-- 其他div框放到这里 -->
-            <div class="side">
-                <div>
-                    <i class="fa fa-tags"></i>
-                    Tags
-                </div>
-                <div class="tags-cloud">
-                    {% assign first = site.tags.first %}
-                    {% assign max = first[1].size %}
-                    {% assign min = max %}
-                    {% for tag in site.tags offset:1 %}
-                      {% if tag[1].size > max %}
-                        {% assign max = tag[1].size %}
-                      {% elsif tag[1].size < min %}
-                        {% assign min = tag[1].size %}
-                      {% endif %}
-                    {% endfor %}
-
-                    {% if max == min %}
-                        {% assign diff = 1 %}
-                    {% else %}
-                        {% assign diff = max | minus: min %}
-                    {% endif %}
-
-                    {% for tag in site.tags %}
-                      {% assign temp = tag[1].size | minus: min | times: 36 | divided_by: diff %}
-                      {% assign base = temp | divided_by: 4 %}
-                      {% assign remain = temp | modulo: 4 %}
-                      {% if remain == 0 %}
-                        {% assign size = base | plus: 9 %}
-                      {% elsif remain == 1 or remain == 2 %}
-                        {% assign size = base | plus: 9 | append: '.5' %}
-                      {% else %}
-                        {% assign size = base | plus: 10 %}
-                      {% endif %}
-                      {% if remain == 0 or remain == 1 %}
-                        {% assign color = 9 | minus: base %}
-                      {% else %}
-                        {% assign color = 8 | minus: base %}
-                      {% endif %}
-                      <a href="{{ root_url }}/{{ site.tag_dir }}#{{ tag[0] }}" style="font-size: {{ size }}pt; color: #{{ color }}{{ color }}{{ color }};">{{ tag[0] }}</a>
-                    {% endfor %}
-                </div>
-            </div>
-
-            <!-- <div class="side">
-                <div>
-                    <i class="fa fa-external-link"></i>
-                    Links
-                </div>
-                <ul  class="content-ul">
-
-                </ul>
-            </div> -->
-        </div>
-    </div>
-</div>
-<!-- <script src="{{ "/js/scroll.min.js " | prepend: site.baseurl }}" charset="utf-8"></script> -->
-<!-- <script src="{{ "/js/pageContent.js " | prepend: site.baseurl }}" charset="utf-8"></script> -->
+</html>

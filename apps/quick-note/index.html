@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quick Notes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <h2>🗂 Notes</h2>
+      <button id="newNoteBtn">＋ New Note</button>
+      <ul id="noteList"></ul>
+    </aside>
+
+    <main class="editor">
+      <input type="text" id="noteTitle" placeholder="Note Title" />
+
+      <div class="toolbar">
+        <button onclick="format('bold')"><b>B</b></button>
+        <button onclick="format('italic')"><i>I</i></button>
+        <button onclick="format('underline')"><u>U</u></button>
+        <button onclick="format('insertUnorderedList')">• List</button>
+
+        <select id="headingDropdown" onchange="applyHeading(this.value)">
+          <option value="">Normal</option>
+          <option value="H1">Heading 1</option>
+          <option value="H2">Heading 2</option>
+          <option value="H3">Heading 3</option>
+          <option value="H4">Heading 4</option>
+        </select>
+
+        <button onclick="insertTable()">📑 Table</button>
+        <button onclick="exportNote()">💾 Export</button>
+      </div>
+
+      <div id="noteContent" contenteditable="true" class="editable"></div>
+      <div class="status" id="status">Idle</div>
+    </main>
+  </div>
+
+  <script src="notes.js"></script>
+
+  <footer style="text-align:center; margin-top:20px; padding:10px; color:#777; font-size: 14px;">
+    Developed by Faruk Ahmad with ❤️
+  </footer>
+</body>
+
+</html>
