@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Health Mini Tools — by Faruk Ahmad</title>
+<style>
+  :root{
+    /* Softer, less shiny palette */
+    --bg: #0a0f1a;
+    --card: #121a2a;
+    --muted: #b8c2d8;
+    --text: #e7edf7;
+    --primary: #6b8dd6;     /* toned-down blue */
+    --primary-2: #7d7fe3;   /* muted violet */
+    --ok: #2aa967;
+    --warn: #e6b655;
+    --err: #e26d6d;
+    --ring: rgba(107,141,214,.28);
+    --shadow: 0 8px 22px rgba(0,0,0,.30);
+    --radius: 16px;
+
+    /* Warning banner tokens */
+    --warn-bg: #2a2416;
+    --warn-border: #7d661e;
+    --warn-text: #f3e6bf;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Hiragino Kaku Gothic ProN", Meiryo, "Noto Sans JP", Arial, sans-serif;
+    background: radial-gradient(1200px 800px at -10% -20%, #131a2e 0%, #0a0f1a 50%) fixed;
+    color:var(--text);
+    line-height:1.45;
+  }
+  header{
+    max-width:1100px;margin:24px auto 8px; padding:0 16px;
+    display:flex; align-items:center; gap:16px; justify-content:space-between;
+  }
+  .title{display:flex; align-items:center; gap:12px;}
+  .logo{
+    width:40px;height:40px;border-radius:12px;
+    background: conic-gradient(from 180deg at 50% 50%, var(--primary), var(--primary-2));
+    filter: saturate(.8) brightness(.9);
+    box-shadow: var(--shadow);
+  }
+  h1{margin:0; font-size: clamp(18px, 2.6vw, 26px);}
+  .subtitle{color:var(--muted); font-size: 14px; margin-top:2px}
+
+  .toolbar{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+  .segmented{
+    display:inline-flex; background:#0f1526; border:1px solid #1f2844; border-radius:12px; padding:4px;
+  }
+  .segmented button{
+    font:inherit; color:var(--muted); background:transparent; border:0; padding:8px 12px; border-radius:8px; cursor:pointer;
+  }
+  .segmented button.active{ background:#182241; color:#e7edf7; box-shadow: inset 0 0 0 1px #2a3763; }
+
+  /* Warning banner below header */
+  .notice{max-width:1100px; margin:0 auto 8px; padding:0 16px;}
+  .banner{
+    border-radius:12px; padding:10px 12px;
+    background: var(--warn-bg);
+    color: var(--warn-text);
+    border: 1px solid var(--warn-border);
+    display:flex; align-items:flex-start; gap:10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,.15);
+  }
+  .banner .ico{font-size:18px; line-height:1; margin-top:1px}
+  .banner strong{color:#ffe7a0}
+
+  main{
+    max-width:1100px;margin:12px auto 40px; padding:0 16px;
+    display:grid; gap:18px;
+    grid-template-columns: repeat(1, minmax(0,1fr));
+  }
+  @media (min-width:800px){
+    main{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+  }
+
+  .card{
+    background: linear-gradient(180deg, #121a2a 0%, #101826 100%);
+    border:1px solid #1a2440; border-radius: var(--radius);
+    box-shadow: var(--shadow); overflow:hidden; position:relative;
+  }
+  .card .head{
+    padding:14px 16px;
+    background: linear-gradient(90deg, rgba(107,141,214,.10), rgba(125,127,227,.10));
+    border-bottom:1px solid #1a2440;
+    display:flex; align-items:center; gap:12px; justify-content:space-between;
+  }
+  .card .head .left{display:flex; align-items:center; gap:10px}
+  .icon{
+    width:34px;height:34px;border-radius:10px;
+    display:grid;place-items:center;font-size:18px;
+    background: #0f1629; border:1px solid #223056;
+  }
+  .card h2{margin:0;font-size:18px}
+  .badge{
+    font-size:12px; color:#dde6ff; padding:6px 10px; border-radius:999px;
+    background:#0f1629; border:1px solid #2a3763;
+  }
+
+  .body{padding:14px 16px; display:grid; gap:12px}
+  .row{display:grid; gap:10px}
+  .row.cols-2{ grid-template-columns: repeat(2, minmax(0,1fr));}
+  .row.cols-3{ grid-template-columns: repeat(3, minmax(0,1fr));}
+  .row.cols-4{ grid-template-columns: repeat(4, minmax(0,1fr));}
+  @media (max-width:640px){
+    .row.cols-2, .row.cols-3, .row.cols-4{ grid-template-columns: 1fr; }
+  }
+
+  label{font-size:13px; color:#cfd8ef; display:block; margin:0 0 6px 2px;}
+  input, select, button.calc{
+    width:100%; border-radius:12px; border:1px solid #202c4e; background:#0e1526; color:#e7edf7;
+    padding:10px 12px; outline:none; transition: box-shadow .15s ease, border-color .15s ease;
+  }
+  input:focus, select:focus{ border-color:#334b8a; box-shadow: 0 0 0 4px var(--ring); }
+  .unit{color:#9fb0d6; font-size:12px; margin-left:6px}
+
+  button.calc{
+    cursor:pointer; background: linear-gradient(90deg, #6b8dd6 0%, #7d7fe3 100%); border:0; font-weight:600;
+    filter: saturate(.9) brightness(.95);
+  }
+  button.calc:hover{ filter: saturate(.95) brightness(1.02); }
+
+  .result{
+    border-radius:14px; background:#0f1629; border:1px dashed #2a3763; padding:12px 14px;
+  }
+  .result b{color:#fff}
+  .muted{color:var(--muted); font-size:13px}
+  .good{color:var(--ok)} .warn{color:var(--warn)} .bad{color:var(--err)}
+
+  footer{
+    max-width:1100px;margin:10px auto 40px; padding:0 16px; text-align:center; color:#aab8d8;
+  }
+  footer .heart{color:#e26d6d}
+  .sr{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden}
+</style>
+</head>
+<body>
+  <header>
+    <div class="title">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1>Health Mini Tools</h1>
+        <div class="subtitle">4 handy calculators — privacy-friendly, all in your browser</div>
+      </div>
+    </div>
+    <div class="toolbar">
+      <div class="segmented" role="group" aria-label="Unit system">
+        <button id="unit-metric" class="active" data-unit="metric" aria-pressed="true">Metric (kg, cm)</button>
+        <button id="unit-imperial" data-unit="imperial" aria-pressed="false">Imperial (lb, ft/in)</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Warning banner just below header -->
+  <div class="notice">
+    <div class="banner" role="status" aria-live="polite">
+      <div class="ico" aria-hidden="true">⚠️</div>
+      <div>
+        <strong>Information only:</strong> This tool provides general health estimates and isn’t a substitute for professional medical advice, diagnosis, or treatment.
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- 1) Age Calculator -->
+    <section class="card" id="card-age">
+      <div class="head">
+        <div class="left">
+          <div class="icon">🎂</div>
+          <div>
+            <h2>Age Calculator</h2>
+            <div class="muted">Tokyo time (Asia/Tokyo)</div>
+          </div>
+        </div>
+        <span class="badge" id="age-today"></span>
+      </div>
+      <div class="body">
+        <div class="row cols-2">
+          <div>
+            <label for="dob">Date of birth</label>
+            <input type="date" id="dob" />
+          </div>
+          <div>
+            <label>&nbsp;</label>
+            <button class="calc" id="calc-age">Calculate Age</button>
+          </div>
+        </div>
+        <div class="result" id="age-result" aria-live="polite">
+          <div class="muted">Enter your birthdate and press <b>Calculate Age</b>.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2) BMI Calculator -->
+    <section class="card" id="card-bmi">
+      <div class="head">
+        <div class="left">
+          <div class="icon">⚖️</div>
+          <div>
+            <h2>BMI Calculator</h2>
+            <div class="muted">WHO ↔ Japan scale</div>
+          </div>
+        </div>
+        <span class="badge" id="bmi-scale-badge">WHO</span>
+      </div>
+      <div class="body">
+        <div class="row cols-3" id="height-row-metric">
+          <div>
+            <label for="bmi-height-cm">Height <span class="unit">(cm)</span></label>
+            <input id="bmi-height-cm" type="number" min="120" max="230" step="0.1" placeholder="e.g., 175" />
+          </div>
+          <div>
+            <label for="bmi-weight-kg">Weight <span class="unit">(kg)</span></label>
+            <input id="bmi-weight-kg" type="number" min="30" max="200" step="0.1" placeholder="e.g., 70" />
+          </div>
+          <div>
+            <label for="bmi-scale">Scale</label>
+            <select id="bmi-scale">
+              <option value="who" selected>WHO</option>
+              <option value="japan">Japan (JASSO)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row cols-4" id="height-row-imperial" style="display:none">
+          <div>
+            <label for="bmi-height-ft">Height <span class="unit">(ft)</span></label>
+            <input id="bmi-height-ft" type="number" min="3" max="7" step="1" placeholder="e.g., 5" />
+          </div>
+          <div>
+            <label for="bmi-height-in">Height <span class="unit">(in)</span></label>
+            <input id="bmi-height-in" type="number" min="0" max="11" step="1" placeholder="e.g., 9" />
+          </div>
+          <div>
+            <label for="bmi-weight-lb">Weight <span class="unit">(lb)</span></label>
+            <input id="bmi-weight-lb" type="number" min="66" max="440" step="0.1" placeholder="e.g., 154" />
+          </div>
+          <div>
+            <label for="bmi-scale-2">Scale</label>
+            <select id="bmi-scale-2">
+              <option value="who" selected>WHO</option>
+              <option value="japan">Japan (JASSO)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <button class="calc" id="calc-bmi">Calculate BMI</button>
+        </div>
+        <div class="result" id="bmi-result" aria-live="polite">
+          <div class="muted">Enter height and weight, then press <b>Calculate BMI</b>.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3) Protein Needs -->
+    <section class="card" id="card-protein">
+      <div class="head">
+        <div class="left">
+          <div class="icon">🥚</div>
+          <div>
+            <h2>Protein Needs</h2>
+            <div class="muted">Daily & per-meal guidance</div>
+          </div>
+        </div>
+        <span class="badge">Educational only</span>
+      </div>
+      <div class="body">
+        <div class="row cols-3" id="protein-metric">
+          <div>
+            <label for="p-weight-kg">Weight <span class="unit">(kg)</span></label>
+            <input id="p-weight-kg" type="number" min="30" max="200" step="0.1" placeholder="e.g., 70" />
+          </div>
+          <div>
+            <label for="p-activity">Activity/Goal</label>
+            <select id="p-activity">
+              <option value="sedentary">Sedentary (0.8 g/kg)</option>
+              <option value="fitness">General fitness (1.0–1.2)</option>
+              <option value="endurance">Endurance (1.2–1.6)</option>
+              <option value="strength" selected>Strength/Hypertrophy (1.6–2.2)</option>
+              <option value="fatloss">Fat loss focus (1.8–2.4)</option>
+            </select>
+          </div>
+          <div>
+            <label for="p-meals">Meals per day</label>
+            <select id="p-meals">
+              <option>3</option>
+              <option selected>4</option>
+              <option>5</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row cols-3" id="protein-imperial" style="display:none">
+          <div>
+            <label for="p-weight-lb">Weight <span class="unit">(lb)</span></label>
+            <input id="p-weight-lb" type="number" min="66" max="440" step="0.1" placeholder="e.g., 154" />
+          </div>
+          <div>
+            <label for="p-activity-2">Activity/Goal</label>
+            <select id="p-activity-2">
+              <option value="sedentary">Sedentary (0.8 g/kg)</option>
+              <option value="fitness">General fitness (1.0–1.2)</option>
+              <option value="endurance">Endurance (1.2–1.6)</option>
+              <option value="strength" selected>Strength/Hypertrophy (1.6–2.2)</option>
+              <option value="fatloss">Fat loss focus (1.8–2.4)</option>
+            </select>
+          </div>
+          <div>
+            <label for="p-meals-2">Meals per day</label>
+            <select id="p-meals-2">
+              <option>3</option>
+              <option selected>4</option>
+              <option>5</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <button class="calc" id="calc-protein">Calculate Protein</button>
+        </div>
+        <div class="result" id="protein-result" aria-live="polite">
+          <div class="muted">Enter weight, pick activity, then press <b>Calculate Protein</b>.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4) BMR / TDEE -->
+    <section class="card" id="card-bmr">
+      <div class="head">
+        <div class="left">
+          <div class="icon">🔥</div>
+          <div>
+            <h2>BMR &amp; TDEE</h2>
+            <div class="muted">Mifflin–St Jeor</div>
+          </div>
+        </div>
+        <span class="badge" id="bmr-unit-badge">kg / cm</span>
+      </div>
+      <div class="body">
+        <div class="row cols-3">
+          <div>
+            <label for="bmr-sex">Sex</label>
+            <select id="bmr-sex">
+              <option value="male" selected>Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+          <div>
+            <label for="bmr-age">Age <span class="unit">(years)</span></label>
+            <input id="bmr-age" type="number" min="10" max="100" step="1" placeholder="e.g., 32" />
+          </div>
+          <div>
+            <label for="bmr-activity">Activity</label>
+            <select id="bmr-activity">
+              <option value="1.2">Sedentary (1.2)</option>
+              <option value="1.375">Light (1.375)</option>
+              <option value="1.55" selected>Moderate (1.55)</option>
+              <option value="1.725">Very active (1.725)</option>
+              <option value="1.9">Extra active (1.9)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row cols-3" id="bmr-metric">
+          <div>
+            <label for="bmr-height-cm">Height <span class="unit">(cm)</span></label>
+            <input id="bmr-height-cm" type="number" min="120" max="230" step="0.1" placeholder="e.g., 175" />
+          </div>
+          <div>
+            <label for="bmr-weight-kg">Weight <span class="unit">(kg)</span></label>
+            <input id="bmr-weight-kg" type="number" min="30" max="200" step="0.1" placeholder="e.g., 70" />
+          </div>
+          <div>
+            <label>&nbsp;</label>
+            <button class="calc" id="calc-bmr">Calculate BMR/TDEE</button>
+          </div>
+        </div>
+
+        <div class="row cols-4" id="bmr-imperial" style="display:none">
+          <div>
+            <label for="bmr-height-ft">Height <span class="unit">(ft)</span></label>
+            <input id="bmr-height-ft" type="number" min="3" max="7" step="1" placeholder="e.g., 5" />
+          </div>
+          <div>
+            <label for="bmr-height-in">Height <span class="unit">(in)</span></label>
+            <input id="bmr-height-in" type="number" min="0" max="11" step="1" placeholder="e.g., 9" />
+          </div>
+          <div>
+            <label for="bmr-weight-lb">Weight <span class="unit">(lb)</span></label>
+            <input id="bmr-weight-lb" type="number" min="66" max="440" step="0.1" placeholder="e.g., 154" />
+          </div>
+          <div>
+            <label>&nbsp;</label>
+            <button class="calc" id="calc-bmr-2">Calculate BMR/TDEE</button>
+          </div>
+        </div>
+
+        <div class="result" id="bmr-result" aria-live="polite">
+          <div class="muted">Enter height, weight, age, and press <b>Calculate</b>.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>by <b>Faruk Ahmad</b>, built with <span class="heart">♥</span></footer>
+
+<script>
+(function(){
+  // ---------- Utilities (centralized to avoid redeclare errors) ----------
+  const $ = (sel) => document.querySelector(sel);
+  const n = (v, d=1) => Number.isFinite(v) ? Number(v.toFixed(d)) : NaN;
+  const kg2lb = kg => kg * 2.2046226218;
+  const lb2kg = lb => lb / 2.2046226218;
+  const cm2m = cm => cm / 100;
+  const ftInToCm = (ft, inch) => (ft*12 + inch) * 2.54;
+
+  // Persisted state
+  const state = {
+    unit: localStorage.getItem('unitSystem') || 'metric',      // 'metric' | 'imperial'
+    bmiScale: localStorage.getItem('bmiScale') || 'who'        // 'who' | 'japan'
+  };
+
+  // Unit switches in header
+  const btnMetric = $('#unit-metric');
+  const btnImperial = $('#unit-imperial');
+
+  function setUnit(u){
+    state.unit = u;
+    localStorage.setItem('unitSystem', u);
+    const showMetric = u === 'metric';
+    // Toggle sections
+    $('#height-row-metric').style.display = showMetric ? '' : 'none';
+    $('#height-row-imperial').style.display = showMetric ? 'none' : '';
+    $('#protein-metric').style.display = showMetric ? '' : 'none';
+    $('#protein-imperial').style.display = showMetric ? 'none' : '';
+    $('#bmr-metric').style.display = showMetric ? '' : 'none';
+    $('#bmr-imperial').style.display = showMetric ? 'none' : '';
+    $('#bmr-unit-badge').textContent = showMetric ? 'kg / cm' : 'lb / ft+in';
+
+    // Header buttons state
+    btnMetric.classList.toggle('active', showMetric);
+    btnImperial.classList.toggle('active', !showMetric);
+    btnMetric.setAttribute('aria-pressed', showMetric?'true':'false');
+    btnImperial.setAttribute('aria-pressed', !showMetric?'true':'false');
+  }
+
+  setUnit(state.unit);
+  btnMetric.addEventListener('click', ()=>{ setUnit('metric'); clearCounterparts(); });
+  btnImperial.addEventListener('click', ()=>{ setUnit('imperial'); clearCounterparts(); });
+
+  // ---------- Age (Tokyo) ----------
+  function nowTokyo(){
+    const here = new Date();
+    const utcMs = here.getTime() + here.getTimezoneOffset() * 60000;
+    return new Date(utcMs + 9 * 3600000); // JST = UTC+9, no DST
+  }
+  function ymdDiff(from, to){
+    let y = to.getFullYear() - from.getFullYear();
+    let m = to.getMonth() - from.getMonth();
+    let d = to.getDate() - from.getDate();
+    if (d < 0) {
+      const prevMonth = new Date(to.getFullYear(), to.getMonth(), 0);
+      d += prevMonth.getDate(); m -= 1;
+    }
+    if (m < 0) { m += 12; y -= 1; }
+    return {years:y, months:m, days:d};
+  }
+  function diffDaysTokyo(a, b){
+    const toMid = (dt) => new Date(dt.getFullYear(), dt.getMonth(), dt.getDate()).getTime();
+    return Math.round((toMid(b) - toMid(a))/86400000);
+  }
+  function weekdayName(d){
+    return d.toLocaleDateString('en-US', { weekday:'long', timeZone:'Asia/Tokyo' });
+  }
+  function calcAge(){
+    const dobStr = $('#dob').value;
+    if(!dobStr){ $('#age-result').innerHTML = `<span class="bad">Please select your date of birth.</span>`; return; }
+    const [yyyy, mm, dd] = dobStr.split('-').map(Number);
+    const dobTokyo = new Date(yyyy, mm-1, dd);
+    const today = nowTokyo();
+    $('#age-today').textContent = today.toLocaleDateString('en-CA', { timeZone:'Asia/Tokyo' });
+    if (dobTokyo > today){ $('#age-result').innerHTML = `<span class="bad">Birthdate is in the future.</span>`; return; }
+    const diff = ymdDiff(dobTokyo, today);
+    let next = new Date(today.getFullYear(), dobTokyo.getMonth(), dobTokyo.getDate());
+    const todayMid = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    if (next < todayMid) next = new Date(today.getFullYear()+1, dobTokyo.getMonth(), dobTokyo.getDate());
+    if (dobTokyo.getMonth()===1 && dobTokyo.getDate()===29 && next.getDate()!==29) next = new Date(next.getFullYear(), 1, 28);
+    const daysToNext = diffDaysTokyo(today, next);
+    $('#age-result').innerHTML = `
+      <div><b>Age:</b> ${diff.years} years, ${diff.months} months, ${diff.days} days</div>
+      <div><b>Next birthday:</b> ${next.toLocaleDateString('en-CA', { timeZone:'Asia/Tokyo' })} (<span class="good">${weekdayName(next)}</span>)</div>
+      <div><b>Days until next birthday:</b> <span class="badge" style="background:#121a2a; border-color:#2a3763">${daysToNext} days</span></div>
+    `;
+  }
+  $('#calc-age').addEventListener('click', calcAge);
+
+  // ---------- BMI ----------
+  const scaleSelectA = $('#bmi-scale');
+  const scaleSelectB = $('#bmi-scale-2');
+  function setBmiScale(v){
+    state.bmiScale = v;
+    localStorage.setItem('bmiScale', v);
+    $('#bmi-scale-badge').textContent = v === 'who' ? 'WHO' : 'Japan';
+    scaleSelectA.value = v;
+    scaleSelectB.value = v;
+  }
+  setBmiScale(state.bmiScale);
+  scaleSelectA.addEventListener('change', e=>setBmiScale(e.target.value));
+  scaleSelectB.addEventListener('change', e=>setBmiScale(e.target.value));
+
+  function bmiCategory(bmi, scale){
+    if (!Number.isFinite(bmi)) return {label:'—', cls:''};
+    if (scale === 'japan'){
+      if (bmi < 18.5) return {label:'Underweight', cls:'warn'};
+      if (bmi < 25)   return {label:'Normal', cls:'good'};
+      return {label:'Obesity (Japan ≥25)', cls:'bad'};
+    } else {
+      if (bmi < 18.5) return {label:'Underweight', cls:'warn'};
+      if (bmi < 25)   return {label:'Normal', cls:'good'};
+      if (bmi < 30)   return {label:'Overweight', cls:'warn'};
+      return {label:'Obesity (≥30)', cls:'bad'};
+    }
+  }
+  function healthyWeightRangeWHO(cm){
+    const m = cm2m(cm);
+    return m>0 ? [18.5*m*m, 24.9*m*m] : [NaN,NaN];
+  }
+  function calcBMI(){
+    let cm, kg;
+    if (state.unit === 'metric'){
+      cm = parseFloat($('#bmi-height-cm').value);
+      kg = parseFloat($('#bmi-weight-kg').value);
+    } else {
+      const ft = parseFloat($('#bmi-height-ft').value || '0');
+      const inch = parseFloat($('#bmi-height-in').value || '0');
+      const lb = parseFloat($('#bmi-weight-lb').value);
+      cm = ftInToCm(ft, inch);
+      kg = lb2kg(lb);
+    }
+    if (!(cm>0 && kg>0)){ $('#bmi-result').innerHTML = `<span class="bad">Please enter valid height and weight.</span>`; return; }
+    const bmi = kg / Math.pow(cm2m(cm), 2);
+    const cat = bmiCategory(bmi, state.bmiScale);
+    const [minW, maxW] = healthyWeightRangeWHO(cm);
+    let out = `
+      <div><b>BMI:</b> ${n(bmi, 2)} &nbsp; <span class="${cat.cls}">${cat.label}</span></div>
+      <div class="muted">Scale: ${state.bmiScale==='who' ? 'WHO' : 'Japan (JASSO)'}</div>
+      <div style="margin-top:6px"><b>Healthy weight range (WHO):</b> ${n(minW,1)}–${n(maxW,1)} kg</div>
+    `;
+    if (state.unit === 'imperial'){
+      out += `<div class="muted">≈ ${n(kg2lb(minW),1)}–${n(kg2lb(maxW),1)} lb</div>`;
+    }
+    $('#bmi-result').innerHTML = out;
+  }
+  $('#calc-bmi').addEventListener('click', calcBMI);
+
+  // ---------- Protein ----------
+  function proteinRangePerKg(activity){
+    switch(activity){
+      case 'sedentary': return [0.8, 0.8];
+      case 'fitness':   return [1.0, 1.2];
+      case 'endurance': return [1.2, 1.6];
+      case 'strength':  return [1.6, 2.2];
+      case 'fatloss':   return [1.8, 2.4];
+      default: return [1.0, 1.2];
+    }
+  }
+  function calcProtein(){
+    let kg, activity, meals;
+    if (state.unit === 'metric'){
+      kg = parseFloat($('#p-weight-kg').value);
+      activity = $('#p-activity').value;
+      meals = parseInt($('#p-meals').value,10);
+    } else {
+      const lb = parseFloat($('#p-weight-lb').value);
+      kg = lb2kg(lb);
+      activity = $('#p-activity-2').value;
+      meals = parseInt($('#p-meals-2').value,10);
+    }
+    if (!(kg>0) || !(meals>0)){ $('#protein-result').innerHTML = `<span class="bad">Please enter valid weight and meals/day.</span>`; return; }
+    const [minGkg, maxGkg] = proteinRangePerKg(activity);
+    const min = kg * minGkg, max = kg * maxGkg;
+    const perMealMin = min / meals, perMealMax = max / meals;
+    $('#protein-result').innerHTML = `
+      <div><b>Daily protein:</b> ${n(min,0)}–${n(max,0)} g/day</div>
+      <div><b>Per meal (${meals}/day):</b> ${n(perMealMin,0)}–${n(perMealMax,0)} g/meal</div>
+      <div class="muted" style="margin-top:6px">Guidance ranges only; not medical advice.</div>
+    `;
+  }
+  $('#calc-protein').addEventListener('click', calcProtein);
+
+  // ---------- BMR / TDEE ----------
+  function mifflinStJeor(sex, kg, cm, age){
+    return sex === 'male' ? (10*kg + 6.25*cm - 5*age + 5) : (10*kg + 6.25*cm - 5*age - 161);
+  }
+  function calcBMR(){
+    const sex = $('#bmr-sex').value;
+    const age = parseInt($('#bmr-age').value,10);
+    const factor = parseFloat($('#bmr-activity').value);
+    let cm, kg;
+    if (state.unit === 'metric'){
+      cm = parseFloat($('#bmr-height-cm').value);
+      kg = parseFloat($('#bmr-weight-kg').value);
+    } else {
+      const ft = parseFloat($('#bmr-height-ft').value || '0');
+      const inch = parseFloat($('#bmr-height-in').value || '0');
+      const lb = parseFloat($('#bmr-weight-lb').value);
+      cm = ftInToCm(ft, inch);
+      kg = lb2kg(lb);
+    }
+    if (!(age>0) || !(cm>0) || !(kg>0)){ $('#bmr-result').innerHTML = `<span class="bad">Please provide valid age, height, and weight.</span>`; return; }
+    const bmr = mifflinStJeor(sex, kg, cm, age);
+    const tdee = bmr * factor;
+    $('#bmr-result').innerHTML = `
+      <div><b>BMR:</b> ${n(bmr,0)} kcal/day</div>
+      <div><b>TDEE:</b> ${n(tdee,0)} kcal/day <span class="muted">(activity ×${factor})</span></div>
+    `;
+  }
+  $('#calc-bmr').addEventListener('click', calcBMR);
+  $('#calc-bmr-2').addEventListener('click', calcBMR);
+
+  // ---------- Small niceties ----------
+  function refreshAgeToday(){
+    const t = nowTokyo();
+    $('#age-today').textContent = t.toLocaleDateString('en-CA', { timeZone:'Asia/Tokyo' });
+  }
+  refreshAgeToday();
+  setInterval(refreshAgeToday, 60000);
+
+  // Prefill example values
+  $('#bmi-height-cm').value = 175;
+  $('#bmi-weight-kg').value = 70;
+  $('#p-weight-kg').value = 70;
+  $('#bmr-age').value = 32;
+  $('#bmr-height-cm').value = 175;
+  $('#bmr-weight-kg').value = 70;
+
+  function clearCounterparts(){
+    ['bmi-height-ft','bmi-height-in','bmi-weight-lb',
+     'p-weight-lb',
+     'bmr-height-ft','bmr-height-in','bmr-weight-lb'
+    ].forEach(id=>{ const el = document.getElementById(id); if(el) el.value=''; });
+  }
+})();
+</script>
+</body>
+</html>
