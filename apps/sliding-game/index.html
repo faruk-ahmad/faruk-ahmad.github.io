@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sliding Picture Puzzle – 8‑tiles</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* ---------- RESET & LAYOUT ---------- */
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+body{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  background:#f2f5f9;
+  padding:2rem 1rem;
+}
+h1{margin-bottom:.5rem;color:#333}
+
+/* ---------- CONTROLS ---------- */
+#controls{
+  display:flex;
+  gap:.5rem;
+  align-items:center;
+  margin:1rem 0;
+}
+button{
+  padding:.5rem 1rem;
+  font-size:1rem;
+  background:#4a90e2;
+  color:#fff;
+  border:none;
+  border-radius:4px;
+  cursor:pointer;
+  transition:background .2s;
+}
+button:hover{background:#357ab8}
+
+/* ---------- BOARD ---------- */
+#board{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2px;
+  width:90vmin;                     /* board stays square */
+  max-width:400px;
+  background:#222;
+}
+.cell{
+  background:#ddd;
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+  aspect-ratio:1;                    /* ensures every cell is a square */
+  /* fallback for very old browsers: 
+     .cell{position:relative;height:0;padding-top:100%;}
+  */
+}
+.cell.empty{background:#111;cursor:default}
+.cell img{
+  position:absolute;
+  top:0;left:0;width:100%;height:100%;
+  object-fit:cover;
+}
+
+/* ---------- STATUS ---------- */
+#status{
+  margin-top:.8rem;
+  font-size:1.1rem;
+  color:#555;
+}
+</style>
+</head>
+<body>
+
+<h1>Slide‑Puzzle – Re‑assemble Your Photo</h1>
+
+<div id="controls">
+  <input type="file" id="filePicker" accept="image/*">
+  <button id="shuffleBtn" disabled>Shuffle</button>
+  <button id="resetBtn" disabled>Reset</button>
+</div>
+
+<div id="board"></div>
+<div id="status"></div>
+<div id="footer">by Faruk Ahmad, built with ❤️</div>
+<script>
+/* --------------------------------------------------------------
+   Constants & DOM elements
+   -------------------------------------------------------------- */
+const BOARD_SIZE = 3;                 // 3x3 grid (9 cells)
+let tiles = [];                       // array of tile objects {id, img, correctPos}
+let emptyIdx = 8;                     // index of the empty cell
+let solved = false;                   // true when solved
+
+const boardEl = document.getElementById('board');
+const filePicker = document.getElementById('filePicker');
+const shuffleBtn = document.getElementById('shuffleBtn');
+const resetBtn   = document.getElementById('resetBtn');
+const statusEl   = document.getElementById('status');
+
+/* --------------------------------------------------------------
+   1️⃣ Load image chosen by the user
+   -------------------------------------------------------------- */
+filePicker.addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const url = URL.createObjectURL(file);
+  const img = new Image();
+  img.onload = () => {
+    buildTilesFromImage(img);
+    shuffleBtn.disabled = false;
+    resetBtn.disabled   = true;
+    statusEl.textContent = '';
+  };
+  img.onerror = () => alert('Could not load the image.');
+  img.src = url;
+});
+
+/* --------------------------------------------------------------
+   2️⃣ Cut the image into 8 square pieces
+   -------------------------------------------------------------- */
+function buildTilesFromImage(img) {
+  const side = Math.min(img.naturalWidth, img.naturalHeight);
+  const tileSize = Math.floor(side / BOARD_SIZE);
+
+  // helper canvas to crop the central square of the image
+  const crop = document.createElement('canvas');
+  crop.width = side; crop.height = side;
+  const ctx = crop.getContext('2d');
+  ctx.drawImage(
+    img,
+    (img.naturalWidth-side)/2, (img.naturalHeight-side)/2,
+    side, side, 0, 0, side, side
+  );
+
+  tiles = [];
+  let id = 0;
+  for (let r=0; r<BOARD_SIZE; r++) {
+    for (let c=0; c<BOARD_SIZE; c++) {
+      const idx = r*BOARD_SIZE + c;
+      if (idx === 8) {               // last slot stays empty
+        tiles.push({id:null, img:null, correctPos:idx});
+        continue;
+      }
+      // copy the square piece to a temporary canvas
+      const piece = document.createElement('canvas');
+      piece.width = tileSize; piece.height = tileSize;
+      const pctx = piece.getContext('2d');
+      pctx.drawImage(
+        crop,
+        c*tileSize, r*tileSize, tileSize, tileSize,
+        0, 0, tileSize, tileSize
+      );
+      const dataURL = piece.toDataURL();
+      tiles.push({id:id, img:dataURL, correctPos:idx});
+      id++;
+    }
+  }
+
+  // show the solved board first
+  renderBoard([...tiles]);          // copy keeps original tiles intact
+}
+
+/* --------------------------------------------------------------
+   3️⃣ Render a board given an array of tile objects
+   -------------------------------------------------------------- */
+function renderBoard(state) {
+  boardEl.innerHTML = '';
+  state.forEach((tile, pos) => {
+    const cell = document.createElement('div');
+    cell.className = 'cell';
+    cell.dataset.pos = pos;
+
+    if (tile.id === null) {         // empty
+      cell.classList.add('empty');
+    } else {
+      const img = document.createElement('img');
+      img.src = tile.img;
+      cell.appendChild(img);
+      cell.dataset.id = tile.id;    // store id for move logic
+    }
+    boardEl.appendChild(cell);
+  });
+
+  // attach click handlers to movable tiles
+  boardEl.querySelectorAll('.cell:not(.empty)').forEach(cell => {
+    cell.addEventListener('click', onTileClick);
+  });
+}
+
+/* --------------------------------------------------------------
+   4️⃣ Shuffle – create a solvable random permutation
+   -------------------------------------------------------------- */
+shuffleBtn.addEventListener('click', () => {
+  if (!tiles) return;
+  const shuffled = generateSolvablePermutation();
+  renderBoard(shuffled);
+  solved = false;
+  resetBtn.disabled = false;
+  statusEl.textContent = 'Puzzle shuffled – start moving tiles!';
+});
+
+/* --------------------------------------------------------------
+   5️⃣ Reset – back to solved state
+   -------------------------------------------------------------- */
+resetBtn.addEventListener('click', () => {
+  renderBoard([...tiles]);            // original solved order
+  solved = false;
+  resetBtn.disabled = true;
+  statusEl.textContent = 'Puzzle reset to the solved picture.';
+});
+
+/* --------------------------------------------------------------
+   6️⃣ Tile click – legal move swaps tile with the empty cell
+   -------------------------------------------------------------- */
+function onTileClick(e) {
+  if (solved) return;                 // ignore after solved
+  const cell = e.currentTarget;
+  const from = Number(cell.dataset.pos);
+  const to   = emptyIdx;              // current empty position
+
+  // Manhattan distance must be 1 for a legal move
+  const dist = Math.abs(Math.floor(from/BOARD_SIZE) - Math.floor(to/BOARD_SIZE)) +
+               Math.abs((from%BOARD_SIZE) - (to%BOARD_SIZE));
+  if (dist !== 1) return;
+
+  // Reconstruct the current order from DOM
+  const currentOrder = [];
+  boardEl.childNodes.forEach((c,i) => {
+    const id = c.dataset.id;
+    if (id === undefined) {                // empty cell
+      currentOrder.push(tiles.find(t => t.id === null));
+    } else {
+      currentOrder.push(tiles.find(t => t.id === Number(id)));
+    }
+  });
+
+  // swap tile and empty
+  [currentOrder[from], currentOrder[to]] = [currentOrder[to], currentOrder[from]];
+  renderBoard(currentOrder);
+  emptyIdx = from;                      // empty cell moved to `from`
+
+  if (isSolved(currentOrder)) {
+    solved = true;
+    statusEl.textContent = '🎉 Puzzle solved! 🎉';
+  }
+}
+
+/* --------------------------------------------------------------
+   7️⃣ Helper – produce a solvable random order
+   -------------------------------------------------------------- */
+function generateSolvablePermutation() {
+  let order = [...tiles];               // start from solved
+  emptyIdx = 8;                         // empty starts in bottom‑right
+
+  // Randomly perform many legal moves – guarantees solvability
+  for (let i=0; i<100; i++) {
+    const neigh = getNeighbourIndexes(emptyIdx);
+    const target = neigh[Math.floor(Math.random()*neigh.length)];
+    [order[emptyIdx], order[target]] = [order[target], order[emptyIdx]];
+    emptyIdx = target;
+  }
+  return order;
+}
+
+/* --------------------------------------------------------------
+   8️⃣ Helper – get orthogonal neighbours of a position
+   -------------------------------------------------------------- */
+function getNeighbourIndexes(pos) {
+  const r = Math.floor(pos/BOARD_SIZE);
+  const c = pos % BOARD_SIZE;
+  const res = [];
+  if (r > 0)    res.push(pos - BOARD_SIZE);           // up
+  if (r < BOARD_SIZE-1) res.push(pos + BOARD_SIZE);   // down
+  if (c > 0)    res.push(pos - 1);                    // left
+  if (c < BOARD_SIZE-1) res.push(pos + 1);            // right
+  return res;
+}
+
+/* --------------------------------------------------------------
+   9️⃣ Helper – test if current order is solved
+   -------------------------------------------------------------- */
+function isSolved(order) {
+  return order.every(t => t.id === null || t.correctPos === order.indexOf(t));
+}
+/* --------------------------------------------------------------
+   End of script
+   -------------------------------------------------------------- */
+</script>
+</body>
+</html>
