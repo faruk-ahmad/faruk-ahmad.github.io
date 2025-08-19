@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Tic‑Tac‑Toe – Player vs Computer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+/* ---------- BASIC RESET ---------- */
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+
+/* ---------- COLOUR VARIABLES ---------- */
+/* You can change these defaults in the colour‑picker below or edit them directly here */
+:root{
+    --human-color: #4a90e2;   /* blue – human (X) */
+    --ai-color   : #d62828;   /* red – computer (O) */
+}
+
+/* ---------- LAYOUT ---------- */
+body{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+    background:#f0f4f8;
+    padding:2rem 1rem;
+}
+h1{margin-bottom:.5rem;color:#333}
+#board{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:6px;
+    width:90vmin;
+    max-width:400px;
+    margin:1rem 0;
+}
+.cell{
+    background:#fff;
+    border:2px solid #4a;
+    aspect-ratio:1;
+    font-size:calc(5rem + 2vmin);
+    /* colour is set by the .x / .o class (see below) */
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    user-select:none;
+    transition:background .2s;
+}
+.cell:hover{background:#e8f1fb}
+.cell.disabled{pointer-events:none;cursor:default}
+
+/* Colours for the two players */
+.cell.x{color:var(--human-color);}
+.cell.o{color:var(--ai-color);}
+
+/* ---------- INFO / CONTROLS ---------- */
+#info{
+    text-align:center;
+    margin:.5rem 0;
+    font-size:1.2rem;
+    color:#555;
+}
+#score{
+    margin-top:.5rem;
+    font-size:.9rem;
+    color:#777;
+}
+button{
+    margin:.4rem;
+    padding:.6rem 1.2rem;
+    font-size:1rem;
+    background:#4a90e2;
+    color:#fff;
+    border:none;
+    border-radius:4px;
+    cursor:pointer;
+    transition:background .2s;
+}
+button:hover{background:#357ab8}
+button:disabled{background:#a6c8f0;cursor:not-allowed}
+
+/* ---------- COLOUR PICKER ---------- */
+#colorControls{
+    margin:1rem 0;
+    display:flex;
+    gap:1rem;
+    align-items:center;
+}
+#colorControls label{
+    font-size:.9rem;
+    color:#555;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:480px){
+    .cell{font-size:3rem}
+}
+</style>
+</head>
+<body>
+
+<h1>Tic‑Tac‑Toe</h1>
+
+<div id="info">Your turn – click a square</div>
+
+<div id="board"><!-- cells inserted by JS --></div>
+
+<!-- optional colour picker -->
+<div id="colorControls">
+    <label>
+        Your colour (X):
+        <input type="color" id="humanColorPicker" value="#4a90e2">
+    </label>
+    <label>
+        Computer colour (O):
+        <input type="color" id="aiColorPicker" value="#d62828">
+    </label>
+</div>
+
+<div id="controls">
+    <button id="newGameBtn">New Game</button>
+    <button id="resetScoreBtn">Reset Score</button>
+</div>
+
+<div id="score">
+    Wins: <span id="wins">0</span> |
+    Losses: <span id="losses">0</span> |
+    Draws: <span id="draws">0</span>
+</div>
+
+<script>
+/* ==================== CONSTANTS ==================== */
+const HUMAN = 'X';
+const AI    = 'O';
+const LINES = [
+    [0,1,2],[3,4,5],[6,7,8],   // rows
+    [0,3,6],[1,4,7],[2,5,8],   // cols
+    [0,4,8],[2,4,6]            // diagonals
+];
+
+/* ==================== STATE ==================== */
+let board = Array(9).fill(null);
+let gameActive = true;
+
+/* ==================== UI REFERENCES ==================== */
+const boardEl        = document.getElementById('board');
+const infoEl         = document.getElementById('info');
+const winsEl         = document.getElementById('wins');
+const lossesEl       = document.getElementById('losses');
+const drawsEl        = document.getElementById('draws');
+const newGameBtn     = document.getElementById('newGameBtn');
+const resetScoreBtn  = document.getElementById('resetScoreBtn');
+const humanColorPicker = document.getElementById('humanColorPicker');
+const aiColorPicker    = document.getElementById('aiColorPicker');
+
+/* ==================== SCORE (localStorage) ==================== */
+let score = {
+    wins:   Number(localStorage.getItem('ttt-wins'))   || 0,
+    losses: Number(localStorage.getItem('ttt-losses')) || 0,
+    draws:  Number(localStorage.getItem('ttt-draws'))  || 0
+};
+updateScoreUI();
+
+/* ==================== BOARD BUILD ==================== */
+function initBoard(){
+    boardEl.innerHTML = '';
+    board.forEach((_v,i) => {
+        const cell = document.createElement('div');
+        cell.className = 'cell';
+        cell.dataset.idx = i;
+        cell.addEventListener('click', onHumanClick);
+        boardEl.appendChild(cell);
+    });
+}
+initBoard();
+
+/* ==================== EVENT HANDLERS ==================== */
+function onHumanClick(e){
+    const idx = Number(e.target.dataset.idx);
+    if (!gameActive || board[idx] !== null) return;
+
+    makeMove(idx, HUMAN);
+    if (checkGameOver()) return;
+    setTimeout(aiTurn, 300);
+}
+
+/* ==== Colour‑picker handling ==== */
+humanColorPicker.addEventListener('input', () => {
+    document.documentElement.style.setProperty('--human-color', humanColorPicker.value);
+    localStorage.setItem('humanColor', humanColorPicker.value);
+});
+aiColorPicker.addEventListener('input', () => {
+    document.documentElement.style.setProperty('--ai-color', aiColorPicker.value);
+    localStorage.setItem('aiColor', aiColorPicker.value);
+});
+// load saved colours (if any)
+if (localStorage.getItem('humanColor')) {
+    humanColorPicker.value = localStorage.getItem('humanColor');
+    document.documentElement.style.setProperty('--human-color', humanColorPicker.value);
+}
+if (localStorage.getItem('aiColor')) {
+    aiColorPicker.value = localStorage.getItem('aiColor');
+    document.documentElement.style.setProperty('--ai-color', aiColorPicker.value);
+}
+
+/* ==================== CORE LOGIC ==================== */
+function makeMove(idx, player){
+    board[idx] = player;
+    const cell = boardEl.children[idx];
+    cell.textContent = player;
+    cell.classList.add(player === HUMAN ? 'x' : 'o');   // ← colour class
+    cell.classList.add('disabled');
+}
+
+/* ---- AI turn ---- */
+function aiTurn(){
+    const bestIdx = getBestMove();
+    makeMove(bestIdx, AI);
+    checkGameOver();
+}
+
+/* ---- Game‑over detection ---- */
+function checkGameOver(){
+    const winner = getWinner(board);
+    if (winner){
+        gameActive = false;
+        infoEl.textContent = (winner===HUMAN) ? 'You win! 🎉' : 'Computer wins 😢';
+        highlightWinnerLine(board);
+        updateScore(winner);
+        return true;
+    }
+
+    if (!board.includes(null)){
+        gameActive = false;
+        infoEl.textContent = "It's a draw.";
+        updateScore('draw');
+        return true;
+    }
+
+    // still playing
+    infoEl.textContent = (board.filter(v=>v===null).length % 2 === 1)
+                        ? 'Your turn – click a square'
+                        : 'Computer is thinking…';
+    return false;
+}
+
+/* ---- Winner detection ---- */
+function getWinner(b){
+    for (const [a,bIdx,c] of LINES){
+        if (b[a] && b[a]===b[bIdx] && b[a]===b[c]) return b[a];
+    }
+    return null;
+}
+
+/* ---- Highlight the winning line ---- */
+function highlightWinnerLine(b){
+    for (const line of LINES){
+        const [a,bIdx,c] = line;
+        if (b[a] && b[a]===b[bIdx] && b[a]===b[c]){
+            line.forEach(i => boardEl.children[i].style.background = '#dfffd6');
+            break;
+        }
+    }
+}
+
+/* ==================== SCORE HELPERS ==================== */
+function updateScore(result){
+    if (result===HUMAN) score.wins++;
+    else if (result===AI) score.losses++;
+    else score.draws++;
+
+    localStorage.setItem('ttt-wins',   score.wins);
+    localStorage.setItem('ttt-losses', score.losses);
+    localStorage.setItem('ttt-draws',  score.draws);
+    updateScoreUI();
+}
+function updateScoreUI(){
+    winsEl.textContent   = score.wins;
+    lossesEl.textContent = score.losses;
+    drawsEl.textContent  = score.draws;
+}
+
+/* ==================== NEW GAME / RESET ==================== */
+newGameBtn.addEventListener('click', startNewGame);
+resetScoreBtn.addEventListener('click', () => {
+    score = {wins:0, losses:0, draws:0};
+    localStorage.clear();
+    updateScoreUI();
+});
+
+function startNewGame(){
+    board = Array(9).fill(null);
+    gameActive = true;
+    infoEl.textContent = 'Your turn – click a square';
+    initBoard();                // rebuild cells so they are fresh
+}
+
+/* ==================== MINIMAX (AI) ==================== */
+function getBestMove(){
+    let bestScore = -Infinity;
+    let move = null;
+
+    for (let i=0; i<9; i++){
+        if (board[i] !== null) continue;
+        board[i] = AI;
+        const score = minimax(board, 0, false, -Infinity, Infinity);
+        board[i] = null;
+        if (score > bestScore){
+            bestScore = score;
+            move = i;
+        }
+    }
+    return move;
+}
+
+/**
+ * Returns:
+ *   +10 - depth   : AI wins
+ *   -10 + depth   : Human wins
+ *    0            : Draw
+ */
+function minimax(b, depth, isMaximizing, alpha, beta){
+    const winner = getWinner(b);
+    if (winner === AI)   return 10 - depth;
+    if (winner === HUMAN) return depth - 10;
+    if (!b.includes(null)) return 0;               // draw
+
+    if (isMaximizing){
+        let maxScore = -Infinity;
+        for (let i=0; i<9; i++){
+            if (b[i] !== null) continue;
+            b[i] = AI;
+            const score = minimax(b, depth+1, false, alpha, beta);
+            b[i] = null;
+            maxScore = Math.max(maxScore, score);
+            alpha = Math.max(alpha, score);
+            if (beta <= alpha) break;
+        }
+        return maxScore;
+    } else {
+        let minScore = Infinity;
+        for (let i=0; i<9; i++){
+            if (b[i] !== null) continue;
+            b[i] = HUMAN;
+            const score = minimax(b, depth+1, true, alpha, beta);
+            b[i] = null;
+            minScore = Math.min(minScore, score);
+            beta = Math.min(beta, score);
+            if (beta <= alpha) break;
+        }
+        return minScore;
+    }
+}
+</script>
+
+</body>
+</html>
