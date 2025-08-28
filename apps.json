@@ -1,0 +1,44 @@
+[
+  {
+    "href": "apps/quick-note/index.html",
+    "emoji": "📝",
+    "title": { "en": "Quick Notes", "jp": "クイックノート" },
+    "desc":  { "en": "Capture and organize thoughts instantly with rich formatting.", "jp": "思いつきを素早く記録し、豊かな書式で整理できます。" },
+    "tags": ["notes","productivity","tools"]
+  },
+  {
+    "href": "apps/ttm/index.html",
+    "emoji": "⏳",
+    "title": { "en": "Tech Time Machine", "jp": "テック・タイムマシン" },
+    "desc":  { "en": "Explore past and future of your favorite technologies.", "jp": "好きな技術の過去と未来を探索。" },
+    "tags": ["timeline","tech","fun"]
+  },
+  {
+    "href": "apps/tic-tac-toe/index.html",
+    "emoji": "🎮",
+    "title": { "en": "Tic Tac Toe Game", "jp": "三目並べゲーム" },
+    "desc":  { "en": "Play tic tac toe on your browser with the computer..", "jp": "ブラウザでコンピュータと三目並べ。" },
+    "tags": ["game"]
+  },
+  {
+    "href": "apps/health-app/index.html",
+    "emoji": "⏳",
+    "title": { "en": "Health Mini Tools", "jp": "ヘルス・ミニツール" },
+    "desc":  { "en": "Health calculator on the browser..", "jp": "ブラウザで使える健康計算ツール。" },
+    "tags": ["health","tools"]
+  },
+  {
+    "href": "apps/sliding-game/index.html",
+    "emoji": "🎮",
+    "title": { "en": "Sliding Image Game", "jp": "スライドパズル" },
+    "desc":  { "en": "Play interesting sliding image game on your browser..", "jp": "画像のスライドパズルを楽しもう。" },
+    "tags": ["game","puzzle"]
+  },
+  {
+    "href": "apps/world-clock/index.html",
+    "emoji": "⏳",
+    "title": { "en": "World Clock", "jp": "ワールドクロック" },
+    "desc":  { "en": "World clock for daily usage..", "jp": "日常に役立つ世界時計。" },
+    "tags": ["time","utility"]
+  }
+]

@@ -1,0 +1,8 @@
+[
+  {
+    "href": "apps/quick-note/index.html",
+    "emoji": "📚",
+    "title": { "en": "Books – Placeholder", "jp": "ブック（プレースホルダー）" },
+    "desc":  { "en": "Replace with your book list or reading notes.", "jp": "読書リストやメモに差し替え可。" }
+  }
+]

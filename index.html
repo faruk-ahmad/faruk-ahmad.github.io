@@ -1,38 +1,148 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Faruk Ahmad - Tools</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <title>Faruk Ahmad - Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="description" content="Faruk Ahmad — tools, books, and writings portal" />
+    <meta property="og:title" content="Faruk Ahmad - Tools & Apps" />
+    <meta property="og:description" content="A tidy portal of my apps, books, and writings." />
+    <meta property="og:type" content="website" />
+
     <style>
+        /* ---------- Theme & Resets ---------- */
+        :root {
+            --bg: #f6f8fb;
+            --card: #ffffff;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+            --primary: #007acc;
+            --primary-600: #0369a1;
+            --glow: 0 10px 30px rgba(0, 122, 204, .18);
+            --shadow: 0 6px 18px rgba(17, 24, 39, .08);
+            --radius: 14px;
+            --radius-sm: 10px;
+            --grad-1: linear-gradient(135deg, #e0f2ff 0%, #f7faff 100%);
+            --header-grad: radial-gradient(1200px 400px at 20% -40%, rgba(0, 122, 204, .22), transparent 60%),
+                radial-gradient(1200px 400px at 80% -50%, rgba(99, 102, 241, .22), transparent 60%),
+                #1f2937;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0b1220;
+                --card: #121a2a;
+                --text: #e5e7eb;
+                --muted: #a1a1aa;
+                --border: #1e2a3d;
+                --glow: 0 10px 30px rgba(0, 122, 204, .25);
+                --shadow: 0 6px 20px rgba(0, 0, 0, .35);
+                --grad-1: linear-gradient(135deg, #0f172a 0%, #0b1220 100%);
+                --header-grad: radial-gradient(1200px 400px at 20% -40%, rgba(0, 122, 204, .25), transparent 60%),
+                    radial-gradient(1200px 400px at 80% -50%, rgba(99, 102, 241, .25), transparent 60%),
+                    #0b1220;
+            }
+        }
+
+        :root[data-theme="light"] {
+            --bg: #f6f8fb;
+            --card: #fff;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+            --glow: 0 10px 30px rgba(0, 122, 204, .18);
+            --shadow: 0 6px 18px rgba(17, 24, 39, .08);
+            --grad-1: linear-gradient(135deg, #e0f2ff 0%, #f7faff 100%);
+            --header-grad: radial-gradient(1200px 400px at 20% -40%, rgba(0, 122, 204, .22), transparent 60%),
+                radial-gradient(1200px 400px at 80% -50%, rgba(99, 102, 241, .22), transparent 60%),
+                #1f2937;
+        }
+
+        :root[data-theme="dark"] {
+            --bg: #0b1220;
+            --card: #121a2a;
+            --text: #e5e7eb;
+            --muted: #a1a1aa;
+            --border: #1e2a3d;
+            --glow: 0 10px 30px rgba(0, 122, 204, .25);
+            --shadow: 0 6px 20px rgba(0, 0, 0, .35);
+            --grad-1: linear-gradient(135deg, #0f172a 0%, #0b1220 100%);
+            --header-grad: radial-gradient(1200px 400px at 20% -40%, rgba(0, 122, 204, .25), transparent 60%),
+                radial-gradient(1200px 400px at 80% -50%, rgba(99, 102, 241, .25), transparent 60%),
+                #0b1220;
+        }
+
         * {
             box-sizing: border-box;
         }
 
+        html,
+        body {
+            height: 100%;
+        }
+
         body {
             margin: 0;
-            font-family: "Segoe UI", sans-serif;
-            background: #f9f9f9;
+            font-family: ui-sans-serif, "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+            color: var(--text);
+            background: var(--grad-1);
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+
+        .skip-link:focus {
+            left: 16px;
+            top: 12px;
+            width: auto;
+            height: auto;
+            background: #fff;
+            color: #000;
+            padding: 8px 10px;
+            border-radius: 8px;
+            z-index: 9999;
+        }
+
         header {
-            background: #333;
             color: white;
-            padding: 15px 30px;
+            padding: 16px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
+            background: var(--header-grad);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(6px);
+            gap: 10px;
         }
 
         header h1 {
             margin: 0;
             font-size: 20px;
+            letter-spacing: .2px;
+            font-weight: 600;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         nav {
@@ -42,142 +152,525 @@
         }
 
         nav a {
-            color: white;
+            color: #eef6ff;
             text-decoration: none;
             padding: 6px 10px;
+            border-radius: 8px;
+            transition: background .2s ease, color .2s ease;
         }
 
         nav a:hover {
-            text-decoration: underline;
+            background: rgba(255, 255, 255, .1);
+            color: #fff;
+        }
+
+        .btn-ghost {
+            padding: 6px 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, .2);
+            background: transparent;
+            color: #eef6ff;
+            cursor: pointer;
+        }
+
+        .btn-ghost:hover {
+            background: rgba(255, 255, 255, .08);
+        }
+
+        .btn-ghost:focus-visible {
+            outline: 2px solid #fff;
+            outline-offset: 2px;
         }
 
         main {
             flex: 1;
-            padding: 40px 20px;
-            max-width: 1000px;
+            padding: 44px 20px 28px;
+            max-width: 1100px;
             margin: 0 auto;
+            width: 100%;
+        }
+
+        .tabs-wrap {
+            background: color-mix(in srgb, var(--card) 92%, transparent);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 10px 12px 0;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(6px);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 6px;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+            padding: 0 6px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            appearance: none;
+            border: none;
+            background: transparent;
+            padding: 12px 14px;
+            cursor: pointer;
+            font-size: 15px;
+            border-radius: 10px 10px 0 0;
+            color: var(--muted);
+            position: relative;
+            transition: color .2s ease, transform .1s ease;
+        }
+
+        .tab-btn:hover {
+            color: var(--text);
+        }
+
+        .tab-btn[aria-selected="true"],
+        .tab-btn.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .tab-underline {
+            position: absolute;
+            bottom: 0;
+            height: 2.5px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-600));
+            border-radius: 999px;
+            transition: left .25s ease, width .25s ease;
+        }
+
+        .tab-btn:focus-visible {
+            outline: 3px solid color-mix(in srgb, var(--primary) 55%, transparent);
+            outline-offset: 2px;
+            border-radius: 10px;
+        }
+
+        .tab-panel {
+            padding: 22px 14px 18px;
+        }
+
+        .tab-panel[hidden] {
+            display: none;
+        }
+
+        .grid-toolbar {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 8px;
+            margin: 0 0 12px;
+        }
+
+        .search-input {
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: var(--card);
+            color: var(--text);
+            width: 260px;
+            max-width: 100%;
         }
 
         .grid {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 20px;
-            justify-content: flex-start;
+            justify-content: start;
         }
 
         .app-card {
-            flex: 0 0 220px;
-            background: linear-gradient(to bottom right, #ffffff, #f0f0f0);
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            background: color-mix(in srgb, var(--card) 92%, transparent);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
             text-align: center;
-            transition: all 0.3s ease-in-out;
-            border: 2px solid transparent;
+            transition: transform .2s ease, box-shadow .25s ease, border-color .2s ease;
+            will-change: transform;
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .app-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(260px 60px at 20% -20%, rgba(0, 122, 204, .12), transparent 60%),
+                radial-gradient(260px 60px at 80% -30%, rgba(99, 102, 241, .10), transparent 60%);
+            pointer-events: none;
+            z-index: -1;
         }
 
         .app-card:hover {
-            transform: translateY(-8px);
-            border-color: #007acc;
-            box-shadow: 0 8px 20px rgba(0, 122, 204, 0.2);
+            transform: translateY(-6px) rotate(-.25deg);
+            border-color: color-mix(in srgb, var(--primary) 65%, var(--border));
+            box-shadow: var(--glow);
         }
 
         .app-card a {
             text-decoration: none;
             color: inherit;
+            display: block;
         }
 
         .app-card .emoji {
             font-size: 40px;
             margin-bottom: 10px;
+            display: inline-block;
+            transform: translateZ(0);
+            transition: transform .2s ease;
+        }
+
+        .app-card:hover .emoji {
+            transform: translateY(-3px) scale(1.06);
         }
 
         .app-card .title {
-            font-size: 20px;
-            font-weight: 600;
+            font-size: 19px;
+            font-weight: 700;
             margin-bottom: 8px;
-            color: #222;
-            transition: color 0.3s;
-        }
-
-        .app-card:hover .title {
-            color: #007acc;
+            color: var(--text);
+            letter-spacing: .2px;
         }
 
         .app-card .desc {
             font-size: 14px;
-            color: #555;
+            color: var(--muted);
+            line-height: 1.5;
         }
 
         footer {
             text-align: center;
-            padding: 15px;
-            background: #eee;
+            padding: 18px 12px;
+            background: transparent;
             font-size: 14px;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none !important;
+                animation: none !important;
+            }
         }
     </style>
 </head>
 
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
     <header>
-        <h1>Faruk Ahmad - Tools & Apps</h1>
-        <nav>
-            <a href="#">Home</a>
-            <a href="https://faruk.me" target="_blank">About</a>
-            <a href="#">Contact</a>
-        </nav>
+        <h1>Faruk Ahmad - Portal</h1>
+        <div class="header-right">
+            <nav aria-label="Primary">
+                <a href="#" data-i18n="nav.home">Home</a>
+                <a href="https://faruk.me" target="_blank" rel="noopener" data-i18n="nav.about">About</a>
+                <a href="#" data-i18n="nav.contact">Contact</a>
+            </nav>
+            <button id="theme-toggle" class="btn-ghost" title="Toggle theme">🌗 <span
+                    data-i18n="ui.theme">Theme</span></button>
+            <button id="lang-toggle" class="btn-ghost" title="Switch language">🌐 <span
+                    id="lang-label">EN</span></button>
+        </div>
     </header>
-    <main>
-        <h2 style="text-align:center; margin-bottom: 40px;">Available Apps</h2>
-        <div class="grid">
-            <div class="app-card">
-                <a href="apps/quick-note/index.html" target="_blank">
-                    <div class="emoji">📝</div>
-                    <div class="title">Quick Notes</div>
-                    <p class="desc">Capture and organize thoughts instantly with rich formatting.</p>
-                </a>
+
+    <main id="main" tabindex="-1">
+        <div class="tabs-wrap">
+            <div class="tabs" role="tablist" aria-label="Sections">
+                <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-apps" id="tab-apps"
+                    data-tab="apps" data-i18n="tabs.apps">Apps</button>
+                <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-books" id="tab-books"
+                    data-tab="books" data-i18n="tabs.books">Books</button>
+                <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-writings"
+                    id="tab-writings" data-tab="writings" data-i18n="tabs.writings">Writings</button>
+                <div class="tab-underline" aria-hidden="true"></div>
             </div>
-            <div class="app-card">
-                <a href="apps/ttm/index.html" target="_blank">
-                    <div class="emoji">⏳</div>
-                    <div class="title">Tech Time Machine</div>
-                    <p class="desc">Explore past and future of your favorite technologies.</p>
-                </a>
-            </div>
-            <div class="app-card">
-                <a href="apps/tic-tac-toe/index.html" target="_blank">
-                    <div class="emoji">🎮</div>
-                    <div class="title">Tic Tac Toe Game</div>
-                    <p class="desc">Play tic tac toe on your browser with the computer..</p>
-                </a>
-            </div>
-            <div class="app-card">
-                <a href="apps/health-app/index.html" target="_blank">
-                    <div class="emoji">⏳</div>
-                    <div class="title">Health Mini Tools</div>
-                    <p class="desc">Health calculator on the browser..</p>
-                </a>
-            </div>
-            <div class="app-card">
-                <a href="apps/sliding-game/index.html" target="_blank">
-                    <div class="emoji">🎮</div>
-                    <div class="title">Sliding Image Game</div>
-                    <p class="desc">Play interesting sliding image game on your browser..</p>
-                </a>
-            </div>
-            <div class="app-card">
-                <a href="apps/world-clock/index.html" target="_blank">
-                    <div class="emoji">⏳</div>
-                    <div class="title">World Clock</div>
-                    <p class="desc">World clock for daily usage..</p>
-                </a>
-            </div>
-            
+
+            <section class="tab-panel" role="tabpanel" aria-labelledby="tab-apps" id="panel-apps" data-tab="apps"
+                itemscope itemtype="https://schema.org/ItemList">
+                <div class="grid-toolbar">
+                    <input id="apps-search" class="search-input" type="search" placeholder="Filter…"
+                        aria-label="Filter Apps" data-i18n-placeholder="search.apps" />
+                </div>
+                <div class="grid" id="grid-apps"></div>
+            </section>
+
+            <section class="tab-panel" role="tabpanel" aria-labelledby="tab-books" id="panel-books" data-tab="books"
+                hidden itemscope itemtype="https://schema.org/ItemList">
+                <div class="grid-toolbar">
+                    <input id="books-search" class="search-input" type="search" placeholder="Filter…"
+                        aria-label="Filter Books" data-i18n-placeholder="search.books" />
+                </div>
+                <div class="grid" id="grid-books"></div>
+            </section>
+
+            <section class="tab-panel" role="tabpanel" aria-labelledby="tab-writings" id="panel-writings"
+                data-tab="writings" hidden itemscope itemtype="https://schema.org/ItemList">
+                <div class="grid-toolbar">
+                    <input id="writings-search" class="search-input" type="search" placeholder="Filter…"
+                        aria-label="Filter Writings" data-i18n-placeholder="search.writings" />
+                </div>
+                <div class="grid" id="grid-writings"></div>
+            </section>
         </div>
     </main>
+
     <footer>
-        &copy; 2025 <a href="https://faruk.me" target="_blank">Faruk Ahmad</a>. All rights reserved.
+        &copy; 2025 <a href="https://faruk.me" target="_blank" rel="noopener">Faruk Ahmad</a>. All rights reserved.
     </footer>
+
+    <script>
+        /* =========================
+           DATA sources (external JSON)
+           ========================= */
+        const DATA_SOURCES = {
+            apps: './apps.json',         // bump version like './apps.json?v=2' when you update
+            books: './books.json',
+            writings: './writings.json'
+        };
+
+        /* =========================
+           i18n labels (EN/JP)
+           ========================= */
+        const I18N = {
+            en: {
+                "nav.home": "Home", "nav.about": "About", "nav.contact": "Contact", "ui.theme": "Theme",
+                "tabs.apps": "Apps", "tabs.books": "Books", "tabs.writings": "Writings",
+                "search.apps": "Filter…", "search.books": "Filter…", "search.writings": "Filter…"
+            },
+            jp: {
+                "nav.home": "ホーム", "nav.about": "概要", "nav.contact": "連絡先", "ui.theme": "テーマ",
+                "tabs.apps": "アプリ", "tabs.books": "本", "tabs.writings": "文章",
+                "search.apps": "フィルター…", "search.books": "フィルター…", "search.writings": "フィルター…"
+            }
+        };
+
+        /* =========================
+           Helpers
+           ========================= */
+        function cardHTML(item, lang) {
+            const t = typeof item.title === 'object' ? (item.title[lang] ?? item.title.en ?? '') : (item.title ?? '');
+            const d = typeof item.desc === 'object' ? (item.desc[lang] ?? item.desc.en ?? '') : (item.desc ?? '');
+            const emoji = item.emoji || "🗂️";
+            const href = item.href || "#";
+            return `
+        <article class="app-card" itemprop="itemListElement" itemscope itemtype="https://schema.org/SoftwareApplication">
+          <a href="${href}" target="_blank" rel="noopener" itemprop="url">
+            <div class="emoji" aria-hidden="true">${emoji}</div>
+            <div class="title" itemprop="name">${t}</div>
+            <p class="desc" itemprop="description">${d}</p>
+          </a>
+        </article>
+      `;
+        }
+        function renderGrid(gridId, items, lang) {
+            const grid = document.getElementById(gridId);
+            if (!grid) return;
+            grid.innerHTML = items.map(it => cardHTML(it, lang)).join("");
+        }
+        function wireSearch(panelId, inputId) {
+            const input = document.getElementById(inputId);
+            if (!input) return;
+            const panel = document.getElementById(panelId);
+            const grid = panel.querySelector('.grid');
+            const cards = () => Array.from(grid.querySelectorAll('.app-card'));
+            input.addEventListener('input', () => {
+                const q = input.value.trim().toLowerCase();
+                cards().forEach(c => {
+                    const t = (c.querySelector('.title')?.textContent || '').toLowerCase();
+                    const d = (c.querySelector('.desc')?.textContent || '').toLowerCase();
+                    c.style.display = (t.includes(q) || d.includes(q)) ? '' : 'none';
+                });
+            });
+        }
+        function textEl(tag, text, extra = '') { return `<${tag} ${extra}>${text}</${tag}>`; }
+
+        async function safeFetchJSON(url) {
+            try {
+                const res = await fetch(url, { cache: 'force-cache' });
+                if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
+                return await res.json();
+            } catch (e) {
+                console.warn('Failed to load', url, e);
+                return null;
+            }
+        }
+
+        /* =========================
+           App Boot
+           ========================= */
+        (function () {
+            const tabs = document.querySelector('.tabs');
+            const underline = document.querySelector('.tab-underline');
+            const tabBtns = Array.from(document.querySelectorAll('.tab-btn'));
+            const panels = Array.from(document.querySelectorAll('.tab-panel'));
+
+            // i18n init
+            const langBtn = document.getElementById('lang-toggle');
+            const langLabel = document.getElementById('lang-label');
+            const savedLang = localStorage.getItem('lang') || 'en';
+            let currentLang = savedLang;
+
+            function applyI18N(lang) {
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (I18N[lang]?.[key]) el.textContent = I18N[lang][key];
+                });
+                document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                    const key = el.getAttribute('data-i18n-placeholder');
+                    if (I18N[lang]?.[key]) el.setAttribute('placeholder', I18N[lang][key]);
+                });
+                langLabel.textContent = lang.toUpperCase();
+            }
+
+            // Theme toggle
+            (function theme() {
+                const root = document.documentElement;
+                const btn = document.getElementById('theme-toggle');
+                const saved = localStorage.getItem('theme'); // 'light'|'dark'|null
+                if (saved) root.setAttribute('data-theme', saved);
+                btn?.addEventListener('click', () => {
+                    const cur = root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                    const next = cur === 'dark' ? 'light' : 'dark';
+                    root.setAttribute('data-theme', next);
+                    localStorage.setItem('theme', next);
+                });
+            })();
+
+            function setUnderline(btn) {
+                const rect = btn.getBoundingClientRect();
+                const parentRect = tabs.getBoundingClientRect();
+                underline.style.left = (rect.left - parentRect.left) + 'px';
+                underline.style.width = rect.width + 'px';
+            }
+
+            let _activate = function (tab) {
+                const name = tab.dataset.tab;
+                tabBtns.forEach(btn => {
+                    const isActive = btn.dataset.tab === name;
+                    btn.setAttribute('aria-selected', String(isActive));
+                    btn.classList.toggle('active', isActive);
+                    btn.tabIndex = isActive ? 0 : -1;
+                });
+                panels.forEach(panel => {
+                    const show = panel.dataset.tab === name;
+                    if (show) panel.removeAttribute('hidden'); else panel.setAttribute('hidden', '');
+                });
+                setUnderline(tab);
+            };
+
+            function getTabFromURL() {
+                const params = new URLSearchParams(location.search);
+                if (params.get('tab')) return params.get('tab');
+                if (location.hash.startsWith('#tab=')) return location.hash.replace('#tab=', '');
+                return null;
+            }
+            function setTabInURL(name) {
+                history.replaceState(null, '', '#tab=' + name);
+            }
+            const activate = function (tab) {
+                _activate(tab);
+                setTabInURL(tab.dataset.tab);
+            };
+
+            // Search wiring
+            function wireAllSearch() {
+                wireSearch('panel-apps', 'apps-search');
+                wireSearch('panel-books', 'books-search');
+                wireSearch('panel-writings', 'writings-search');
+            }
+
+            // Data cache
+            const STORE = { apps: [], books: [], writings: [] };
+
+            async function loadAllData() {
+                const [apps, books, writings] = await Promise.all([
+                    safeFetchJSON(DATA_SOURCES.apps),
+                    safeFetchJSON(DATA_SOURCES.books),
+                    safeFetchJSON(DATA_SOURCES.writings)
+                ]);
+
+                // Fallbacks if any JSON fails (simple placeholders)
+                STORE.apps = Array.isArray(apps) ? apps : [
+                    { href: "#", emoji: "⚠️", title: { en: "Apps data missing", jp: "アプリのデータがありません" }, desc: { en: "...", jp: "..." } }
+                ];
+                STORE.books = Array.isArray(books) ? books : [
+                    { href: "#", emoji: "⚠️", title: { en: "Books data missing", jp: "本のデータがありません" }, desc: { en: "...", jp: "..." } }
+                ];
+                STORE.writings = Array.isArray(writings) ? writings : [
+                    { href: "#", emoji: "⚠️", title: { en: "Writings data missing", jp: "文章のデータがありません" }, desc: { en: "...", jp: "..." } }
+                ];
+            }
+
+            function renderAll() {
+                renderGrid('grid-apps', STORE.apps, currentLang);
+                renderGrid('grid-books', STORE.books, currentLang);
+                renderGrid('grid-writings', STORE.writings, currentLang);
+            }
+
+            // Initialize
+            (async function init() {
+                applyI18N(currentLang);
+                await loadAllData();
+                renderAll();
+                wireAllSearch();
+
+                // language toggle
+                const langBtn = document.getElementById('lang-toggle');
+                langBtn?.addEventListener('click', () => {
+                    currentLang = (currentLang === 'en') ? 'jp' : 'en';
+                    localStorage.setItem('lang', currentLang);
+                    applyI18N(currentLang);
+                    renderAll(); // re-render with selected language
+                });
+
+                // Tabs init (URL-driven)
+                let defaultBtn = tabBtns.find(b => b.classList.contains('active'));
+                if (!defaultBtn) {
+                    const defaultPanel = panels.find(p => p.dataset.default === 'true');
+                    if (defaultPanel) defaultBtn = tabBtns.find(b => b.dataset.tab === defaultPanel.dataset.tab);
+                }
+                if (!defaultBtn) defaultBtn = tabBtns[0];
+
+                const requested = getTabFromURL();
+                if (requested) {
+                    const btn = tabBtns.find(b => b.dataset.tab === requested);
+                    if (btn) activate(btn); else _activate(defaultBtn);
+                } else {
+                    _activate(defaultBtn);
+                }
+
+                tabBtns.forEach(btn => btn.addEventListener('click', () => activate(btn)));
+                tabs.addEventListener('keydown', (e) => {
+                    const currentIndex = tabBtns.findIndex(b => b.getAttribute('aria-selected') === 'true');
+                    if (e.key === 'ArrowRight') {
+                        const next = tabBtns[(currentIndex + 1) % tabBtns.length];
+                        next.focus(); activate(next); e.preventDefault();
+                    } else if (e.key === 'ArrowLeft') {
+                        const prev = tabBtns[(currentIndex - 1 + tabBtns.length) % tabBtns.length];
+                        prev.focus(); activate(prev); e.preventDefault();
+                    }
+                });
+
+                window.addEventListener('resize', () => {
+                    const current = tabBtns.find(b => b.getAttribute('aria-selected') === 'true');
+                    if (current) setUnderline(current);
+                });
+            })();
+        })();
+    </script>
 </body>
 
 </html>
