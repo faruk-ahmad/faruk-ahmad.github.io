@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AI Roadmap → AI Engineer</title>
   <meta name="description" content="A complete, modular guide for backend engineers to become AI engineers: Foundation, Basics, Intermediate, Advanced, Professional. Each topic has numbered anchors, official docs + tutorials, concise learning guidelines, pitfalls, reading lists, and projects."/>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <!-- Fixed Header -->
@@ -31,38 +31,56 @@
   <div class="page">
     <!-- Sidebar -->
     <aside>
-      <div class="side-head">Navigate <span style="font-weight:400; font-size:12px; color:var(--muted)">(numbered)</span></div>
+      <div class="side-head">Navigate <span style="font-weight:400; font-size:12px; color:var(--muted)">...</span></div>
       <nav class="nav" id="sidebar" aria-label="Roadmap sections">
+        <!-- 1 Foundation -->
         <a href="#s1"><span class="num">1.</span> Foundation</a>
+        <a class="sub" href="#s1-0"><span class="num">1.0</span> Programming Fundamentals</a>
         <a class="sub" href="#s1-1"><span class="num">1.1</span> Probability & Statistics</a>
         <a class="sub" href="#s1-2"><span class="num">1.2</span> Linear Algebra</a>
         <a class="sub" href="#s1-3"><span class="num">1.3</span> Python + Data Stack</a>
+        <a class="sub" href="#s1-4"><span class="num">1.4</span> Data Handling & EDA</a>
         <a class="sub" href="#s1-r"><span class="num">1.R</span> Reading List</a>
         <a class="sub" href="#s1-x"><span class="num">1.X</span> Pitfalls</a>
+        <!-- 2 Basics -->
         <a href="#s2"><span class="num">2.</span> Basics</a>
         <a class="sub" href="#s2-1"><span class="num">2.1</span> Linear & Logistic Regression</a>
         <a class="sub" href="#s2-2"><span class="num">2.2</span> SVMs & Trees</a>
         <a class="sub" href="#s2-3"><span class="num">2.3</span> Validation & Experimentation</a>
+        <a class="sub" href="#s2-4"><span class="num">2.4</span> Feature Engineering</a>
+        <a class="sub" href="#s2-5"><span class="num">2.5</span> Regularization & Bias–Variance</a>
         <a class="sub" href="#s2-r"><span class="num">2.R</span> Reading List</a>
         <a class="sub" href="#s2-x"><span class="num">2.X</span> Pitfalls</a>
+        <!-- 3 Intermediate -->
         <a href="#s3"><span class="num">3.</span> Intermediate</a>
         <a class="sub" href="#s3-1"><span class="num">3.1</span> Neural Nets & Backprop</a>
         <a class="sub" href="#s3-2"><span class="num">3.2</span> Losses & Optimizers</a>
         <a class="sub" href="#s3-3"><span class="num">3.3</span> Training Workflow</a>
+        <a class="sub" href="#s3-4"><span class="num">3.4</span> Hyperparameter Tuning</a>
+        <a class="sub" href="#s3-5"><span class="num">3.5</span> Distributed Training (Ray)</a>
         <a class="sub" href="#s3-r"><span class="num">3.R</span> Reading List</a>
         <a class="sub" href="#s3-x"><span class="num">3.X</span> Pitfalls</a>
+        <!-- 4 Advanced -->
         <a href="#s4"><span class="num">4.</span> Advanced</a>
-        <a class="sub" href="#s4-1"><span class="num">4.1</span> CNNs</a>
+        <a class="sub" href="#s4-1"><span class="num">4.1</span> CNNs (Vision)</a>
         <a class="sub" href="#s4-2"><span class="num">4.2</span> RNNs & LSTM</a>
         <a class="sub" href="#s4-3"><span class="num">4.3</span> GANs</a>
-        <a class="sub" href="#s4-4"><span class="num">4.4</span> Transformers</a>
+        <a class="sub" href="#s4-4"><span class="num">4.4</span> Transformers (BERT/GPT)</a>
+        <a class="sub" href="#s4-5"><span class="num">4.5</span> NLP Toolkit (HF, spaCy)</a>
+        <a class="sub" href="#s4-6"><span class="num">4.6</span> Computer Vision Toolkit</a>
+        <a class="sub" href="#s4-7"><span class="num">4.7</span> Recommenders</a>
+        <a class="sub" href="#s4-8"><span class="num">4.8</span> Time Series</a>
         <a class="sub" href="#s4-r"><span class="num">4.R</span> Reading List</a>
         <a class="sub" href="#s4-x"><span class="num">4.X</span> Pitfalls</a>
+        <!-- 5 Professional -->
         <a href="#s5"><span class="num">5.</span> Professional</a>
-        <a class="sub" href="#s5-1"><span class="num">5.1</span> Serving & APIs</a>
+        <a class="sub" href="#s5-1"><span class="num">5.1</span> Serving Patterns & APIs</a>
         <a class="sub" href="#s5-2"><span class="num">5.2</span> Containers & Orchestration</a>
-        <a class="sub" href="#s5-3"><span class="num">5.3</span> Experiment Tracking</a>
+        <a class="sub" href="#s5-3"><span class="num">5.3</span> Experiment & Data Versioning</a>
         <a class="sub" href="#s5-4"><span class="num">5.4</span> RAG Systems</a>
+        <a class="sub" href="#s5-5"><span class="num">5.5</span> Inference Optimization (ONNX/TensorRT/TFLite)</a>
+        <a class="sub" href="#s5-6"><span class="num">5.6</span> Monitoring & Observability</a>
+        <a class="sub" href="#s5-7"><span class="num">5.7</span> Ethics, Privacy & Fairness</a>
         <a class="sub" href="#s5-r"><span class="num">5.R</span> Reading List</a>
         <a class="sub" href="#s5-x"><span class="num">5.X</span> Roles & Paths</a>
       </nav>
@@ -72,7 +90,7 @@
     <main>
       <section id="intro" class="hero">
         <h2 style="margin:0 0 6px">Practical, modular, shareable</h2>
-        <p>Each numbered section has a shareable anchor link (📎). Topics include official docs, explanatory tutorials, prerequisites, and a concise plan so you can learn efficiently and ship projects. Use the theme toggle and progress tracker to make steady progress.</p>
+        <p>Each numbered section has a shareable anchor link (📎). Topics include official docs + explanatory tutorials, prerequisites, concise plans, pitfalls, reading lists, and projects. Track progress and export to PDF.</p>
         <div class="kpis">
           <div class="kpi"><strong>5</strong><br/>Stages</div>
           <div class="kpi"><strong id="kTotalTopics">0</strong><br/>Topics</div>
@@ -90,8 +108,40 @@
             <button class="share" data-target="#s1">📎 Copy link</button>
           </div>
         </div>
-        <p class="subtitle">Applied math intuition and core Python tooling.</p>
+        <p class="subtitle">Programming fundamentals, applied math intuition, core Python tooling, and exploratory data analysis.</p>
         <div class="grid">
+          <!-- 1.0 Programming Fundamentals -->
+          <article id="s1-0" class="card" data-hours="6">
+            <div class="topic-head">
+              <h3 class="topic-title">1.0 Programming Fundamentals <small>(Python, packaging, CLI)</small></h3>
+              <div class="topic-anchors">
+                <button class="done-btn" data-id="s1-0">✔ Done</button>
+                <button class="anchor-btn" data-target="#s1-0">📎 Link</button>
+              </div>
+            </div>
+            <div class="meta">
+              <span class="chip">Prereq: basic coding</span>
+              <span class="chip ok">Outcome: productive Python dev</span>
+              <span class="chip warn">Time: ~4–8h</span>
+            </div>
+            <div class="guides">
+              <div class="guide"><h4>How to learn (concise)</h4>
+                <ul>
+                  <li>Set up pyenv + venv/conda; learn packaging (pip, poetry).</li>
+                  <li>Master notebooks vs scripts, logging, and type hints.</li>
+                  <li>Write a CLI for a small data task (argparse/typer).</li>
+                </ul>
+              </div>
+              <div class="guide"><h4>Resources</h4>
+                <div class="links">
+                  <a class="link" href="https://docs.python.org/3/" target="_blank" rel="noopener">Python Docs</a>
+                  <a class="link" href="https://packaging.python.org/en/latest/" target="_blank" rel="noopener">Python Packaging</a>
+                  <a class="link tutorial" href="https://typer.tiangolo.com/" target="_blank" rel="noopener">Typer (CLI)</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
           <!-- 1.1 Probability -->
           <article id="s1-1" class="card" data-hours="8">
             <div class="topic-head">
@@ -108,19 +158,18 @@
             </div>
             <div class="guides">
               <div class="guide">
-                <h4>How to learn (concise)</h4>
+                <h4>How to learn</h4>
                 <ul>
-                  <li>Skim core ideas: random variables, expectation, Bayes.</li>
-                  <li>Do 10–15 exercises on conditional probability.</li>
-                  <li>Implement a Naive Bayes spam filter; write a 1‑page summary.</li>
+                  <li>Skim random variables, expectation, Bayes; work 10–15 problems.</li>
+                  <li>Implement a Naive Bayes spam filter & compare to sklearn.</li>
+                  <li>Understand confidence intervals and hypothesis tests.</li>
                 </ul>
               </div>
-              <div class="guide">
-                <h4>Resources</h4>
+              <div class="guide"><h4>Resources</h4>
                 <div class="links">
-                  <a class="link" href="https://cs229.stanford.edu/lectures-spring2022/cs229-probability_review.pdf" target="_blank" rel="noopener">CS229 Notes (official/uni)</a>
-                  <a class="link tutorial" href="https://www.khanacademy.org/math/statistics-probability" target="_blank" rel="noopener">Khan Academy (tutorial)</a>
-                  <a class="link tutorial" href="https://www.youtube.com/c/joshstarmer" target="_blank" rel="noopener">StatQuest (video)</a>
+                  <a class="link" href="https://cs229.stanford.edu/lectures-spring2022/cs229-probability_review.pdf" target="_blank" rel="noopener">CS229 Prob Review</a>
+                  <a class="link tutorial" href="https://www.khanacademy.org/math/statistics-probability" target="_blank" rel="noopener">Khan Academy</a>
+                  <a class="link tutorial" href="https://www.youtube.com/c/joshstarmer" target="_blank" rel="noopener">StatQuest</a>
                 </div>
               </div>
             </div>
@@ -140,15 +189,15 @@
             <div class="guides">
               <div class="guide"><h4>How to learn</h4>
                 <ul>
-                  <li>Focus on matrix multiplication, eigenvalues, SVD intuition.</li>
+                  <li>Focus on matrix mult, eigenvalues, SVD intuition.</li>
                   <li>Re‑derive backprop for a tiny 2‑layer net by hand.</li>
-                  <li>Implement PCA from scratch and compare to sklearn.</li>
+                  <li>Implement PCA from scratch; compare to sklearn.</li>
                 </ul>
               </div>
               <div class="guide"><h4>Resources</h4>
                 <div class="links">
-                  <a class="link" href="https://cs229.stanford.edu/section/cs229-linalg.pdf" target="_blank" rel="noopener">CS229 LinAlg (uni)</a>
-                  <a class="link tutorial" href="https://www.3blue1brown.com/topics/linear-algebra" target="_blank" rel="noopener">3Blue1Brown (visual)</a>
+                  <a class="link" href="https://cs229.stanford.edu/section/cs229-linalg.pdf" target="_blank" rel="noopener">CS229 LinAlg</a>
+                  <a class="link tutorial" href="https://www.3blue1brown.com/topics/linear-algebra" target="_blank" rel="noopener">3Blue1Brown</a>
                 </div>
               </div>
             </div>
@@ -170,7 +219,7 @@
                 <ul>
                   <li>Memorize top 30 NumPy & pandas ops with a cheat sheet.</li>
                   <li>Build a re‑usable EDA notebook template (sections + plots).</li>
-                  <li>Publish one EDA on Kaggle or GitHub every week for 3 weeks.</li>
+                  <li>Publish one EDA on Kaggle or GitHub weekly for 3 weeks.</li>
                 </ul>
               </div>
               <div class="guide"><h4>Resources</h4>
@@ -178,7 +227,31 @@
                   <a class="link" href="https://numpy.org/doc/" target="_blank" rel="noopener">NumPy Docs</a>
                   <a class="link" href="https://pandas.pydata.org/docs/" target="_blank" rel="noopener">pandas Docs</a>
                   <a class="link" href="https://matplotlib.org/stable/" target="_blank" rel="noopener">Matplotlib Docs</a>
-                  <a class="link tutorial" href="https://realpython.com/" target="_blank" rel="noopener">Real Python (tutorials)</a>
+                  <a class="link tutorial" href="https://realpython.com/" target="_blank" rel="noopener">Real Python</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 1.4 Data Handling & EDA -->
+          <article id="s1-4" class="card" data-hours="6">
+            <div class="topic-head">
+              <h3 class="topic-title">1.4 Data Handling & EDA <small>(cleaning, visualization)</small></h3>
+              <div class="topic-anchors"><button class="done-btn" data-id="s1-4">✔ Done</button><button class="anchor-btn" data-target="#s1-4">📎 Link</button></div>
+            </div>
+            <div class="meta"><span class="chip">Prereq: 1.3</span><span class="chip ok">Outcome: reliable datasets</span><span class="chip warn">Time: ~4–8h</span></div>
+            <div class="guides">
+              <div class="guide"><h4>How to learn</h4>
+                <ul>
+                  <li>Handle missing/duplicates/outliers; create train/val/test splits.</li>
+                  <li>Visualize distributions & correlations; document data cards.</li>
+                </ul>
+              </div>
+              <div class="guide"><h4>Resources</h4>
+                <div class="links">
+                  <a class="link" href="https://pandas.pydata.org/docs/user_guide/missing_data.html" target="_blank" rel="noopener">pandas: Missing Data</a>
+                  <a class="link" href="https://seaborn.pydata.org/" target="_blank" rel="noopener">Seaborn</a>
+                  <a class="link tutorial" href="https://www.kaggle.com/learn/pandas" target="_blank" rel="noopener">Kaggle: Pandas</a>
                 </div>
               </div>
             </div>
@@ -193,9 +266,9 @@
             <div class="guides">
               <div class="guide"><h4>Recommended</h4>
                 <ul>
-                  <li class="chip book">Book: The Elements of Statistical Learning (intro skim)</li>
-                  <li class="chip book">Book: Probabilistic Machine Learning (Murphy) — ch.1–3</li>
-                  <li class="chip book">Course: MIT 6.0001 Python (fundamentals)</li>
+                  <li class="chip book">Elements of Statistical Learning — skim</li>
+                  <li class="chip book">Probabilistic Machine Learning (Murphy) — ch.1–3</li>
+                  <li class="chip book">MIT 6.0001 Python</li>
                 </ul>
               </div>
             </div>
@@ -207,23 +280,27 @@
             <div class="guides">
               <div class="guide"><h4>Watch outs</h4>
                 <ul>
-                  <li>Over‑investing in pure math proofs before coding.</li>
+                  <li>Over‑investing in proofs before coding.</li>
                   <li>Skipping EDA/cleaning and blaming the model.</li>
                   <li>Not tracking what you learned; write short memos.</li>
                 </ul>
               </div>
             </div>
           </article>
-
-          <!-- Foundation projects -->
-          <article id="s1-p" class="card" data-hours="4">
-            <div class="topic-head"><h3 class="topic-title">1.P Projects (Foundation)</h3><div class="topic-anchors"><button class="done-btn" data-id="s1-p">✔ Done</button><button class="anchor-btn" data-target="#s1-p">📎 Link</button></div></div>
+        
+          <!-- Foundation Projects -->
+          <article id="s1-p" class="card" data-hours="0">
+            <div class="topic-head">
+              <h3 class="topic-title">1.P Projects (Foundation)</h3>
+              <div class="topic-anchors"><button class="anchor-btn" data-target="#s1-p">📎 Link</button></div>
+            </div>
             <details open>
               <summary>Project ideas + links</summary>
               <div class="panel">
                 <ul>
-                  <li><strong>EDA + Visualization:</strong> UCI/Kaggle dataset; clean, visualize, share. <a class="link" href="https://archive.ics.uci.edu/" target="_blank" rel="noopener">UCI</a> · <a class="link" href="https://www.kaggle.com/competitions/titanic" target="_blank" rel="noopener">Titanic</a></li>
-                  <li><strong>Reproducible Notebook:</strong> Template with data/EDA/model/metrics sections.</li>
+                  <li><strong>EDA + Visualization:</strong> Pick a local dataset (e.g., Japan census, public transit punctuality), clean, visualize, and narrate findings. <a class="link" href="https://www.kaggle.com/datasets" target="_blank" rel="noopener">Kaggle Datasets</a></li>
+                  <li><strong>Data Cleaning Toolkit:</strong> Write a small library of reusable pandas functions (impute, outlier cap, encode) and publish as a pip package. <a class="link" href="https://packaging.python.org/en/latest/tutorials/packaging-projects/" target="_blank" rel="noopener">Packaging Tutorial</a></li>
+                  <li><strong>Notebook Template:</strong> Create a cookiecutter for EDA with sections for data card, checks, visuals, and conclusions. <a class="link" href="https://cookiecutter.readthedocs.io/en/latest/" target="_blank" rel="noopener">Cookiecutter</a></li>
                 </ul>
               </div>
             </details>
@@ -237,24 +314,24 @@
           <h2>2. Basics <span class="badge">Classical ML</span></h2>
           <div style="display:flex; gap:8px"><button class="collapse" data-target="#s2">▾ Collapse</button><button class="share" data-target="#s2">📎 Copy link</button></div>
         </div>
-        <p class="subtitle">Reliable baselines and evaluation you can trust.</p>
+        <p class="subtitle">Reliable baselines, feature engineering, and trustworthy evaluation.</p>
         <div class="grid">
           <article id="s2-1" class="card" data-hours="6">
             <div class="topic-head"><h3 class="topic-title">2.1 Linear & Logistic Regression</h3><div class="topic-anchors"><button class="done-btn" data-id="s2-1">✔ Done</button><button class="anchor-btn" data-target="#s2-1">📎 Link</button></div></div>
-            <div class="meta"><span class="chip">Prereq: 1.1–1.3</span><span class="chip ok">Outcome: baseline models</span><span class="chip warn">Time: ~5–7h</span></div>
+            <div class="meta"><span class="chip">Prereq: 1.1–1.4</span><span class="chip ok">Outcome: baseline models</span><span class="chip warn">Time: ~5–7h</span></div>
             <div class="guides">
               <div class="guide"><h4>How to learn</h4>
                 <ul>
-                  <li>Train/validate logistic & linear models; practice regularization.</li>
+                  <li>Train/validate; practice L1/L2/ElasticNet regularization.</li>
                   <li>Interpret coefficients; check calibration.</li>
-                  <li>Write a 1‑page model card (data, metrics, caveats).</li>
+                  <li>Write a model card (data, metrics, caveats).</li>
                 </ul>
               </div>
               <div class="guide"><h4>Resources</h4>
                 <div class="links">
                   <a class="link" href="https://scikit-learn.org/stable/user_guide.html#supervised-learning" target="_blank" rel="noopener">sklearn Guide</a>
                   <a class="link" href="https://scikit-learn.org/stable/modules/model_evaluation.html" target="_blank" rel="noopener">Model Metrics</a>
-                  <a class="link tutorial" href="https://www.youtube.com/playlist?list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF" target="_blank" rel="noopener">StatQuest (playlist)</a>
+                  <a class="link tutorial" href="https://scikit-learn.org/stable/modules/linear_model.html" target="_blank" rel="noopener">Linear Models (sklearn)</a>
                 </div>
               </div>
             </div>
@@ -267,7 +344,7 @@
               <div class="guide"><h4>How to learn</h4>
                 <ul>
                   <li>Train SVM with/without kernels; compare to RF/XGBoost.</li>
-                  <li>Use cross‑validation; tune key hyperparams only (C/gamma, depth/trees).</li>
+                  <li>Use cross‑validation; tune key hyperparams only.</li>
                   <li>Plot learning curves; avoid leakage.</li>
                 </ul>
               </div>
@@ -276,7 +353,7 @@
                   <a class="link" href="https://scikit-learn.org/stable/modules/svm.html" target="_blank" rel="noopener">sklearn SVM</a>
                   <a class="link" href="https://scikit-learn.org/stable/modules/tree.html" target="_blank" rel="noopener">sklearn Trees</a>
                   <a class="link" href="https://xgboost.readthedocs.io/en/stable/" target="_blank" rel="noopener">XGBoost Docs</a>
-                  <a class="link tutorial" href="https://www.youtube.com/watch?v=efR1C6CvhmE" target="_blank" rel="noopener">StatQuest: SVM</a>
+                  <a class="link tutorial" href="https://www.kaggle.com/learn/intro-to-machine-learning" target="_blank" rel="noopener">Kaggle Intro ML</a>
                 </div>
               </div>
             </div>
@@ -288,53 +365,70 @@
             <div class="guides">
               <div class="guide"><h4>How to learn</h4>
                 <ul>
-                  <li>Implement K‑fold CV; visualize ROC/PR curves.</li>
-                  <li>Establish a baseline metric and a promotion threshold.</li>
+                  <li>Implement K‑fold/StratifiedKFold; visualize ROC/PR.</li>
+                  <li>Establish promotion thresholds; fix random seeds.</li>
                 </ul>
               </div>
               <div class="guide"><h4>Resources</h4>
                 <div class="links">
                   <a class="link" href="https://scikit-learn.org/stable/model_selection.html" target="_blank" rel="noopener">sklearn Model Selection</a>
-                  <a class="link tutorial" href="https://www.youtube.com/watch?v=TIgfjmp-4BA" target="_blank" rel="noopener">CV (StatQuest)</a>
+                  <a class="link tutorial" href="https://www.kaggle.com/learn/feature-engineering" target="_blank" rel="noopener">Kaggle: Validation & FE</a>
                 </div>
               </div>
             </div>
           </article>
 
-          <article id="s2-r" class="card" data-hours="0">
-            <div class="topic-head"><h3 class="topic-title">2.R Reading List (Basics)</h3><div class="topic-anchors"><button class="anchor-btn" data-target="#s2-r">📎 Link</button></div></div>
+          <!-- Feature Engineering -->
+          <article id="s2-4" class="card" data-hours="6">
+            <div class="topic-head"><h3 class="topic-title">2.4 Feature Engineering</h3><div class="topic-anchors"><button class="done-btn" data-id="s2-4">✔ Done</button><button class="anchor-btn" data-target="#s2-4">📎 Link</button></div></div>
+            <div class="meta"><span class="chip">Prereq: 2.1</span><span class="chip ok">Outcome: better signals</span><span class="chip warn">Time: ~4–8h</span></div>
             <div class="guides">
-              <div class="guide"><h4>Recommended</h4>
+              <div class="guide"><h4>How to learn</h4>
                 <ul>
-                  <li class="chip book">Book: Hands‑On Machine Learning (Géron) — ch.1–4, 6–7</li>
-                  <li class="chip book">Course: Andrew Ng ML (Coursera) — classical ML</li>
-                  <li class="chip book">Guide: sklearn cheat‑sheets (selection, metrics)</li>
+                  <li>Scaling, encoding, binning; leakage‑safe pipelines.</li>
+                  <li>Text: TF‑IDF; Image: simple stats; Time: lag/rolling features.</li>
                 </ul>
+              </div>
+              <div class="guide"><h4>Resources</h4>
+                <div class="links">
+                  <a class="link" href="https://scikit-learn.org/stable/modules/compose.html" target="_blank" rel="noopener">sklearn Pipelines</a>
+                  <a class="link" href="https://scikit-learn.org/stable/modules/preprocessing.html" target="_blank" rel="noopener">sklearn Preprocessing</a>
+                  <a class="link tutorial" href="https://www.kaggle.com/learn/feature-engineering" target="_blank" rel="noopener">Kaggle FE Course</a>
+                </div>
               </div>
             </div>
           </article>
 
-          <article id="s2-x" class="card" data-hours="0">
-            <div class="topic-head"><h3 class="topic-title">2.X Pitfalls (Basics)</h3><div class="topic-anchors"><button class="anchor-btn" data-target="#s2-x">📎 Link</button></div></div>
+          <!-- Regularization & Bias-Variance -->
+          <article id="s2-5" class="card" data-hours="5">
+            <div class="topic-head"><h3 class="topic-title">2.5 Regularization & Bias–Variance</h3><div class="topic-anchors"><button class="done-btn" data-id="s2-5">✔ Done</button><button class="anchor-btn" data-target="#s2-5">📎 Link</button></div></div>
+            <div class="meta"><span class="chip">Prereq: 2.1</span><span class="chip ok">Outcome: generalization</span><span class="chip warn">Time: ~3–6h</span></div>
             <div class="guides">
-              <div class="guide"><h4>Watch outs</h4>
+              <div class="guide"><h4>How to learn</h4>
                 <ul>
-                  <li>Data leakage (e.g., scaling before split, target leakage).</li>
-                  <li>Comparing models on different validation folds.</li>
-                  <li>Ignoring calibration and class imbalance.</li>
+                  <li>Bias–variance tradeoff; L1/L2/Dropout; early stopping.</li>
+                  <li>Plot learning curves and validation curves.</li>
                 </ul>
+              </div>
+              <div class="guide"><h4>Resources</h4>
+                <div class="links">
+                  <a class="link" href="https://scikit-learn.org/stable/auto_examples/model_selection/plot_underfitting_overfitting.html" target="_blank" rel="noopener">Under/Overfitting</a>
+                  <a class="link tutorial" href="https://developers.google.com/machine-learning/crash-course/regularization-for-simplicity/video-lecture" target="_blank" rel="noopener">Google MLCC</a>
+                </div>
               </div>
             </div>
           </article>
-
-          <article id="s2-p" class="card" data-hours="6">
-            <div class="topic-head"><h3 class="topic-title">2.P Projects (Basics)</h3><div class="topic-anchors"><button class="done-btn" data-id="s2-p">✔ Done</button><button class="anchor-btn" data-target="#s2-p">📎 Link</button></div></div>
+        
+          <!-- Basics Projects -->
+          <article id="s2-p" class="card" data-hours="0">
+            <div class="topic-head"><h3 class="topic-title">2.P Projects (Basics)</h3><div class="topic-anchors"><button class="anchor-btn" data-target="#s2-p">📎 Link</button></div></div>
             <details open>
               <summary>Project ideas + links</summary>
               <div class="panel">
                 <ul>
-                  <li><strong>Titanic Survival:</strong> Baseline → tuned model with CV + report. <a class="link" href="https://www.kaggle.com/competitions/titanic" target="_blank" rel="noopener">Competition</a></li>
-                  <li><strong>Spam Classifier:</strong> TF‑IDF + linear model; compare metrics and ROC. <a class="link" href="https://scikit-learn.org/stable/modules/feature_extraction.html#text-feature-extraction" target="_blank" rel="noopener">sklearn Text</a></li>
+                  <li><strong>Classification Baseline → Stronger:</strong> Use Titanic or a local classification problem; start with logistic regression, then compare SVM, RandomForest, and XGBoost with proper CV. <a class="link" href="https://www.kaggle.com/competitions/titanic" target="_blank" rel="noopener">Titanic</a> · <a class="link" href="https://xgboost.readthedocs.io/en/stable/" target="_blank" rel="noopener">XGBoost</a></li>
+                  <li><strong>Text Spam/Review Filter:</strong> Build TF‑IDF + linear model; evaluate ROC‑AUC, PR‑AUC; ship a CLI/API that predicts from stdin. <a class="link" href="https://scikit-learn.org/stable/modules/feature_extraction.html#text-feature-extraction" target="_blank" rel="noopener">sklearn Text</a></li>
+                  <li><strong>Feature Store Lite:</strong> Create a scikit‑learn Pipeline that safely scales/encodes features and logs metadata to a JSON registry. <a class="link" href="https://scikit-learn.org/stable/modules/compose.html" target="_blank" rel="noopener">Pipelines</a></li>
                 </ul>
               </div>
             </details>
@@ -348,23 +442,23 @@
           <h2>3. Intermediate <span class="badge">Neural Networks</span></h2>
           <div style="display:flex; gap:8px"><button class="collapse" data-target="#s3">▾ Collapse</button><button class="share" data-target="#s3">📎 Copy link</button></div>
         </div>
-        <p class="subtitle">Backprop, losses, optimizers, and PyTorch training loops.</p>
+        <p class="subtitle">Backprop, losses, optimizers, PyTorch training loops, tuning & scaling.</p>
         <div class="grid">
           <article id="s3-1" class="card" data-hours="8">
             <div class="topic-head"><h3 class="topic-title">3.1 Neural Nets & Backprop</h3><div class="topic-anchors"><button class="done-btn" data-id="s3-1">✔ Done</button><button class="anchor-btn" data-target="#s3-1">📎 Link</button></div></div>
-            <div class="meta"><span class="chip">Prereq: 1.2, 2.1–2.3</span><span class="chip ok">Outcome: implement MLP</span><span class="chip warn">Time: ~6–10h</span></div>
+            <div class="meta"><span class="chip">Prereq: 1.2, 2.1–2.5</span><span class="chip ok">Outcome: implement MLP</span><span class="chip warn">Time: ~6–10h</span></div>
             <div class="guides">
               <div class="guide"><h4>How to learn</h4>
                 <ul>
-                  <li>Write a 2‑layer MLP from scratch; verify gradients vs autograd.</li>
-                  <li>Compare ReLU vs Tanh; test dropout/weight decay.</li>
+                  <li>Write a 2‑layer MLP; verify gradients vs autograd.</li>
+                  <li>Compare activations; test dropout/weight decay.</li>
                 </ul>
               </div>
               <div class="guide"><h4>Resources</h4>
                 <div class="links">
                   <a class="link" href="https://cs231n.github.io/optimization-2/" target="_blank" rel="noopener">CS231n Backprop</a>
                   <a class="link" href="https://pytorch.org/tutorials/beginner/basics/intro.html" target="_blank" rel="noopener">PyTorch Basics</a>
-                  <a class="link tutorial" href="https://www.3blue1brown.com/topics/neural-networks" target="_blank" rel="noopener">3Blue1Brown (visual)</a>
+                  <a class="link tutorial" href="https://www.3blue1brown.com/topics/neural-networks" target="_blank" rel="noopener">3Blue1Brown</a>
                 </div>
               </div>
             </div>
@@ -376,7 +470,7 @@
             <div class="guides">
               <div class="guide"><h4>How to learn</h4>
                 <ul>
-                  <li>Experiment with SGD/Adam; try schedulers and early stop.</li>
+                  <li>Experiment with SGD/Adam; schedulers; early stopping.</li>
                   <li>Track runs; plot loss vs LR; choose defaults you trust.</li>
                 </ul>
               </div>
@@ -395,8 +489,8 @@
             <div class="guides">
               <div class="guide"><h4>How to learn</h4>
                 <ul>
-                  <li>Build Datasets/Dataloaders; add augmentation and checkpoints.</li>
-                  <li>Integrate TensorBoard; save best‑val checkpoints.</li>
+                  <li>Build Datasets/Dataloaders; augment; checkpoint; tensorboard.</li>
+                  <li>Save best‑val checkpoints; add mixed precision.</li>
                 </ul>
               </div>
               <div class="guide"><h4>Resources</h4>
@@ -408,40 +502,57 @@
             </div>
           </article>
 
-          <article id="s3-r" class="card" data-hours="0">
-            <div class="topic-head"><h3 class="topic-title">3.R Reading List (Intermediate)</h3><div class="topic-anchors"><button class="anchor-btn" data-target="#s3-r">📎 Link</button></div></div>
+          <!-- Hyperparameter tuning -->
+          <article id="s3-4" class="card" data-hours="4">
+            <div class="topic-head"><h3 class="topic-title">3.4 Hyperparameter Tuning</h3><div class="topic-anchors"><button class="done-btn" data-id="s3-4">✔ Done</button><button class="anchor-btn" data-target="#s3-4">📎 Link</button></div></div>
+            <div class="meta"><span class="chip">Prereq: 3.1</span><span class="chip ok">Outcome: systematic search</span><span class="chip warn">Time: ~3–5h</span></div>
             <div class="guides">
-              <div class="guide"><h4>Recommended</h4>
+              <div class="guide"><h4>How to learn</h4>
                 <ul>
-                  <li class="chip book">Course: fast.ai (Practical DL) — parts 1 & 2</li>
-                  <li class="chip book">Book: Dive into Deep Learning (D2L) — open source</li>
-                  <li class="chip book">Guide: PyTorch Lightning docs — training structure</li>
+                  <li>Grid vs random vs Bayesian; early stopping/pruning.</li>
+                  <li>Define search spaces; log trials; pick robust defaults.</li>
                 </ul>
+              </div>
+              <div class="guide"><h4>Resources</h4>
+                <div class="links">
+                  <a class="link" href="https://optuna.org/" target="_blank" rel="noopener">Optuna</a>
+                  <a class="link" href="https://docs.ray.io/en/latest/tune/index.html" target="_blank" rel="noopener">Ray Tune</a>
+                  <a class="link tutorial" href="https://neptune.ai/blog/hyperparameter-tuning-guide" target="_blank" rel="noopener">Tuning Guide</a>
+                </div>
               </div>
             </div>
           </article>
 
-          <article id="s3-x" class="card" data-hours="0">
-            <div class="topic-head"><h3 class="topic-title">3.X Pitfalls (Intermediate)</h3><div class="topic-anchors"><button class="anchor-btn" data-target="#s3-x">📎 Link</button></div></div>
+          <!-- Distributed training -->
+          <article id="s3-5" class="card" data-hours="5">
+            <div class="topic-head"><h3 class="topic-title">3.5 Distributed Training (Ray/DataParallel)</h3><div class="topic-anchors"><button class="done-btn" data-id="s3-5">✔ Done</button><button class="anchor-btn" data-target="#s3-5">📎 Link</button></div></div>
+            <div class="meta"><span class="chip">Prereq: 3.1</span><span class="chip ok">Outcome: scale out</span><span class="chip warn">Time: ~4–6h</span></div>
             <div class="guides">
-              <div class="guide"><h4>Watch outs</h4>
+              <div class="guide"><h4>How to learn</h4>
                 <ul>
-                  <li>Training without fixed seeds or consistent splits.</li>
-                  <li>Confusing train vs eval modes (dropout/BatchNorm).</li>
-                  <li>Ignoring overfitting signs: train↓loss while val↑loss.</li>
+                  <li>DDP basics; data vs model parallel; checkpoint sharding.</li>
+                  <li>Use Ray Train or PyTorch DDP for multi‑GPU jobs.</li>
                 </ul>
+              </div>
+              <div class="guide"><h4>Resources</h4>
+                <div class="links">
+                  <a class="link" href="https://pytorch.org/tutorials/intermediate/ddp_tutorial.html" target="_blank" rel="noopener">PyTorch DDP</a>
+                  <a class="link" href="https://docs.ray.io/en/latest/train/train.html" target="_blank" rel="noopener">Ray Train</a>
+                </div>
               </div>
             </div>
           </article>
-
-          <article id="s3-p" class="card" data-hours="8">
-            <div class="topic-head"><h3 class="topic-title">3.P Projects (Intermediate)</h3><div class="topic-anchors"><button class="done-btn" data-id="s3-p">✔ Done</button><button class="anchor-btn" data-target="#s3-p">📎 Link</button></div></div>
+        
+          <!-- Intermediate Projects -->
+          <article id="s3-p" class="card" data-hours="0">
+            <div class="topic-head"><h3 class="topic-title">3.P Projects (Intermediate)</h3><div class="topic-anchors"><button class="anchor-btn" data-target="#s3-p">📎 Link</button></div></div>
             <details open>
               <summary>Project ideas + links</summary>
               <div class="panel">
                 <ul>
-                  <li><strong>MNIST/CIFAR‑10:</strong> Build & train; augmentation; report accuracy. <a class="link" href="https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html" target="_blank" rel="noopener">CIFAR10</a></li>
-                  <li><strong>Sentiment Classifier:</strong> RNN/GRU baseline on IMDB. <a class="link" href="https://pytorch.org/text/stable/tutorials.html" target="_blank" rel="noopener">torchtext</a></li>
+                  <li><strong>Image Classifier (CIFAR‑10):</strong> Train a small CNN/ResNet with augmentations; log TensorBoard; save best checkpoints. <a class="link" href="https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html" target="_blank" rel="noopener">CIFAR10</a></li>
+                  <li><strong>Sentiment Classifier:</strong> IMDB/JP reviews with RNN/GRU baseline, then a small transformer finetune; compare F1/accuracy. <a class="link" href="https://pytorch.org/text/stable/tutorials.html" target="_blank" rel="noopener">torchtext</a></li>
+                  <li><strong>Optuna/Ray Tune:</strong> Take any model and create a tuning script with pruning; visualize optimization history. <a class="link" href="https://optuna.org/" target="_blank" rel="noopener">Optuna</a> · <a class="link" href="https://docs.ray.io/en/latest/tune/index.html" target="_blank" rel="noopener">Ray Tune</a></li>
                 </ul>
               </div>
             </details>
@@ -455,7 +566,7 @@
           <h2>4. Advanced <span class="badge">Modern DL</span></h2>
           <div style="display:flex; gap:8px"><button class="collapse" data-target="#s4">▾ Collapse</button><button class="share" data-target="#s4">📎 Copy link</button></div>
         </div>
-        <p class="subtitle">Vision, sequence, and generative models.</p>
+        <p class="subtitle">Vision, sequence, and generative models plus domain toolkits and applied tracks.</p>
         <div class="grid">
           <article id="s4-1" class="card" data-hours="9">
             <div class="topic-head"><h3 class="topic-title">4.1 CNNs (Vision)</h3><div class="topic-anchors"><button class="done-btn" data-id="s4-1">✔ Done</button><button class="anchor-btn" data-target="#s4-1">📎 Link</button></div></div>
@@ -489,7 +600,7 @@
               </div>
               <div class="guide"><h4>Resources</h4>
                 <div class="links">
-                  <a class="link" href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="noopener">Colah (classic)</a>
+                  <a class="link" href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="noopener">Colah</a>
                   <a class="link tutorial" href="https://www.youtube.com/watch?v=8HyCNIVRbSU" target="_blank" rel="noopener">StatQuest: RNN/LSTM</a>
                 </div>
               </div>
@@ -523,7 +634,7 @@
               <div class="guide"><h4>How to learn</h4>
                 <ul>
                   <li>Read Illustrated Transformer; implement attention; finetune BERT.</li>
-                  <li>Run a small instruction‑tuning or LoRA demo.</li>
+                  <li>Run small instruction‑tuning or LoRA demo.</li>
                 </ul>
               </div>
               <div class="guide"><h4>Resources</h4>
@@ -531,47 +642,105 @@
                   <a class="link" href="https://arxiv.org/abs/1810.04805" target="_blank" rel="noopener">BERT (paper)</a>
                   <a class="link" href="https://arxiv.org/abs/2005.14165" target="_blank" rel="noopener">GPT‑3 (paper)</a>
                   <a class="link tutorial" href="https://jalammar.github.io/illustrated-transformer/" target="_blank" rel="noopener">Illustrated Transformer</a>
-                  <a class="link tutorial" href="https://huggingface.co/learn/nlp-course/chapter1/1?fw=pt" target="_blank" rel="noopener">HF Course (Transformers)</a>
+                  <a class="link tutorial" href="https://huggingface.co/learn/nlp-course/chapter1/1?fw=pt" target="_blank" rel="noopener">HF Course</a>
                 </div>
               </div>
             </div>
           </article>
 
-          <article id="s4-r" class="card" data-hours="0">
-            <div class="topic-head"><h3 class="topic-title">4.R Reading List (Advanced)</h3><div class="topic-anchors"><button class="anchor-btn" data-target="#s4-r">📎 Link</button></div></div>
+          <!-- New: NLP Toolkit -->
+          <article id="s4-5" class="card" data-hours="6">
+            <div class="topic-head"><h3 class="topic-title">4.5 NLP Toolkit (Hugging Face, spaCy)</h3><div class="topic-anchors"><button class="done-btn" data-id="s4-5">✔ Done</button><button class="anchor-btn" data-target="#s4-5">📎 Link</button></div></div>
+            <div class="meta"><span class="chip">Prereq: 4.4 recommended</span><span class="chip ok">Outcome: NLP pipelines</span><span class="chip warn">Time: ~4–8h</span></div>
             <div class="guides">
-              <div class="guide"><h4>Recommended</h4>
+              <div class="guide"><h4>How to learn</h4>
                 <ul>
-                  <li class="chip book">Book: Deep Learning (Goodfellow) — ch.6–12</li>
-                  <li class="chip book">Guide: Hugging Face Course — Transformers</li>
-                  <li class="chip book">Paper: Attention Is All You Need — skim</li>
+                  <li>Tokenization, datasets, trainers; evaluate F1/ROUGE.</li>
+                  <li>Use spaCy for NER/lemmatization and HF for transformers.</li>
                 </ul>
+              </div>
+              <div class="guide"><h4>Resources</h4>
+                <div class="links">
+                  <a class="link" href="https://huggingface.co/docs/transformers/index" target="_blank" rel="noopener">HF Transformers</a>
+                  <a class="link" href="https://spacy.io/usage" target="_blank" rel="noopener">spaCy Usage</a>
+                  <a class="link tutorial" href="https://huggingface.co/course" target="_blank" rel="noopener">HF Course</a>
+                </div>
               </div>
             </div>
           </article>
 
-          <article id="s4-x" class="card" data-hours="0">
-            <div class="topic-head"><h3 class="topic-title">4.X Pitfalls (Advanced)</h3><div class="topic-anchors"><button class="anchor-btn" data-target="#s4-x">📎 Link</button></div></div>
+          <!-- New: CV Toolkit -->
+          <article id="s4-6" class="card" data-hours="6">
+            <div class="topic-head"><h3 class="topic-title">4.6 Computer Vision Toolkit</h3><div class="topic-anchors"><button class="done-btn" data-id="s4-6">✔ Done</button><button class="anchor-btn" data-target="#s4-6">📎 Link</button></div></div>
+            <div class="meta"><span class="chip">Prereq: 4.1</span><span class="chip ok">Outcome: robust CV stack</span><span class="chip warn">Time: ~4–8h</span></div>
             <div class="guides">
-              <div class="guide"><h4>Watch outs</h4>
+              <div class="guide"><h4>How to learn</h4>
                 <ul>
-                  <li>Finetuning too much too early; prefer TL with small LR.</li>
-                  <li>Noisy eval sets; always keep a clean hold‑out.</li>
-                  <li>Underestimating compute and overfitting to tiny datasets.</li>
+                  <li>OpenCV for I/O and transforms; Albumentations for aug.</li>
+                  <li>Try torchvision models; evaluate mAP/IoU when relevant.</li>
                 </ul>
+              </div>
+              <div class="guide"><h4>Resources</h4>
+                <div class="links">
+                  <a class="link" href="https://docs.opencv.org/4.x/" target="_blank" rel="noopener">OpenCV Docs</a>
+                  <a class="link" href="https://albumentations.ai/docs/" target="_blank" rel="noopener">Albumentations</a>
+                  <a class="link" href="https://pytorch.org/vision/stable/index.html" target="_blank" rel="noopener">torchvision</a>
+                </div>
               </div>
             </div>
           </article>
 
-          <article id="s4-p" class="card" data-hours="10">
-            <div class="topic-head"><h3 class="topic-title">4.P Projects (Advanced)</h3><div class="topic-anchors"><button class="done-btn" data-id="s4-p">✔ Done</button><button class="anchor-btn" data-target="#s4-p">📎 Link</button></div></div>
+          <!-- New: Recommenders -->
+          <article id="s4-7" class="card" data-hours="6">
+            <div class="topic-head"><h3 class="topic-title">4.7 Recommenders</h3><div class="topic-anchors"><button class="done-btn" data-id="s4-7">✔ Done</button><button class="anchor-btn" data-target="#s4-7">📎 Link</button></div></div>
+            <div class="meta"><span class="chip">Prereq: 2.x, 3.x</span><span class="chip ok">Outcome: CF/content models</span><span class="chip warn">Time: ~4–8h</span></div>
+            <div class="guides">
+              <div class="guide"><h4>How to learn</h4>
+                <ul>
+                  <li>Matrix factorization; implicit feedback; rank metrics (MAP@k, NDCG).</li>
+                  <li>Serve top‑k with ANN indexes.</li>
+                </ul>
+              </div>
+              <div class="guide"><h4>Resources</h4>
+                <div class="links">
+                  <a class="link" href="https://implicit.readthedocs.io/en/latest/" target="_blank" rel="noopener">implicit</a>
+                  <a class="link" href="https://rafalab.github.io/dsbook/recommendation-systems.html" target="_blank" rel="noopener">Intro to RS</a>
+                  <a class="link tutorial" href="https://learn.microsoft.com/en-us/recommenders/" target="_blank" rel="noopener">MS Recommenders</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- New: Time Series -->
+          <article id="s4-8" class="card" data-hours="6">
+            <div class="topic-head"><h3 class="topic-title">4.8 Time Series</h3><div class="topic-anchors"><button class="done-btn" data-id="s4-8">✔ Done</button><button class="anchor-btn" data-target="#s4-8">📎 Link</button></div></div>
+            <div class="meta"><span class="chip">Prereq: 2.x</span><span class="chip ok">Outcome: forecasting</span><span class="chip warn">Time: ~4–8h</span></div>
+            <div class="guides">
+              <div class="guide"><h4>How to learn</h4>
+                <ul>
+                  <li>Stationarity, ACF/PACF; ARIMA/Prophet; cross‑validation in time.</li>
+                  <li>Evaluate MAPE/MAE; handle seasonality and holidays.</li>
+                </ul>
+              </div>
+              <div class="guide"><h4>Resources</h4>
+                <div class="links">
+                  <a class="link" href="https://otexts.com/fpp3/" target="_blank" rel="noopener">Forecasting (Hyndman)</a>
+                  <a class="link" href="https://facebook.github.io/prophet/docs/quick_start.html" target="_blank" rel="noopener">Prophet</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        
+          <!-- Advanced Projects -->
+          <article id="s4-p" class="card" data-hours="0">
+            <div class="topic-head"><h3 class="topic-title">4.P Projects (Advanced)</h3><div class="topic-anchors"><button class="anchor-btn" data-target="#s4-p">📎 Link</button></div></div>
             <details open>
               <summary>Project ideas + links</summary>
               <div class="panel">
                 <ul>
-                  <li><strong>Transfer Learning:</strong> Finetune ResNet/EfficientNet on custom images.</li>
-                  <li><strong>Seq2Seq:</strong> Mini translator/summarizer with attention.</li>
-                  <li><strong>DCGAN:</strong> Generate digits/faces; analyze mode collapse. <a class="link" href="https://pytorch.org/tutorials/" target="_blank" rel="noopener">PyTorch Tutorials</a></li>
+                  <li><strong>Transfer Learning:</strong> Finetune ResNet/EfficientNet on a custom dataset (e.g., street signs in Tokyo); unfreeze last blocks; compare augmentations. <a class="link" href="https://pytorch.org/vision/stable/models.html" target="_blank" rel="noopener">torchvision models</a></li>
+                  <li><strong>Seq2Seq Mini‑Summarizer:</strong> Train/finetune a small transformer (T5/distilBART) on news abstracts; evaluate ROUGE. <a class="link" href="https://huggingface.co/learn/nlp-course/chapter7/6?fw=pt" target="_blank" rel="noopener">HF Summarization</a></li>
+                  <li><strong>DCGAN/Style Exploration:</strong> Implement DCGAN; try label smoothing and feature matching; document mode collapse cases. <a class="link" href="https://pytorch.org/tutorials/" target="_blank" rel="noopener">PyTorch Tutorials</a></li>
                 </ul>
               </div>
             </details>
@@ -585,22 +754,24 @@
           <h2>5. Professional <span class="badge">Ship to Production</span></h2>
           <div style="display:flex; gap:8px"><button class="collapse" data-target="#s5">▾ Collapse</button><button class="share" data-target="#s5">📎 Copy link</button></div>
         </div>
-        <p class="subtitle">Deployment, monitoring, and retrieval‑augmented generation (RAG).</p>
+        <p class="subtitle">Deployment, orchestration, versioning, RAG, optimization, monitoring, and ML ethics.</p>
         <div class="grid">
-          <article id="s5-1" class="card" data-hours="5">
-            <div class="topic-head"><h3 class="topic-title">5.1 Serving & APIs</h3><div class="topic-anchors"><button class="done-btn" data-id="s5-1">✔ Done</button><button class="anchor-btn" data-target="#s5-1">📎 Link</button></div></div>
-            <div class="meta"><span class="chip">Prereq: 2.x, 3.x</span><span class="chip ok">Outcome: model API</span><span class="chip warn">Time: ~4–6h</span></div>
+          <article id="s5-1" class="card" data-hours="6">
+            <div class="topic-head"><h3 class="topic-title">5.1 Serving Patterns & APIs</h3><div class="topic-anchors"><button class="done-btn" data-id="s5-1">✔ Done</button><button class="anchor-btn" data-target="#s5-1">📎 Link</button></div></div>
+            <div class="meta"><span class="chip">Prereq: 2.x, 3.x</span><span class="chip ok">Outcome: model API</span><span class="chip warn">Time: ~4–8h</span></div>
             <div class="guides">
               <div class="guide"><h4>How to learn</h4>
                 <ul>
-                  <li>Serve model with FastAPI; add health/metrics endpoints.</li>
-                  <li>Implement batching + timeout; log latency & throughput.</li>
+                  <li>Batch vs online vs streaming; FastAPI/grpc patterns.</li>
+                  <li>Batching, timeouts, retries; canary & A/B deployment.</li>
                 </ul>
               </div>
               <div class="guide"><h4>Resources</h4>
                 <div class="links">
-                  <a class="link" href="https://fastapi.tiangolo.com/" target="_blank" rel="noopener">FastAPI Docs</a>
-                  <a class="link tutorial" href="https://fastapi.tiangolo.com/deployment/" target="_blank" rel="noopener">FastAPI Deployment</a>
+                  <a class="link" href="https://fastapi.tiangolo.com/" target="_blank" rel="noopener">FastAPI</a>
+                  <a class="link" href="https://grpc.io/docs/languages/python/" target="_blank" rel="noopener">gRPC</a>
+                  <a class="link" href="https://github.com/triton-inference-server/server" target="_blank" rel="noopener">Triton Inference</a>
+                  <a class="link tutorial" href="https://www.bentoml.com/" target="_blank" rel="noopener">BentoML</a>
                 </div>
               </div>
             </div>
@@ -612,34 +783,36 @@
             <div class="guides">
               <div class="guide"><h4>How to learn</h4>
                 <ul>
-                  <li>Containerize with Docker; add GPU runtime if needed.</li>
-                  <li>Deploy on K8s; autoscale with HPA; add liveness/readiness.</li>
+                  <li>Docker images; GPU runtime; Kubernetes HPA; probes.</li>
+                  <li>Batch & pipelines with Airflow/Prefect; dataflow with Spark.</li>
                 </ul>
               </div>
               <div class="guide"><h4>Resources</h4>
                 <div class="links">
-                  <a class="link" href="https://docs.docker.com/get-started/" target="_blank" rel="noopener">Docker Docs</a>
-                  <a class="link" href="https://kubernetes.io/docs/concepts/" target="_blank" rel="noopener">Kubernetes Concepts</a>
-                  <a class="link tutorial" href="https://cloud.google.com/kubernetes-engine/docs/tutorials" target="_blank" rel="noopener">GKE Tutorials</a>
+                  <a class="link" href="https://docs.docker.com/get-started/" target="_blank" rel="noopener">Docker</a>
+                  <a class="link" href="https://kubernetes.io/docs/concepts/" target="_blank" rel="noopener">Kubernetes</a>
+                  <a class="link" href="https://airflow.apache.org/docs/" target="_blank" rel="noopener">Airflow</a>
+                  <a class="link tutorial" href="https://docs.prefect.io/" target="_blank" rel="noopener">Prefect</a>
                 </div>
               </div>
             </div>
           </article>
 
-          <article id="s5-3" class="card" data-hours="4">
-            <div class="topic-head"><h3 class="topic-title">5.3 Experiment Tracking</h3><div class="topic-anchors"><button class="done-btn" data-id="s5-3">✔ Done</button><button class="anchor-btn" data-target="#s5-3">📎 Link</button></div></div>
-            <div class="meta"><span class="chip">Prereq: 3.x</span><span class="chip ok">Outcome: govern models</span><span class="chip warn">Time: ~3–5h</span></div>
+          <article id="s5-3" class="card" data-hours="6">
+            <div class="topic-head"><h3 class="topic-title">5.3 Experiment & Data Versioning</h3><div class="topic-anchors"><button class="done-btn" data-id="s5-3">✔ Done</button><button class="anchor-btn" data-target="#s5-3">📎 Link</button></div></div>
+            <div class="meta"><span class="chip">Prereq: 3.x</span><span class="chip ok">Outcome: governed models</span><span class="chip warn">Time: ~4–8h</span></div>
             <div class="guides">
               <div class="guide"><h4>How to learn</h4>
                 <ul>
                   <li>Track params/metrics; register models; compare runs.</li>
-                  <li>Define promotion rules (staging→prod) and rollback plan.</li>
+                  <li>Version datasets & pipelines; ensure reproducibility.</li>
                 </ul>
               </div>
               <div class="guide"><h4>Resources</h4>
                 <div class="links">
-                  <a class="link" href="https://mlflow.org/docs/latest/ml/getting-started/" target="_blank" rel="noopener">MLflow Quickstart</a>
-                  <a class="link tutorial" href="https://mlflow.org/docs/latest/model-registry.html" target="_blank" rel="noopener">Model Registry</a>
+                  <a class="link" href="https://mlflow.org/docs/latest/index.html" target="_blank" rel="noopener">MLflow</a>
+                  <a class="link" href="https://dvc.org/doc" target="_blank" rel="noopener">DVC</a>
+                  <a class="link tutorial" href="https://wandb.ai/site" target="_blank" rel="noopener">Weights & Biases</a>
                 </div>
               </div>
             </div>
@@ -651,17 +824,79 @@
             <div class="guides">
               <div class="guide"><h4>How to learn</h4>
                 <ul>
-                  <li>Embed documents; build retriever; evaluate top‑k recall.</li>
-                  <li>Integrate generator (LLM) with citations & guardrails.</li>
+                  <li>Embed docs; build retriever; evaluate recall@k.</li>
+                  <li>Integrate LLM with citations, guardrails, and monitoring.</li>
                 </ul>
               </div>
               <div class="guide"><h4>Resources</h4>
                 <div class="links">
                   <a class="link" href="https://arxiv.org/abs/2005.11401" target="_blank" rel="noopener">RAG (paper)</a>
-                  <a class="link" href="https://faiss.ai/" target="_blank" rel="noopener">FAISS Docs</a>
+                  <a class="link" href="https://faiss.ai/" target="_blank" rel="noopener">FAISS</a>
                   <a class="link" href="https://python.langchain.com/docs/tutorials/rag/" target="_blank" rel="noopener">LangChain RAG</a>
                   <a class="link" href="https://docs.llamaindex.ai/en/stable/" target="_blank" rel="noopener">LlamaIndex</a>
-                  <a class="link tutorial" href="https://docs.evidentlyai.com/" target="_blank" rel="noopener">Evidently (monitoring)</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- New: Inference Optimization -->
+          <article id="s5-5" class="card" data-hours="6">
+            <div class="topic-head"><h3 class="topic-title">5.5 Inference Optimization (ONNX/TensorRT/TFLite)</h3><div class="topic-anchors"><button class="done-btn" data-id="s5-5">✔ Done</button><button class="anchor-btn" data-target="#s5-5">📎 Link</button></div></div>
+            <div class="meta"><span class="chip">Prereq: 5.1</span><span class="chip ok">Outcome: faster/cheaper serving</span><span class="chip warn">Time: ~4–8h</span></div>
+            <div class="guides">
+              <div class="guide"><h4>How to learn</h4>
+                <ul>
+                  <li>Convert models to ONNX; quantize/prune; benchmark latency.</li>
+                  <li>Try TensorRT on GPU; TFLite/Core ML on edge/mobile.</li>
+                </ul>
+              </div>
+              <div class="guide"><h4>Resources</h4>
+                <div class="links">
+                  <a class="link" href="https://onnx.ai/" target="_blank" rel="noopener">ONNX</a>
+                  <a class="link" href="https://docs.nvidia.com/deeplearning/tensorrt/" target="_blank" rel="noopener">TensorRT</a>
+                  <a class="link" href="https://www.tensorflow.org/lite" target="_blank" rel="noopener">TensorFlow Lite</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- New: Monitoring & Observability -->
+          <article id="s5-6" class="card" data-hours="5">
+            <div class="topic-head"><h3 class="topic-title">5.6 Monitoring & Observability</h3><div class="topic-anchors"><button class="done-btn" data-id="s5-6">✔ Done</button><button class="anchor-btn" data-target="#s5-6">📎 Link</button></div></div>
+            <div class="meta"><span class="chip">Prereq: 5.1</span><span class="chip ok">Outcome: safe models in prod</span><span class="chip warn">Time: ~3–6h</span></div>
+            <div class="guides">
+              <div class="guide"><h4>How to learn</h4>
+                <ul>
+                  <li>Monitor drift, data quality, latency, cost, and safety.</li>
+                  <li>Define alerts & rollback; add canary dashboards.</li>
+                </ul>
+              </div>
+              <div class="guide"><h4>Resources</h4>
+                <div class="links">
+                  <a class="link" href="https://docs.evidentlyai.com/" target="_blank" rel="noopener">Evidently AI</a>
+                  <a class="link" href="https://prometheus.io/docs/introduction/overview/" target="_blank" rel="noopener">Prometheus</a>
+                  <a class="link tutorial" href="https://docs.seldon.io/projects/eugen.html" target="_blank" rel="noopener">Seldon (serving/monitoring)</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- New: Ethics, Privacy & Fairness -->
+          <article id="s5-7" class="card" data-hours="4">
+            <div class="topic-head"><h3 class="topic-title">5.7 Ethics, Privacy & Fairness</h3><div class="topic-anchors"><button class="done-btn" data-id="s5-7">✔ Done</button><button class="anchor-btn" data-target="#s5-7">📎 Link</button></div></div>
+            <div class="meta"><span class="chip">Prereq: 2.x</span><span class="chip ok">Outcome: responsible AI</span><span class="chip warn">Time: ~3–5h</span></div>
+            <div class="guides">
+              <div class="guide"><h4>How to learn</h4>
+                <ul>
+                  <li>Basics of privacy (PII), fairness metrics, explainability.</li>
+                  <li>Add data statements/model cards & human‑in‑the‑loop checks.</li>
+                </ul>
+              </div>
+              <div class="guide"><h4>Resources</h4>
+                <div class="links">
+                  <a class="link" href="https://ai.google/responsibility/principles/" target="_blank" rel="noopener">Google AI Principles</a>
+                  <a class="link" href="https://www.microsoft.com/en-us/ai/responsible-ai" target="_blank" rel="noopener">MS Responsible AI</a>
+                  <a class="link tutorial" href="https://fairlearn.org/" target="_blank" rel="noopener">Fairlearn</a>
                 </div>
               </div>
             </div>
@@ -672,9 +907,9 @@
             <div class="guides">
               <div class="guide"><h4>Recommended</h4>
                 <ul>
-                  <li class="chip book">Guide: MLOps: Model deployment & monitoring (Google Cloud)</li>
-                  <li class="chip book">Guide: System Design for ML (Chip Huyen)</li>
-                  <li class="chip book">Course: Full‑Stack Deep Learning — production</li>
+                  <li class="chip book">MLOps: Model deployment & monitoring (Google Cloud)</li>
+                  <li class="chip book">System Design for ML (Chip Huyen)</li>
+                  <li class="chip book">Full‑Stack Deep Learning — production</li>
                 </ul>
               </div>
             </div>
@@ -687,27 +922,28 @@
                 <ul>
                   <li><strong>ML Engineer:</strong> modeling + serving; emphasize 2.x–5.2.</li>
                   <li><strong>MLOps Engineer:</strong> infra, CI/CD, observability; emphasize 5.1–5.3.</li>
-                  <li><strong>Applied NLP/CV:</strong> domain‑specific finetuning; emphasize 4.x + 5.4.</li>
+                  <li><strong>Applied NLP/CV:</strong> domain finetuning; emphasize 4.x + 5.4.</li>
                 </ul>
               </div>
               <div class="guide"><h4>Portfolio tips</h4>
                 <ul>
-                  <li>Each project: README with data, approach, metrics, demo link.</li>
-                  <li>One pager resume hooks: impact + latency/throughput wins.</li>
+                  <li>Each project: README (data, approach, metrics, demo link).</li>
+                  <li>Resume hooks: impact + latency/throughput wins.</li>
                 </ul>
               </div>
             </div>
           </article>
-
-          <article id="s5-p" class="card" data-hours="10">
-            <div class="topic-head"><h3 class="topic-title">5.P Projects (Professional)</h3><div class="topic-anchors"><button class="done-btn" data-id="s5-p">✔ Done</button><button class="anchor-btn" data-target="#s5-p">📎 Link</button></div></div>
+        
+          <!-- Professional Projects -->
+          <article id="s5-p" class="card" data-hours="0">
+            <div class="topic-head"><h3 class="topic-title">5.P Projects (Professional)</h3><div class="topic-anchors"><button class="anchor-btn" data-target="#s5-p">📎 Link</button></div></div>
             <details open>
               <summary>Project ideas + links</summary>
               <div class="panel">
                 <ul>
-                  <li><strong>Deploy a Model API:</strong> FastAPI + Docker; health checks.</li>
-                  <li><strong>RAG Q&A:</strong> FAISS/LangChain; evaluate retrieval quality.</li>
-                  <li><strong>MLflow + CI/CD:</strong> Track experiments; promote best model; monitoring dashboard.</li>
+                  <li><strong>Deploy a Model API:</strong> FastAPI + Docker + Kubernetes HPA; add health/metrics; canary a new model version. <a class="link" href="https://fastapi.tiangolo.com/deployment/" target="_blank" rel="noopener">FastAPI Deployment</a> · <a class="link" href="https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/" target="_blank" rel="noopener">K8s HPA</a></li>
+                  <li><strong>RAG Q&A:</strong> Build FAISS/LangChain retriever over docs (English + Japanese), add evaluation on a question set with recall@k and exact match. <a class="link" href="https://python.langchain.com/docs/tutorials/rag/" target="_blank" rel="noopener">LangChain RAG</a> · <a class="link" href="https://faiss.ai/" target="_blank" rel="noopener">FAISS</a></li>
+                  <li><strong>MLflow + DVC CI/CD:</strong> Track experiments, version data, and push best model to a registry with GitHub Actions; add Evidently monitoring. <a class="link" href="https://mlflow.org/docs/latest/model-registry.html" target="_blank" rel="noopener">MLflow Registry</a> · <a class="link" href="https://dvc.org/doc" target="_blank" rel="noopener">DVC</a> · <a class="link" href="https://docs.evidentlyai.com/" target="_blank" rel="noopener">Evidently</a></li>
                 </ul>
               </div>
             </details>
