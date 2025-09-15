@@ -79,7 +79,10 @@
             box-sizing: border-box;
         }
 
-        html, body { height: 100%; }
+        html,
+        body {
+            height: 100%;
+        }
 
         body {
             margin: 0;
@@ -95,109 +98,272 @@
             position: absolute;
             left: -9999px;
             top: auto;
-            width: 1px; height: 1px;
+            width: 1px;
+            height: 1px;
             overflow: hidden;
         }
+
         .skip-link:focus {
-            left: 16px; top: 12px;
-            width: auto; height: auto;
-            background: #fff; color: #000;
-            padding: 8px 10px; border-radius: 8px; z-index: 9999;
+            left: 16px;
+            top: 12px;
+            width: auto;
+            height: auto;
+            background: #fff;
+            color: #000;
+            padding: 8px 10px;
+            border-radius: 8px;
+            z-index: 9999;
         }
 
         header {
-            color: white; padding: 16px 24px;
-            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
-            background: var(--header-grad); border-bottom: 1px solid rgba(255, 255, 255, .06);
-            position: sticky; top: 0; z-index: 10; backdrop-filter: blur(6px); gap: 10px;
+            color: white;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            background: var(--header-grad);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(6px);
+            gap: 10px;
         }
-        header h1 { margin: 0; font-size: 20px; letter-spacing: .2px; font-weight: 600; }
-        .header-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 
-        nav { display: flex; flex-wrap: wrap; gap: 10px; }
+        header h1 {
+            margin: 0;
+            font-size: 20px;
+            letter-spacing: .2px;
+            font-weight: 600;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
         nav a {
-            color: #eef6ff; text-decoration: none; padding: 6px 10px; border-radius: 8px;
+            color: #eef6ff;
+            text-decoration: none;
+            padding: 6px 10px;
+            border-radius: 8px;
             transition: background .2s ease, color .2s ease;
         }
-        nav a:hover { background: rgba(255, 255, 255, .1); color: #fff; }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, .1);
+            color: #fff;
+        }
 
         .btn-ghost {
-            padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, .2);
-            background: transparent; color: #eef6ff; cursor: pointer;
+            padding: 6px 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, .2);
+            background: transparent;
+            color: #eef6ff;
+            cursor: pointer;
         }
-        .btn-ghost:hover { background: rgba(255, 255, 255, .08); }
-        .btn-ghost:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 
-        main { flex: 1; padding: 44px 20px 28px; max-width: 1100px; margin: 0 auto; width: 100%; }
+        .btn-ghost:hover {
+            background: rgba(255, 255, 255, .08);
+        }
+
+        .btn-ghost:focus-visible {
+            outline: 2px solid #fff;
+            outline-offset: 2px;
+        }
+
+        main {
+            flex: 1;
+            padding: 44px 20px 28px;
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+        }
 
         .tabs-wrap {
             background: color-mix(in srgb, var(--card) 92%, transparent);
-            border: 1px solid var(--border); border-radius: var(--radius);
-            padding: 10px 12px 0; box-shadow: var(--shadow); backdrop-filter: blur(6px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 10px 12px 0;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(6px);
         }
 
         .tabs {
-            display: flex; gap: 6px; position: relative; border-bottom: 1px solid var(--border);
-            padding: 0 6px; flex-wrap: wrap;
+            display: flex;
+            gap: 6px;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+            padding: 0 6px;
+            flex-wrap: wrap;
         }
+
         .tab-btn {
-            appearance: none; border: none; background: transparent; padding: 12px 14px;
-            cursor: pointer; font-size: 15px; border-radius: 10px 10px 0 0;
-            color: var(--muted); position: relative; transition: color .2s ease, transform .1s ease;
+            appearance: none;
+            border: none;
+            background: transparent;
+            padding: 12px 14px;
+            cursor: pointer;
+            font-size: 15px;
+            border-radius: 10px 10px 0 0;
+            color: var(--muted);
+            position: relative;
+            transition: color .2s ease, transform .1s ease;
         }
-        .tab-btn:hover { color: var(--text); }
-        .tab-btn[aria-selected="true"], .tab-btn.active { color: var(--primary); font-weight: 600; }
+
+        .tab-btn:hover {
+            color: var(--text);
+        }
+
+        .tab-btn[aria-selected="true"],
+        .tab-btn.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
         .tab-underline {
-            position: absolute; bottom: 0; height: 2.5px;
+            position: absolute;
+            bottom: 0;
+            height: 2.5px;
             background: linear-gradient(90deg, var(--primary), var(--primary-600));
-            border-radius: 999px; transition: left .25s ease, width .25s ease;
+            border-radius: 999px;
+            transition: left .25s ease, width .25s ease;
         }
-        .tab-btn:focus-visible { outline: 3px solid color-mix(in srgb, var(--primary) 55%, transparent); outline-offset: 2px; border-radius: 10px; }
 
-        .tab-panel { padding: 22px 14px 18px; }
-        .tab-panel[hidden] { display: none; }
+        .tab-btn:focus-visible {
+            outline: 3px solid color-mix(in srgb, var(--primary) 55%, transparent);
+            outline-offset: 2px;
+            border-radius: 10px;
+        }
 
-        .grid-toolbar { display: flex; justify-content: flex-end; align-items: center; gap: 8px; margin: 0 0 12px; }
+        .tab-panel {
+            padding: 22px 14px 18px;
+        }
+
+        .tab-panel[hidden] {
+            display: none;
+        }
+
+        .grid-toolbar {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 8px;
+            margin: 0 0 12px;
+        }
+
         .search-input {
-            padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px;
-            background: var(--card); color: var(--text); width: 260px; max-width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: var(--card);
+            color: var(--text);
+            width: 260px;
+            max-width: 100%;
         }
 
         .grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px; justify-content: start;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            justify-content: start;
         }
 
         .app-card {
             background: color-mix(in srgb, var(--card) 92%, transparent);
-            border: 1px solid var(--border); padding: 24px; border-radius: var(--radius);
-            box-shadow: var(--shadow); text-align: center;
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
             transition: transform .2s ease, box-shadow .25s ease, border-color .2s ease;
-            will-change: transform; position: relative; overflow: hidden; isolation: isolate;
+            will-change: transform;
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
         }
+
         .app-card::after {
-            content: ""; position: absolute; inset: 0;
+            content: "";
+            position: absolute;
+            inset: 0;
             background: radial-gradient(260px 60px at 20% -20%, rgba(0, 122, 204, .12), transparent 60%),
                 radial-gradient(260px 60px at 80% -30%, rgba(99, 102, 241, .10), transparent 60%);
-            pointer-events: none; z-index: -1;
+            pointer-events: none;
+            z-index: -1;
         }
+
         .app-card:hover {
             transform: translateY(-6px) rotate(-.25deg);
             border-color: color-mix(in srgb, var(--primary) 65%, var(--border));
             box-shadow: var(--glow);
         }
-        .app-card a { text-decoration: none; color: inherit; display: block; }
-        .app-card .emoji { font-size: 40px; margin-bottom: 10px; display: inline-block; transform: translateZ(0); transition: transform .2s ease; }
-        .app-card:hover .emoji { transform: translateY(-3px) scale(1.06); }
-        .app-card .title { font-size: 19px; font-weight: 700; margin-bottom: 8px; color: var(--text); letter-spacing: .2px; }
-        .app-card .desc { font-size: 14px; color: var(--muted); line-height: 1.5; }
 
-        footer { text-align: center; padding: 18px 12px; background: transparent; font-size: 14px; color: var(--muted); border-top: 1px solid var(--border); }
-        footer a { color: var(--primary); text-decoration: none; }
-        footer a:hover { text-decoration: underline; }
+        .app-card a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .app-card .emoji {
+            font-size: 40px;
+            margin-bottom: 10px;
+            display: inline-block;
+            transform: translateZ(0);
+            transition: transform .2s ease;
+        }
+
+        .app-card:hover .emoji {
+            transform: translateY(-3px) scale(1.06);
+        }
+
+        .app-card .title {
+            font-size: 19px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text);
+            letter-spacing: .2px;
+        }
+
+        .app-card .desc {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        footer {
+            text-align: center;
+            padding: 18px 12px;
+            background: transparent;
+            font-size: 14px;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
 
         @media (prefers-reduced-motion: reduce) {
-            * { transition: none !important; animation: none !important; }
+            * {
+                transition: none !important;
+                animation: none !important;
+            }
         }
     </style>
 </head>
@@ -213,8 +379,10 @@
                 <a href="https://faruk.me" target="_blank" rel="noopener" data-i18n="nav.about">About</a>
                 <a href="#" data-i18n="nav.contact">Contact</a>
             </nav>
-            <button id="theme-toggle" class="btn-ghost" title="Toggle theme">🌗 <span data-i18n="ui.theme">Theme</span></button>
-            <button id="lang-toggle" class="btn-ghost" title="Switch language">🌐 <span id="lang-label">EN</span></button>
+            <button id="theme-toggle" class="btn-ghost" title="Toggle theme">🌗 <span
+                    data-i18n="ui.theme">Theme</span></button>
+            <button id="lang-toggle" class="btn-ghost" title="Switch language">🌐 <span
+                    id="lang-label">EN</span></button>
         </div>
     </header>
 
@@ -271,6 +439,14 @@
             </section>
         </div>
     </main>
+    <div style="text-align:center; margin: 20px 0;">
+        <a href="https://faruk-ahmad.github.io/" style="text-decoration:none;">
+            <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://faruk-ahmad.github.io&title=Visits&edge_flat=false&count_bg=%23007ACC&title_bg=%23333333&icon=github.svg&icon_color=%23E7E7E7"
+                alt="visits"
+                style="border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.25); transition: transform 0.2s ease;"
+                onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" />
+        </a>
+    </div>
 
     <footer>
         &copy; 2025 <a href="https://faruk.me" target="_blank" rel="noopener">Faruk Ahmad</a>. All rights reserved.
@@ -516,4 +692,5 @@
         })();
     </script>
 </body>
+
 </html>
