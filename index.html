@@ -439,18 +439,31 @@
             </section>
         </div>
     </main>
-    <div style="text-align:center; margin: 20px 0;">
-        <a href="https://faruk-ahmad.github.io/" style="text-decoration:none;">
-            <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://faruk-ahmad.github.io&title=Visits&edge_flat=false&count_bg=%23007ACC&title_bg=%23333333&icon=github.svg&icon_color=%23E7E7E7"
-                alt="visits"
-                style="border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.25); transition: transform 0.2s ease;"
-                onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" />
-        </a>
-    </div>
-
+    <center>
+        <span id="visit-count">–</span>
+    </center>
+    
     <footer>
         &copy; 2025 <a href="https://faruk.me" target="_blank" rel="noopener">Faruk Ahmad</a>. All rights reserved.
     </footer>
+
+    <!-- Visit counter -->
+     <script>
+        (function () {
+            // Namespace + key -> separate counter per-page (you can force one global counter if you want)
+            const ns = "faruk-ahmad.github.io";
+            const key = encodeURIComponent(location.pathname || "/");
+
+            fetch(`https://api.countapi.xyz/hit/${ns}/${key}`)
+            .then(r => r.json())
+            .then(d => {
+                document.getElementById("visit-count").textContent = d.value?.toLocaleString?.() ?? d.value ?? "0";
+            })
+            .catch(() => {
+                document.getElementById("visit-count").textContent = "0";
+            });
+        })();
+        </script>
 
     <script>
         /* =========================
