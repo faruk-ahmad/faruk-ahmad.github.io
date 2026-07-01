@@ -1,0 +1,90 @@
+{
+  "items": [
+    {
+      "title": "KodaMage - Privacy-First Local Coding Agent",
+      "description": "A local coding agent powered by LLMs served via Ollama, designed for secure and private development workflows. KoDamage enables intelligent code assistance, task automation, and dynamic tool usage through auto-discovery and seamless integration, allowing developers to extend agent capabilities without complex configuration.",
+      "image": "sections/projects/open-source/kodamage-1.png",
+      "keywords": [
+        "Coding-Agent",
+        "Local-LLM",
+        "Ollama",
+        "AI-Agents",
+        "Developer-Tools"
+      ],
+      "links": {
+        "Github": "https://github.com/faruk-ahmad/kodamage"
+      }
+    },
+    {
+      "title": "iCLI - Natural Language to Shell Command Interface",
+      "description": "A developer-focused CLI tool that translates natural language instructions into executable shell commands using local LLMs powered by Ollama. Designed for privacy-first workflows, iCLI enables faster command-line operations, reduces context switching, and enhances productivity without relying on external APIs.",
+      "image": "sections/projects/open-source/icli-1.png",
+      "keywords": [
+        "CLI",
+        "Local-LLM",
+        "Ollama",
+        "Developer-Tools",
+        "Productivity"
+      ],
+      "links": {
+        "Github": "https://github.com/faruk-ahmad/icli"
+      }
+    },
+    {
+      "title": "Observability Playground - Prometheus & Grafana Experiments",
+      "description": "A hands-on playground for exploring modern observability practices using Prometheus and Grafana. This project demonstrates metrics collection, monitoring pipelines, and interactive dashboards, enabling developers to understand system behavior, debug issues, and build production-ready monitoring setups.",
+      "image": "sections/projects/open-source/observability-playground-1.png",
+      "keywords": [
+        "Observability",
+        "Prometheus",
+        "Grafana",
+        "Monitoring",
+        "DevOps"
+      ],
+      "links": {
+        "Github": "https://github.com/faruk-ahmad/observability-playground"
+      }
+    },
+    {
+      "title": "bnemo - Emoji/ Emoticon to Bangla Text Translator",
+      "description": "Social media text often contains emojis and emoticons that carry sentiment but lack meaning for NLP unless converted into text. This project builds a Bengali emoji–text translation database and provides a Python package to help practitioners seamlessly integrate it into NLP workflows.",
+      "image": "sections/projects/open-source/bnemo-1.png",
+      "keywords": [
+        "NLP",
+        "Text-Processing",
+        "Python-Package"
+      ],
+      "links": {
+        "PyPI": "https://pypi.org/project/bnemo/",
+        "Github": "https://github.com/faruk-ahmad/bnemo"
+      }
+    },
+    {
+      "title": "Capslock - Elegant Python Utility Library",
+      "description": "A high-level Python utility library designed to simplify common development tasks with clean and efficient abstractions. From execution time tracking to everyday workflow helpers, Capslock helps developers write faster, cleaner, and more maintainable code.",
+      "image": "sections/projects/open-source/capslock-1.png",
+      "keywords": [
+        "Utility-Tool",
+        "Python-Package"
+      ],
+      "links": {
+        "PyPI": "https://pypi.org/project/capslock/",
+        "Github": "https://github.com/faruk-ahmad/capslock"
+      }
+    },
+    {
+      "title": "ml-proj-init - Fast ML Project Bootstrapper",
+      "description": "A lightweight Python tool to instantly generate clean, well-structured machine learning project templates with ready-to-use code snippets. It eliminates boilerplate setup so you can focus on building and experimenting faster.",
+      "image": "sections/projects/open-source/ml-pj-init-1.png",
+      "keywords": [
+        "ML",
+        "Python-Package",
+        "Bootstraping-Library"
+      ],
+      "links": {
+        "PyPI": "https://pypi.org/project/ml-proj-init/",
+        "Github": "https://github.com/faruk-ahmad/ml-proj-init"
+      }
+    }
+  ]
+}

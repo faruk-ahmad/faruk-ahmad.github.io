@@ -1,0 +1,19 @@
+{
+  "languages": [
+    {
+      "name": "English",
+      "proficiency": 0.90,
+      "level": "Business"
+    },
+    {
+      "name": "Bengali",
+      "proficiency": 0.99,
+      "level": "Native"
+    },
+    {
+      "name": "Japanese",
+      "proficiency": 0.6,
+      "level": "Conversational"
+    }
+  ]
+}

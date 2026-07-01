@@ -1,0 +1,1755 @@
+/* Root colour palette */
+:root {
+  --primary-color: #243665; /* deep blue */
+  --secondary-color: #5d9cec; /* mid blue */
+  /* Slightly softened gold to elevate the visual feel */
+  --accent-color: #e6a21c; /* refined warm gold */
+  --bg-color: #f7f9fc; /* page background */
+  --card-bg: #ffffff; /* cards */
+  --text-color: #102a43; /* dark text */
+  --muted-color: #627d98; /* muted grey */
+  --tag-bg: #eaf1fb;
+  --tag-color: var(--secondary-color);
+  --primary-dark: #1a254c;
+  --secondary-dark: #4a7fd2;
+  /* Timeline colours */
+  --timeline-line-color: #d3def8;
+  --timeline-gradient-start: #a78bfa;
+  --timeline-gradient-end: #5e81f4;
+}
+
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  /* Increase the base font size slightly to improve readability across the site */
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+/* Navigation bar */
+#navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  background-color: var(--primary-color);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-weight: 700;
+  /* Larger brand text for increased prominence */
+  font-size: 1.4rem;
+  color: var(--accent-color);
+  letter-spacing: 0.5px;
+  text-decoration: none;
+}
+
+/* Subtle hover effect for the brand logo */
+.logo:hover {
+  color: #ffd36b;
+}
+
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  /* Reduce spacing between nav items so all items fit on one line at typical desktop widths */
+  gap: 16px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 500;
+  padding: 5px 0;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.nav-links li a:hover {
+  color: var(--secondary-color);
+}
+
+.nav-links li a.active {
+  color: var(--accent-color);
+}
+
+.nav-links li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background-color: var(--accent-color);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.nav-links li a:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Focus styles for accessibility: ensure that links and buttons show
+   a clear outline when they receive keyboard focus. Use the accent
+   colour so the indicator is consistent with the site palette. */
+a:focus,
+button:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+.nav-links li a.active::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile navigation toggle button (hamburger) */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: auto;
+  z-index: 1001;
+}
+
+.nav-toggle .bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  margin: 4px auto;
+  background-color: #ffffff;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Hamburger transform into X when active */
+.nav-toggle.active .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.nav-toggle.active .bar:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle.active .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Responsive navigation styles */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 75%;
+    max-width: 300px;
+    height: 100%;
+    background-color: var(--primary-color);
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    padding-top: 80px;
+    transition: right 0.3s ease;
+    z-index: 1000;
+  }
+  .nav-links.open {
+    right: 0;
+  }
+  .nav-links li a {
+    font-size: 1.1rem;
+    padding: 10px 0;
+  }
+  /* Hide nav underline on mobile */
+  .nav-links li a::after {
+    display: none;
+  }
+  /* When drawer is open, prevent body scroll */
+  body.nav-open {
+    overflow: hidden;
+  }
+}
+
+/* Sections */
+.section {
+  padding: 60px 20px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/*
+  Make the about and contact sections slightly wider than the default container.
+  A wider container allows the summary text and cards to breathe and
+  accommodate the increased font sizes without feeling cramped.
+*/
+#about .container, #contact .container {
+  max-width: 1200px;
+}
+
+/* Position the about section relative so that absolutely positioned
+   widgets appended inside it are anchored correctly. Without a
+   positioning context, the widgets would position relative to the
+   viewport instead of this section. */
+#about {
+  position: relative;
+}
+
+/*--------------------------------------------------------------------*/
+/* Announcement modal styles
+   This overlay and modal provide a platform for occasional
+   announcements or greetings. The overlay darkens the page behind
+   the modal, while the modal itself is centred, responsive and
+   scrollable on smaller screens. Pill keywords reuse the existing
+   tag styling theme. */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+.announcement-modal {
+  position: relative;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  padding: 24px 24px 20px;
+  width: 90%;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  color: var(--text-color);
+  /* Smooth fade-in animation for the modal */
+  animation: modalFadeIn 0.4s ease-out;
+}
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--muted-color);
+  cursor: pointer;
+}
+.modal-close:hover {
+  color: var(--primary-dark);
+}
+.announcement-modal .announcement-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 50%;
+  margin-bottom: 16px;
+}
+.announcement-modal .announcement-title {
+  margin: 0 0 16px;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+.announcement-modal .announcement-image {
+  width: 100%;
+  height: 250px;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  background-color: #f5f7fa;
+}
+.announcement-modal .announcement-description {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  color: var(--muted-color);
+}
+.announcement-modal .announcement-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  color: var(--secondary-color);
+  text-decoration: underline;
+  font-weight: 600;
+}
+.announcement-modal .announcement-link:hover {
+  color: var(--accent-color);
+}
+.announcement-modal .announcement-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.announcement-modal .announcement-keywords .keyword-pill {
+  background-color: var(--tag-bg);
+  color: var(--tag-color);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Fade-in animation for announcement modals */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Section header styling */
+/*
+  Each section header is centered and uses a subtle underbar. The underbar
+  is a single gradient line positioned below the heading. We avoid any
+  decorative dots or side bars to keep the look clean and professional. The
+  scroll‑margin ensures that clicking a nav link leaves enough space for
+  the sticky nav so that the title remains visible.
+*/
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+  scroll-margin-top: 90px;
+}
+
+.section-header h2 {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 0 8px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+/* Gradient underbar beneath the title */
+.section-header h2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -14px;
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(to right, var(--timeline-gradient-start), var(--timeline-gradient-end));
+  border-radius: 2px;
+}
+
+/* Remove any dots that were previously used */
+.section-header h2::before {
+  content: none;
+}
+
+/* Hero section */
+/*
+  The hero area uses a multilayered background to create depth and visual
+  interest while ensuring the text remains readable. At the base is a
+  neural‑network inspired image that fills the entire section. On top of
+  this image we place a coloured gradient overlay via the ::before pseudo
+  element to tint the artwork to match the site’s palette. Finally a dark
+  semi‑transparent overlay via ::after gently dims everything to ensure
+  contrast for the foreground text. The section itself is positioned
+  relative so that the pseudo elements can absolutely position over it.
+*/
+.i_nd_me-section {
+  /* Note: When referencing images from CSS, the path is resolved relative to
+     the location of this CSS file (src/css). The neural background image lives
+     in the sections/hero folder at the root of the project, so we traverse
+     two directories up (from src/css to the project root) before specifying
+     the path. */
+  background: url('../../sections/i_nd_me/neural-bg.png') no-repeat center/cover;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Reduce the minimum height and top/bottom padding so the hero section fits nicely beneath the navigation bar on most screens */
+  min-height: 75vh;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+/* Coloured gradient overlay to harmonise the background image */
+.i_nd_me-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Use the primary/secondary/accent colours in a diagonal gradient */
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 60%, var(--accent-color) 100%);
+  opacity: 0.6;
+  z-index: 0;
+}
+
+/* Dark overlay for hero to enhance text legibility */
+.i_nd_me-section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Lighten the dark overlay slightly to allow the background image to show through without sacrificing text legibility */
+  background-color: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+}
+
+/* Ensure hero content sits above overlays */
+#i_nd_me-content {
+  position: relative;
+  z-index: 2;
+}
+
+#i_nd_me-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 800px;
+}
+
+#i_nd_me-content img {
+  /* Enlarge the profile picture slightly and add a light border so it stands
+     out clearly against the hero background. The border helps separate the
+     image from busy backgrounds such as the neural network pattern. */
+  /* Slightly larger profile picture to give prominence without overflowing the viewport. */
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05);
+}
+
+#i_nd_me-content h1 {
+  margin: 0;
+  /* Increase heading size for a more striking introduction */
+  font-size: 3.4rem;
+  color: #ffffff;
+  font-weight: 700;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+#i_nd_me-content h2.tagline {
+  margin: 0;
+  /* Slightly larger tagline for better emphasis */
+  font-size: 1.8rem;
+  color: var(--accent-color);
+  font-weight: 600;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+#i_nd_me-content h3 {
+  margin: 0;
+  /* Improve subtitle readability */
+  font-size: 1.3rem;
+  color: #e8eef9;
+  font-weight: 500;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+#i_nd_me-content h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #d1d5db;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+#i_nd_me-content p {
+  margin: 0;
+  /* Larger paragraph text for improved readability */
+  font-size: 1.1rem;
+  color: #f0f2f7;
+  max-width: 700px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.i_nd_me-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.i_nd_me-buttons a {
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.i_nd_me-buttons a:hover {
+  background-color: #e09c22;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Timeline common */
+.timeline {
+  position: relative;
+  padding-top: 20px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 30px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, var(--timeline-gradient-start), var(--timeline-gradient-end));
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+  padding-left: 70px;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: 32px;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--card-bg);
+  border: 3px solid var(--secondary-color);
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+  z-index: 3;
+}
+
+.timeline-item:hover .timeline-marker {
+  border-color: var(--accent-color);
+  background-color: var(--accent-color);
+  color: #ffffff;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.timeline-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--timeline-line-color);
+  border-radius: 10px;
+  padding: 24px 28px;
+  width: 100%;
+  /* Add a transition so the card gently lifts on hover */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.timeline-item:hover .timeline-card {
+  border-color: var(--secondary-dark);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  /* Slightly lift the card for a micro‑interaction */
+  transform: translateY(-4px);
+}
+
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.timeline-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  margin: 0;
+}
+
+.timeline-period {
+  font-size: 0.9rem;
+  color: var(--secondary-dark);
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.timeline-company {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--secondary-dark);
+}
+
+.timeline-description {
+  margin-top: 12px;
+  list-style: none;
+  padding-left: 0;
+  color: var(--text-color);
+}
+
+.timeline-description li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.timeline-description li::before {
+  content: "\25B9"; /* triangle */
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--secondary-dark);
+}
+
+/*
+ * Additional timeline section styles for dynamic sections such as
+ * Short Description, Key Contributions and Work Highlights. These
+ * classes provide structure and styling for custom sections added via
+ * the JSON configuration.
+ */
+.timeline-section {
+  margin-top: 14px;
+}
+
+.timeline-section-title {
+  margin: 0 0 4px;
+  font-weight: 600;
+  color: var(--primary-dark);
+  font-size: 0.95rem;
+}
+
+/* Container for tag lists within timeline cards */
+.timeline-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+/* Base styling for individual tags */
+.timeline-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background-color: var(--tag-bg);
+  color: var(--tag-color);
+}
+
+/* Contributions tags – use the accent colour */
+.timeline-tag.tag-contribution {
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+}
+
+/* Highlights tags – use the secondary colour */
+.timeline-tag.tag-highlight {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+/* Links section within timeline cards */
+.timeline-links {
+  margin-top: 12px;
+  font-size: 0.85rem;
+}
+
+.timeline-links p {
+  margin: 4px 0;
+}
+
+.timeline-links p strong {
+  color: var(--primary-dark);
+  margin-right: 4px;
+}
+
+.timeline-links p a {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+.timeline-links p a:hover {
+  text-decoration: underline;
+}
+
+.timeline-awards {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.timeline-awards span {
+  background-color: #ebef07;
+  color: #0f0c05;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+/* Timeline logo inside cards */
+.timeline-card .timeline-logo {
+  /* Increase the logo size for better clarity and professional appearance */
+  width: 60px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  background-color: var(--tag-bg);
+  display: block;
+}
+
+/* Education overrides – no line or markers */
+#education .timeline::before {
+  display: none;
+}
+
+#education .timeline-marker {
+  display: none;
+}
+
+#education .timeline-item {
+  padding-left: 0;
+}
+
+#education .timeline-card {
+  border-left: 4px solid var(--secondary-color);
+  border-radius: 10px;
+  padding: 20px 24px;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+}
+
+/* Projects */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/*
+ * Base project card styling. Cards adopt different accent colours via
+ * modifier classes (.industry, .opensource). The border itself is
+ * defined in those modifier classes. A subtle shadow and rounded
+ * corners apply universally.
+ */
+.project-card {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  /* Remove default border; specific borders set in industry/opensource classes */
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.project-card img {
+  width: 100%;
+  /* Increase the height of the project thumbnails so more of each graphic is visible.
+     All project cards share the same fixed height to maintain symmetry across the grid. */
+  height: 200px;
+  /* Use contain so that the entire image is visible within the fixed image area. This prevents
+     any part of the illustration from being cropped while maintaining a uniform size. */
+  object-fit: contain;
+  object-position: center;
+  /* Provide a subtle background colour behind transparent PNGs to maintain visual consistency. */
+  background-color: #f5f7fa;
+}
+
+.project-card .project-content {
+  padding: 15px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.project-card h3 {
+  margin: 0 0 5px;
+  font-size: 1.2rem;
+  color: var(--primary-dark);
+}
+
+.project-card p {
+  flex-grow: 1;
+  font-size: 0.9rem;
+  color: #4a5568;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.tag {
+  background-color: var(--tag-bg);
+  color: var(--tag-color);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.75rem;
+}
+
+.project-links {
+  margin-top: 10px;
+}
+
+.project-links a {
+  display: inline-block;
+  margin-right: 10px;
+  margin-top: 8px;
+  font-size: 0.85rem;
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-links a:hover {
+  background-color: #e09c22;
+}
+
+/* Differentiate industry and open source project cards.
+ * Industry cards get a blue accent bar on the left and retain a clean white
+ * background. Open source cards receive a warm accent bar and a light
+ * tinted backdrop to subtly differentiate them. Link colours are also
+ * customised for open source projects.
+ */
+/* Industry project cards: compact, clean, elegant. They have a
+ * secondary-coloured border on the left and top to tie in with the
+ * primary palette. The image height is slightly reduced to create a
+ * more compact feel.
+ */
+/* Industry project cards: professional and compact. We remove the
+ * left border and retain only a top accent bar for a clean look.
+ */
+.project-card.industry {
+  border-top: 4px solid var(--secondary-color);
+  background-color: var(--card-bg);
+}
+
+/* Open source project cards: reflect the collaborative, technical
+ * nature of open source. They use an accent‑coloured bar on the
+ * left and top and a warm tinted background inspired by the accent
+ * colour. These cards retain the default image height for balance.
+ */
+/* Open source project cards: reflect technical, open source aesthetics
+ * with a single accent bar on top and a warm tinted background. The
+ * absence of a side border matches the industry cards for cohesive
+ * alignment.
+ */
+.project-card.opensource {
+  border-top: 4px solid var(--accent-color);
+  background-color: #fff8ec;
+}
+
+/* Override link colours for open source cards to harmonise with
+ * secondary palette when on tinted backgrounds. */
+.project-card.opensource .project-links a {
+  background-color: var(--secondary-color);
+  color: var(--card-bg);
+}
+.project-card.opensource .project-links a:hover {
+  background-color: var(--secondary-dark);
+  color: var(--card-bg);
+}
+
+/* Publications & Talks */
+.item-card {
+  background-color: var(--card-bg);
+  border-left: 4px solid green;
+  border-right: 4px solid green;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.item-card img {
+  width: 100%;
+  height: 480px;
+  object-fit: scale-down;
+}
+
+.item-card .item-content {
+  padding: 15px;
+}
+
+.item-card h3 {
+  margin: 0 0 5px;
+  font-size: 1.2rem;
+  color: var(--primary-dark);
+}
+
+.item-card p {
+  font-size: 0.9rem;
+  color: #4a5568;
+  margin: 0 0 10px;
+}
+
+.item-links a {
+  display: inline-block;
+  font-size: 0.85rem;
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+  text-decoration: none;
+  margin-right: 10px;
+  margin-top: 8px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.item-links a:hover {
+  background-color: #e09c22;
+}
+
+/* Skills */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.skill-card {
+  background-color: var(--card-bg);
+  border-top: 4px solid var(--accent-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  /* Add a transition so skill cards gently lift on hover */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover effect for skill cards */
+.skill-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.skill-card .skill-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+  color: #ffffff;
+  font-size: 1.6rem;
+  margin: 0 auto 12px;
+}
+
+.skill-card .skill-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.skill-card .skill-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+  justify-content: center;
+}
+
+.skill-card .skill-keyword {
+  /* Increase contrast and prominence for skill keywords */
+  /* Use a light tinted background for skill keywords to differentiate them from level badges */
+  background-color: var(--tag-bg);
+  color: var(--secondary-dark);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.skill-card .skill-level {
+  /* Base styling for the level badge */
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin: 6px auto 8px;
+  text-align: center;
+  color: var(--card-bg);
+  background-color: var(--muted-color);
+}
+
+/* Specific colour schemes for skill levels. The class names are added via JS based on the
+   lowercased level name. Experts use the accent colour; advanced skills use the
+   secondary colour. Additional levels can be added here with their own colours.
+ */
+.skill-level.level-expert {
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+}
+.skill-level.level-advanced {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+.skill-level.level-beginner {
+  background-color: var(--timeline-gradient-end);
+  color: var(--card-bg);
+}
+
+.skill-card .skill-link {
+  margin-top: auto;
+  font-size: 0.85rem;
+  color: var(--accent-color);
+  text-align: center;
+}
+
+.skill-card .skill-link a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+.skill-card .skill-link a:hover {
+  text-decoration: underline;
+}
+
+/* Languages section styles */
+.languages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.language-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.language-name {
+  width: 120px;
+  font-weight: 600;
+  color: var(--primary-dark);
+}
+
+.language-bar-wrapper {
+  flex-grow: 1;
+  background-color: #e5edfa;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.language-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--timeline-gradient-start), var(--timeline-gradient-end));
+  border-radius: 4px;
+}
+
+.language-level {
+  width: 100px;
+  font-size: 0.85rem;
+  color: var(--muted-color);
+  text-align: right;
+}
+
+/* Contact */
+/* Contact */
+/* Base contact card layout */
+.contact-card {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: 28px;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  /* Borders on both left and right sides to frame the card elegantly */
+  border-left: 4px solid var(--secondary-color);
+  border-right: 4px solid var(--secondary-color);
+}
+
+/* Wrapper for multiple contact columns */
+/* Wrapper for multiple contact categories (social media, professional, others) */
+.contact-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+/* Each contact column flexes equally and has a minimum width */
+.contact-category {
+  flex: 1 1 220px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Title for each contact category */
+.contact-category h4 {
+  margin: 0 0 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+}
+
+
+/* New contact mini card layout */
+.contact-mini-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--timeline-line-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.contact-mini-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
+}
+.contact-mini-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+  color: #ffffff;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+.contact-mini-details {
+  display: flex;
+  flex-direction: column;
+}
+.contact-mini-title {
+  font-weight: 600;
+  color: var(--primary-dark);
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+.contact-mini-value {
+  font-size: 0.95rem;
+  color: var(--muted-color);
+  word-break: break-word;
+}
+
+/* Collaborations section */
+.collab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  justify-items: stretch;
+}
+
+.collab-card {
+  /* Stack content vertically to place links beneath the main info */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: var(--card-bg);
+  border: 1px solid var(--timeline-line-color);
+  border-radius: 8px;
+  padding: 16px 20px;
+  gap: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.collab-card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+/* Wrapper for the image and details inside a collaboration card */
+.collab-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+/* Logo styling inside the info row */
+.collab-info img {
+  width: 60px;
+  height: 60px;
+  border-radius: 6px;
+  object-fit: contain;
+  flex-shrink: 0;
+  background-color: var(--tag-bg);
+  padding: 4px;
+}
+
+.collab-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.collab-details h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+}
+
+.collab-details span {
+  font-size: 0.85rem;
+  color: var(--muted-color);
+  margin-top: 4px;
+}
+
+/* Links area inside collaboration cards */
+.collab-links {
+  margin-top: 8px;
+  width: 100%;
+}
+
+.collab-links p {
+  margin: 2px 0;
+  font-size: 0.85rem;
+}
+
+.collab-links p strong {
+  color: var(--primary-dark);
+  margin-right: 4px;
+}
+
+.collab-links p a {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+.collab-links p a:hover {
+  text-decoration: underline;
+}
+
+/* Research section links styling. Keep simple but make the link stand out */
+.research-links p {
+  margin: 4px 0;
+  font-size: 0.9rem;
+}
+.research-links p strong {
+  margin-right: 4px;
+  color: var(--primary-dark);
+}
+.research-links p a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+.research-links p a:hover {
+  text-decoration: underline;
+}
+
+/* About section styling */
+.about-stats {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.stat-card {
+  /* Give each stat card a soft coloured background and accent bar to
+     differentiate it from the page background. This helps the cards
+     stand out while still harmonising with the overall palette. */
+  /* Use a soft neutral background for a more polished appearance */
+  background-color: #f5f7fa;
+  border-top: 4px solid var(--secondary-color);
+  border: 1px solid var(--timeline-line-color);
+  border-radius: 8px;
+  /* Increase padding and minimum width for a more substantial feel */
+  padding: 28px 32px;
+  min-width: 180px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.stat-value {
+  display: block;
+  /* Larger numeric values enhance readability */
+  font-size: 2.5rem;
+  font-weight: 700;
+  /* Use secondary dark colour to tie stat values into the palette */
+  color: var(--secondary-dark);
+  margin-bottom: 4px;
+}
+
+/* Styling for the plus symbol appended to each stat value. A smaller
+   font size, slight left margin and super positioning keep the plus
+   sign discreet while still visible. */
+.stat-value .stat-plus {
+  font-size: 0.5em;
+  margin-left: 4px;
+  vertical-align: super;
+  color: inherit;
+}
+
+.stat-label {
+  display: block;
+  font-size: 1rem;
+  color: var(--muted-color);
+  text-transform: capitalize;
+}
+
+.about-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.about-keyword {
+  background-color: var(--tag-bg);
+  color: var(--tag-color);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+}
+
+/* Highlighted keywords within the about summary */
+.about-highlight {
+  background-color: var(--tag-bg);
+  color: var(--accent-color);
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+/* Project subsections and filtering */
+.project-subsection {
+  margin-bottom: 60px;
+}
+
+.project-subheading {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  text-align: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+.project-subheading::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+  border-radius: 3px;
+}
+
+.project-filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.filter-button {
+  border: none;
+  background-color: var(--tag-bg);
+  color: var(--primary-dark);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.filter-button:hover {
+  background-color: var(--secondary-color);
+  color: var(--card-bg);
+}
+.filter-button.active {
+  background-color: var(--secondary-dark);
+  color: #ffffff;
+}
+
+/* About summary styling: increase font size and line height for better readability */
+.about-summary {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--primary-dark);
+}
+
+/* Footer */
+.footer {
+  /* Use a dark footer to ground the page. The dark tone ties back into the
+     primary palette and provides a visual conclusion to the site. */
+  background-color: var(--primary-dark);
+  padding: 20px;
+  text-align: center;
+  border-top: none;
+}
+
+.footer p {
+  margin: 0;
+  color: #e2e8f0;
+  font-size: 0.9rem;
+}
+
+/* Fade in animation */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-section.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Scroll to top button */
+#scrollTopBtn {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+  color: #ffffff;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  z-index: 100;
+}
+
+#scrollTopBtn.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+#scrollTopBtn:hover {
+  background-color: var(--secondary-dark);
+  transform: translateY(-3px);
+}
+
+/*
+  Languages section styling
+  The languages list is a subsection of the Skills section, so its header
+  should appear less prominent than top‑level section headers. Reduce the
+  font size and spacing for the heading within the languages section.
+*/
+#languages .section-header h2 {
+  font-size: 1.6rem;
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: var(--primary-dark);
+}
+
+/*
+  Additional size tweaks for the About and Contact sections. A slightly
+  larger font size enhances readability for summary and contact details.
+*/
+#about-content p {
+  font-size: 1.1rem;
+}
+
+#contact .contact-text {
+  font-size: 1.1rem;
+}
+
+/* Publication and Talk card styles */
+/*
+ * Publication and talk cards share many structural properties. To improve
+ * perceived interactivity, add a transition and hover state so these
+ * cards gently rise and cast a deeper shadow when hovered. This micro
+ * animation guides the user’s attention without overwhelming the design.
+ */
+.publication-card,
+.talk-card {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  padding: 20px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover effects for publication and talk cards */
+.publication-card:hover,
+.talk-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Labels for publications and talks */
+.publication-card .item-label,
+.talk-card .item-label {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #ffffff;
+}
+
+/* Publication type colour mappings */
+.publication-label.label-conference { background-color: var(--secondary-dark) !important; }
+.publication-label.label-preprint { background-color: var(--primary-dark) !important; }
+.publication-label.label-thesis { background-color: var(--accent-color) !important; }
+.publication-label.label-journal { background-color: var(--secondary-color) !important; }
+.publication-label.label-book { background-color: var(--timeline-gradient-end) !important; }
+/* Handle extended type names by mapping them to existing colour schemes */
+.publication-label.label-conference-presentation { background-color: var(--secondary-dark) !important; }
+/* Default publication label colour */
+.publication-card .item-label { background-color: var(--secondary-dark); }
+
+/* Talk type colour mappings */
+/* Talk type colour mappings. Use !important to override the default talk label colour. */
+.talk-label.label-guest { background-color: var(--accent-color) !important; }
+.talk-label.label-conference { background-color: var(--secondary-dark) !important; }
+.talk-label.label-seminar { background-color: var(--secondary-color) !important; }
+.talk-label.label-lecture { background-color: var(--primary-dark) !important; }
+/* Additional talk type colour mappings */
+.talk-label.label-guest-speaker { background-color: var(--accent-color) !important; }
+.talk-label.label-conference-presentation { background-color: var(--secondary-dark) !important; }
+/* Default talk label colour */
+.talk-card .item-label { background-color: var(--accent-color); }
+
+/* Titles */
+.publication-card .publication-title,
+.talk-card .talk-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  margin: 0 0 6px;
+}
+
+/* DOI styling */
+.publication-card .publication-doi {
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+  color: var(--muted-color);
+}
+.publication-card .publication-doi a {
+  color: var(--secondary-dark);
+  text-decoration: none;
+}
+.publication-card .publication-doi a:hover {
+  text-decoration: underline;
+}
+
+/* Buttons wrapper for publications and talks */
+.item-buttons {
+  margin-bottom: 10px;
+}
+.item-buttons .btn {
+  display: inline-block;
+  padding: 6px 14px;
+  margin-right: 10px;
+  margin-top: 6px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: #ffffff;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.publication-card .item-buttons .btn {
+  background-color: var(--secondary-color);
+}
+.publication-card .item-buttons .btn:hover {
+  background-color: var(--secondary-dark);
+}
+.talk-card .item-buttons .btn {
+  background-color: var(--accent-color);
+}
+.talk-card .item-buttons .btn:hover {
+  background-color: var(--primary-dark);
+}
+
+/* Publication and talk images */
+.publication-card .publication-image {
+  width: 100%;
+  height: 100%;
+  max-height: 800px;
+  object-fit:scale-down;
+  object-position: center;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  background-color: #f5f7fa;
+}
+.talk-card .talk-image {
+  width: 100%;
+  /* Constrain talk images to a fixed height similar to publication
+     images. Using object-fit: contain keeps the entire image visible
+     while fitting it into the block without cropping. */
+  /* Match the publication banner height for talks */
+  height: 600px;
+  max-height: 800px;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  background-color: #f5f7fa;
+}
+
+/* Descriptions for publications and talks */
+.publication-card .publication-description,
+.talk-card .talk-description {
+  font-size: 0.95rem;
+  color: var(--muted-color);
+  margin-top: 8px;
+}
+
+/* Top accent bars for publication and talk cards */
+.publication-card {
+  border-top: 4px solid var(--secondary-color);
+}
+.talk-card {
+  border-top: 4px solid var(--accent-color);
+}
+
+/*--------------------------------------------------------------------*/
+/* Floating widgets for the About section
+   These panels display supplementary information (e.g. AI trends, next
+   tasks) without overwhelming the primary About content. They are
+   positioned absolutely within the About section so they float to the
+   left and right of the main content. A semi‑transparent backdrop and
+   subtle border accent tie into the overall colour palette. On
+   smaller screens the widgets are hidden to avoid clutter. */
+.widget-box {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 220px;
+  max-width: 22%;
+  /* Dark, translucent background for a terminal‑like feel */
+  background: rgba(20, 40, 80, 0.7);
+  /* Accent border on the left for subtle emphasis */
+  border-left: 4px solid var(--accent-color);
+  border-radius: 8px;
+  padding: 16px;
+  color: #f5f7fa;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4px);
+  text-align: left;
+  z-index: 3;
+}
+.widget-left {
+  left: 20px;
+}
+.widget-right {
+  right: 20px;
+}
+.widget-box h4 {
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--accent-color);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 4px;
+}
+.widget-box ul {
+  margin: 0;
+  padding-left: 0;
+  list-style-type: none;
+}
+.widget-box ul li {
+  margin-bottom: 6px;
+}
+.widget-box ul li a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.widget-box ul li a:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+@media (max-width: 992px) {
+  .widget-box {
+    display: none;
+  }
+}

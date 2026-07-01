@@ -1,0 +1,89 @@
+{
+  "skills": [
+    {
+      "title": "NLP & GenAI",
+      "icon": "🧠",
+      "level": "Expert",
+      "link": "#",
+      "keywords": [
+        "LLMs",
+        "RAG",
+        "Prompt Engineering",
+        "Information Extraction",
+        "Summarization",
+        "Text Generation",
+        "Sentiment Analysis",
+        "Translation"
+      ]
+    },
+    {
+      "title": "Computer Vision",
+      "icon": "👁️",
+      "level": "Advanced",
+      "link": "#",
+      "keywords": [
+        "OCR",
+        "Object Detection",
+        "Segmentation",
+        "Image Processing",
+        "Vision-Language Models"
+      ]
+    },
+    {
+      "title": "ML / Deep Learning",
+      "icon": "🤖",
+      "level": "Expert",
+      "link": "#",
+      "keywords": [
+        "Classification",
+        "Forecasting",
+        "Anomaly Detection",
+        "Model Optimization",
+        "Feature Engineering"
+      ]
+    },
+    {
+      "title": "Dev / Cloud",
+      "icon": "☁️",
+      "level": "Advanced",
+      "link": "#",
+      "keywords": [
+        "FastAPI",
+        "Docker",
+        "Git",
+        "AWS (Certified)",
+        "GCP (Certified)",
+        "API Design",
+        "Microservices",
+        "System Architecture"
+      ]
+    },
+    {
+      "title": "Frameworks & Tools",
+      "icon": "🛠️",
+      "level": "Advanced",
+      "link": "#",
+      "keywords": [
+        "PyTorch",
+        "TensorFlow",
+        "Hugging Face",
+        "LangChain",
+        "LangGraph",
+        "Dify"
+      ]
+    },
+    {
+      "title": "Project Management",
+      "icon": "📋",
+      "level": "Advanced",
+      "link": "#",
+      "keywords": [
+        "Agile",
+        "Jira",
+        "MS Project",
+        "Stakeholder Management",
+        "Cross-functional Teams"
+      ]
+    }
+  ]
+}

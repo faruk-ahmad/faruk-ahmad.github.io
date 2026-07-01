@@ -1,0 +1,34 @@
+{
+  "items": [
+    {
+      "type": "Guest Speaker",
+      "title": "2024: AI Trends, Myths & Mysteries",
+      "description": "Unpacks common misconceptions in AI development, deployment, and emerging trends, highlighting real-world challenges and practical insights.",
+      "image": "sections/talks/2024/cse-brur-talk-2024.jpg",
+      "links": {
+        "slides": "https://drive.google.com/file/d/11ExmFsK940XSHsk5aTrZI9VjEp2IOpOc/view",
+        "video": "#"
+      }
+    },
+    {
+      "type": "Guest Speaker",
+      "title": "2019: Advancement in AI Research",
+      "description": "An overview of key developments in AI research, focusing on emerging trends, practical impact, and future outlook.",
+      "image": "sections/talks/2019/cse-brur-talk-2019.jpg",
+      "links": {
+        "slides": "https://drive.google.com/file/d/17GVNoUOdmh1ld_2701ezutpOjIV3VJsH/view",
+        "video": "#"
+      }
+    },
+    {
+      "type": "Conference Presentation",
+      "title": "2017: Presentation on: Named Entity Classification using Dependency Grammar.",
+      "description": "The presentation was delivered at the ICCIT 2017 IEEE Conference, featuring a research paper based on the undergraduate thesis.",
+      "image": "sections/talks/2017/ICCIT-2017-Presentation.jpg",
+      "links": {
+        "slides": "#",
+        "video": "#"
+      }
+    }
+  ]
+}

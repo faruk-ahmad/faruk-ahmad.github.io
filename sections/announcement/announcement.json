@@ -1,0 +1,13 @@
+{
+  "show": false,
+  "title": "Eid-ul-Fitr Greetings",
+  "logo": "sections/announcement/logos/festival_icon.png",
+  "image": "sections/announcement/eid-greeting-1.png",
+  "description": "Wishing you a happy & enjoyable Eid with your family, friends and near & dear ones.",
+  "link": "https://en.wikipedia.org/wiki/Eid_al-Fitr",
+  "keywords": [
+    "Eid",
+    "Muslim Festival",
+    "Happiness"
+  ]
+}

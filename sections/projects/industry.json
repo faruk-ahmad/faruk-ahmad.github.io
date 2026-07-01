@@ -1,0 +1,58 @@
+{
+  "items": [
+    {
+      "title": "Multilingual Document AI",
+      "description": "Production-grade OCR/ICR platform for structured data extraction from scanned documents, combining object detection, text recognition, NER, and layout-aware processing.",
+      "image": "sections/projects/industry/multi-lang-doc-ai.png",
+      "keywords": ["OCR", "ICR", "NLP", "Document AI", "Layout Analysis"],
+      "links": {
+        "Details":"#"
+      }
+    },
+    {
+      "title": "Invoice & Payment Automation",
+      "description": "End-to-end invoice processing pipelines for field extraction, normalization, and validation, integrated with downstream ERP and RPA workflows.",
+      "image": "sections/projects/industry/invoice-payment-ai.png",
+      "keywords": ["OCR", "RPA", "ERP", "Automation", "Data Extraction"],
+      "links": {
+        "Details":"#"
+      }
+    },
+    {
+      "title": "Legal Document Intelligence",
+      "description": "LLM-powered contract analysis system for clause extraction, obligation identification, and risk assessment with evidence-based outputs.",
+      "image": "sections/projects/industry/legal-doc-ai.png",
+      "keywords": ["LLMs", "Legal AI", "NLP", "Information Extraction"],
+      "links": {
+        "Details":"#"
+      }
+    },
+    {
+      "title": "Healthcare GenAI Assistant",
+      "description": "Retrieval-augmented generation system for clinical and policy document QA, incorporating guardrails, compliance controls, and domain-specific knowledge retrieval.",
+      "image": "sections/projects/industry/healthcare-gen-ai.png",
+      "keywords": ["RAG", "GenAI", "Healthcare AI", "Compliance"],
+      "links": {
+        "Details":"#"
+      }
+    },
+    {
+      "title": "AI Runtime Optimization Engine",
+      "description": "Inference optimization framework for document AI pipelines using batching, mixed precision, and I/O tuning to improve performance and reduce latency.",
+      "image": "sections/projects/industry/edge-runtime-for-ai.png",
+      "keywords": ["Optimization", "Inference", "Performance", "Scaling"],
+      "links": {
+        "Details":"#"
+      }
+    },
+    {
+      "title": "Low-Code GenAI Platform",
+      "description": "Enterprise-grade low-code platform enabling rapid development of AI applications with agent workflows, connectors, guardrails, and prompt management.",
+      "image": "sections/projects/industry/low-code-gen-ai.png",
+      "keywords": ["Low-Code", "GenAI", "Agents", "Enterprise AI"],
+      "links": {
+        "Details":"#"
+      }
+    }
+  ]
+}

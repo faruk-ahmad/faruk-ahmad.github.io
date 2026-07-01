@@ -1,0 +1,33 @@
+[
+  {
+    "degree": "MSc in Computer Science",
+    "period": "2024 - 2026",
+    "institution": "University of Sunderland",
+    "location": "Sunderland, UK",
+    "description": [
+      { "key": "Major", "value": "Computer Science" },
+      { "key": "Thesis", "value": "Native Language Identification on Ultra Short User Generated Texts." },
+      { "key": "Degree Awarded with", "value": "OnGoing.." }
+    ],
+    "logo": "sections/education/MSc/uos.svg"
+    ,
+    "links": {
+      "Website": "https://www.sunderland.ac.uk"
+    }
+  },
+  {
+    "degree": "BSc in Computer Science and Engineering",
+    "period": "2011 - 2014",
+    "institution": "Begum Rokeya University",
+    "location": "Rangpur, Bangladesh",
+    "description": [
+      { "key": "Thesis#1", "value": "Named entity classification using dependency grammar - ICCIT-2017 [Details in Research section]" },
+      { "key": "Thesis#2", "value": "Recognition of Bangla handwriting characters using Convolutional Neural Network [Details in Research section]" }
+    ],
+    "logo": "sections/education/BSc/brur.png"
+    ,
+    "links": {
+      "Website": "https://brur.ac.bd"
+    }
+  }
+]

@@ -1,0 +1,173 @@
+[
+  {
+    "title": "Senior AI Engineer",
+    "period": "2025 - Present",
+    "company": "Deloitte Tohmatsu LLC (R-DT LLC)",
+    "location": "Tokyo, Japan",
+    "sections": {
+      "Short Description": [
+        "Architecting and leading end-to-end AI systems for enterprise-scale document processing, combining OCR, NLP, and multimodal models.",
+        "Driving system design and technical direction for cloud-native AI platforms across AWS and GCP.",
+        "Leading cross-functional teams to deliver production-grade AI solutions with measurable business impact."
+      ],
+      "Key Contributions": [
+        "AI system architecture",
+        "Cloud-native platform leadership",
+        "Cross-functional team leadership"
+      ],
+      "Work Highlights": [
+        "OCR",
+        "NLP",
+        "Multimodal models",
+        "AWS",
+        "GCP",
+        "Enterprise-scale document processing"
+      ]
+    },
+    "links": {
+      "Company": "https://www.deloitte.com/jp/en.html"
+    },
+    "awards": [],
+    "logo": "sections/experience/jp/deloitte.png"
+  },
+  {
+    "title": "Senior AI Engineer",
+    "period": "2023 - 2025",
+    "company": "Deloitte Tohmatsu Risk Advisory LLC (DTRA LLC)",
+    "location": "Tokyo, Japan",
+    "sections": {
+      "Short Description": [
+        "Designed and deployed scalable OCR and NLP pipelines for enterprise clients, enabling automated document understanding workflows.",
+        "Led a team of engineers to build and deliver cloud-native AI services in production environments.",
+        "Integrated multimodal and vision-language models into existing systems, improving accuracy and processing efficiency."
+      ],
+      "Key Contributions": [
+        "Scalable OCR/NLP pipeline design",
+        "Team leadership",
+        "Multimodal integration"
+      ],
+      "Work Highlights": [
+        "OCR",
+        "NLP",
+        "Vision-language models",
+        "Cloud-native services"
+      ]
+    },
+    "links": {
+      "Company": "https://www.deloitte.com/jp/en.html"
+    },
+    "awards": ["Best Employee Award 🏆 2024 – Lead The Way"],
+    "logo": "sections/experience/jp/deloitte.png"
+  },
+  {
+    "title": "AI Engineer",
+    "period": "2020 - 2022",
+    "company": "Deloitte Touche Tohmatsu LLC (DTT LLC)",
+    "location": "Tokyo, Japan",
+    "sections": {
+      "Short Description": [
+        "Developed and deployed AI-driven document processing pipelines using OCR and NLP techniques.",
+        "Contributed to the design and implementation of scalable backend services for AI applications.",
+        "Collaborated with cross-functional teams to integrate machine learning models into enterprise systems."
+      ],
+      "Key Contributions": [
+        "AI pipeline development",
+        "Backend service design",
+        "Cross-functional collaboration"
+      ],
+      "Work Highlights": [
+        "OCR",
+        "NLP",
+        "Backend services"
+      ]
+    },
+    "links": {
+      "Company": "https://www.deloitte.com/jp/en.html"
+    },
+    "awards": [],
+    "logo": "sections/experience/jp/deloitte.png"
+  },
+  {
+    "title": "Junior AI Engineer",
+    "period": "2018 - 2020",
+    "company": "Deloitte Touche Tohmatsu LLC (DTT LLC)",
+    "location": "Tokyo, Japan",
+    "sections": {
+      "Short Description": [
+        "Implemented machine learning models and data processing pipelines for real-world business applications.",
+        "Supported development of OCR and NLP components for document analysis systems.",
+        "Worked closely with senior engineers to enhance model performance and system reliability."
+      ],
+      "Key Contributions": [
+        "Machine learning model implementation",
+        "OCR/NLP component development",
+        "Model performance enhancement"
+      ],
+      "Work Highlights": [
+        "Machine Learning",
+        "OCR",
+        "NLP"
+      ]
+    },
+    "links": {
+      "Company": "https://www.deloitte.com/jp/en.html"
+    },
+    "awards": [],
+    "logo": "sections/experience/jp/deloitte.png"
+  },
+  {
+    "title": "Lecturer, Department of Computer Science",
+    "period": "2017 - 2018",
+    "company": "Pundra University of Science & Technology",
+    "location": "Bogura, Bangladesh",
+    "sections": {
+      "Short Description": [
+        "Delivered undergraduate courses in Artificial Intelligence, Computer Architecture, and Computer Fundamentals.",
+        "Mentored students on academic projects and foundational concepts in computing and machine learning."
+      ],
+      "Key Contributions": [
+        "Course delivery",
+        "Student mentorship"
+      ],
+      "Courses Delivered": [
+        "Artificial Intelligence",
+        "Computer Architecture",
+        "Computer Fundamentals"
+      ]
+    },
+    "links": {
+      "Institution": "https://pundrauniversity.ac.bd/"
+    },
+    "awards": [],
+    "logo": "sections/experience/bd/pub-bd.jpg"
+  },
+  {
+    "title": "AI Researcher & Developer",
+    "period": "2015 - 2017",
+    "company": "Semantics Lab",
+    "location": "Rangpur, Bangladesh",
+    "sections": {
+      "Short Description": [
+        "Conducted research on natural language processing and inference models, including cross-lingual applications.",
+        "Published research findings in international conferences.",
+        "Developed early-stage prototypes for sentiment analysis and language understanding systems."
+      ],
+      "Key Contributions": [
+        "NLP research",
+        "Research publications",
+        "Prototype development"
+      ],
+      "Work Highlights": [
+        "Natural Language Processing",
+        "Cross-lingual models",
+        "Sentiment Analysis",
+        "Language Understanding"
+      ]
+    },
+    "links": {
+      "Organization": "http://semanticslab.net"
+    },
+    "awards": [],
+    "logo": "sections/experience/bd/sl.png"
+  }
+]

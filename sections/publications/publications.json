@@ -1,0 +1,39 @@
+{
+  "subtitle": "Beyond these listed publications, explore deeper insights on my research blog.",
+  "links": {
+    "Research Blog": "https://research.faruk.me"
+  },
+  "items": [
+    {
+      "type": "Journal",
+      "title": "Gender Recognition of Bangla Names Using Deep Learning Approaches Appl. Sci. 2023",
+      "description": "Investigates deep learning techniques for predicting gender from Bengali names, highlighting challenges in low-resource language contexts.",
+      "image": "sections/publications/journal/bn-name-gender.png",
+      "links": {
+        "doi": "https://ieeexplore.ieee.org/document/8281836",
+        "pdf": "#",
+        "slides": "#"
+      }
+    },
+    {
+      "type": "Conference",
+      "title": "Named entity classification using dependency grammar - ICCIT-2017",
+      "description": "Presents a hybrid approach combining dependency grammar and LSTM-based models for named entity recognition and classification in English text, published at IEEE ICCIT 2017.",
+      "image": "sections/publications/conference/NER-ICCIT-2017.jpg",
+      "links": {
+        "doi": "https://ieeexplore.ieee.org/document/8281836",
+        "pdf": "#",
+        "slides": "#"
+      }
+    },
+    {
+      "type": "Thesis",
+      "title": "Recognition of Bangla handwriting characters using Convolutional Neural Network",
+      "description": "Undergraduate thesis focused on handwritten Bangla character recognition using convolutional neural networks, addressing challenges in script variability and image-based classification.",
+      "image": "sections/publications/thesis/bsc-thesis-1.png",
+      "links": {
+        "pdf": "#"
+      }
+    }
+  ]
+}

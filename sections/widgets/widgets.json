@@ -1,0 +1,38 @@
+{
+  "left": {
+    "show": true,
+    "title": "What I'm Exploring",
+    "items": [
+      { 
+        "text": "🧠 Multimodal Document AI Systems", 
+        "url": "https://research.faruk.me" 
+      },
+      { 
+        "text": "📄 LLM-based Information Extraction", 
+        "url": "https://research.faruk.me" 
+      },
+      { 
+        "text": "⚙️ Efficient Inference & Model Optimization", 
+        "url": "https://research.faruk.me" 
+      }
+    ]
+  },
+  "right": {
+    "show": true,
+    "title": "Currently Building",
+    "items": [
+      { 
+        "text": "1. Privacy focused local LLM powered coding agent", 
+        "url": "https://github.com/faruk-ahmad/kodamage" 
+      },
+      { 
+        "text": "2. iCLI: Local LLM driven CLI tool", 
+        "url": "https://github.com/faruk-ahmad/icli" 
+      },
+      { 
+        "text": "3. Observability for prodcution systems", 
+        "url": "https://github.com/faruk-ahmad/observability-playground" 
+      }
+    ]
+  }
+}

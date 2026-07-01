@@ -1,0 +1,50 @@
+{
+  "personal": [
+    {
+      "icon": "📝",
+      "title": "Blog",
+      "value": "blog.faruk.me/",
+      "url": "https://blog.faruk.me/"
+    },
+    {
+      "icon": "🌐",
+      "title": "Facebook",
+      "value": "fb.com/i.faruk.ahmad/",
+      "url": "https://www.facebook.com/i.faruk.ahmad/"
+    },
+    {
+      "icon": "🌐",
+      "title": "Twitter/X",
+      "value": "x.com/_fahmad_",
+      "url": "https://x.com/_fahmad_"
+    }
+  ],
+  "professional": [
+    {
+      "icon": "💼",
+      "title": "LinkedIn",
+      "value": "linkedin.com/in/faruk-ahmad",
+      "url": "https://linkedin.com/in/faruk-ahmad"
+    },
+    {
+      "icon": "📧",
+      "title": "Email",
+      "value": "faruk.csebrur@gmail.com",
+      "url": "mailto:faruk.csebrur@gmail.com"
+    },
+    {
+      "icon": "🐙",
+      "title": "GitHub",
+      "value": "github.com/faruk-ahmad",
+      "url": "https://github.com/faruk-ahmad"
+    }
+  ],
+  "others": [
+    {
+      "icon": "📍",
+      "title": "Location",
+      "value": "Aoto, Katsushika-ku, Tokyo, Japan",
+      "url": null
+    }
+  ]
+}

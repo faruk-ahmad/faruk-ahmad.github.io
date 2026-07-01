@@ -1,0 +1,45 @@
+{
+  "subtitle": "Research works collaborated with leading universities and research institutions..",
+  "items": [
+    {
+      "name": "Begum Rokeya University",
+      "location": "Bangladesh",
+      "logo": "sections/collaborations/bd/brur.png",
+      "links": {
+        "Website": "https://brur.ac.bd"
+      }
+    },
+    {
+      "name": "Semantics Lab",
+      "location": "Bangladesh",
+      "logo": "sections/collaborations/bd/sl.png",
+      "links": {
+        "Website": "http://semanticslab.net"
+      }
+    },
+    {
+      "name": "Jamalpur University of Science & Technology",
+      "location": "Bangladesh",
+      "logo": "sections/collaborations/bd/just-bd.png",
+      "links": {
+        "Website": "https://jstu.ac.bd/"
+      }
+    },
+    {
+      "name": "The University of Aizu",
+      "location": "Japan",
+      "logo": "sections/collaborations/jp/aizu-jp.svg",
+      "links": {
+        "Website": "https://u-aizu.ac.jp"
+      }
+    },
+    {
+      "name": "University of Sunderland",
+      "location": "UK",
+      "logo": "sections/collaborations/uk/uos.svg",
+      "links": {
+        "Website": "https://www.sunderland.ac.uk"
+      }
+    }
+  ]
+}

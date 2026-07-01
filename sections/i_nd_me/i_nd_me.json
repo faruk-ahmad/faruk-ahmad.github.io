@@ -1,0 +1,19 @@
+{
+  "name": "Faruk Ahmad",
+  "tagline": "Senior AI Engineer & Applied Researcher",
+  "subtitle": "9+ Years Experience • Tokyo, Japan",
+  "description": "Specializing in Document AI, multimodal systems, and GenAI, delivering scalable solutions across finance, healthcare, and legal domains.",
+  "image": "sections/i_nd_me/profile.jpg",
+  "buttons": [
+    {
+      "label": "View Works",
+      "href": "#projects",
+      "newTab": false
+    },
+    {
+      "label": "Get in Touch",
+      "href": "#contact",
+      "newTab": false
+    }
+  ]
+}
